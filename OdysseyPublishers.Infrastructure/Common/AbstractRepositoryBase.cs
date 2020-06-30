@@ -4,9 +4,12 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SqlClient;
 using System.Text;
+using Dapper;
+using System.Linq;
+
 namespace OdysseyPublishers.Infrastructure.Common
 {
-    public abstract class AbstractRepositoryBase
+    public abstract class AbstractRepositoryBase<T>
     {
         private readonly string connString;
 
@@ -27,25 +30,41 @@ namespace OdysseyPublishers.Infrastructure.Common
             else return sqlConnection; 
         }
 
-        public DbCommand GetDbCommand(string commandQuery)
+        public IList<T> QueryDatabase<T>(string commandQuery)
         {
-            return new SqlCommand(commandQuery, (SqlConnection)GetDbConnection());
-        }
-
-        public IEnumerable<dynamic> QueryDatabase(string commandQuery)
-        {
-           var reader =  GetDbCommand(commandQuery).ExecuteReader();
-
-            while(reader.Read())
+            var connection = GetDbConnection();
+            IEnumerable<T> result = null;
+            using (connection)
             {
-                yield return reader;
+               result =  connection.Query<T>(commandQuery);
             }
+
+            return result.ToList();
+         
         }
 
-        public dynamic QueryDatabaseSingle(string commandQuery)
+        public T QueryDatabaseSingle<T>(string commandQuery)
         {
-            var reader = GetDbCommand(commandQuery).ExecuteReader();
-            return reader[0];
+            var connection = GetDbConnection();
+            dynamic result = null;
+            using (connection)
+            {
+                result =  connection.Query<T>(commandQuery).FirstOrDefault();
+            }
+
+            return result;
+        }
+
+        public bool Exists(string commandQuery)
+        {
+            var connection = GetDbConnection();
+            dynamic result = null;
+            using (connection)
+            {
+                result = connection.Query(commandQuery).FirstOrDefault();
+            }
+
+            return result==null?false:true;
         }
 
     }

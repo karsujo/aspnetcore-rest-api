@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -6,10 +6,12 @@
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="Dapper" Version="2.0.35" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\OdysseyPublishers.Domain\OdysseyPublishers.Domain.csproj" />
+    <ProjectReference Include="..\OdysseyPublishers.Infrastructure\OdysseyPublishers.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
