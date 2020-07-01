@@ -29,7 +29,7 @@ namespace OdysseyPublishers.Application.Authors
         public bool AuthorExists(string authorId)
         {
             string sql = "";
-            return Exists(sql);
+            return true;
         }
 
     }
