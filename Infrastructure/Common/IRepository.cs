@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace OdysseyPublishers.Infrastructure.Common
+{
+    public interface IRepository<T>
+    {
+        IEnumerable<T> QueryDatabase<T>( string query);
+        T QueryDatabaseSingle<T>( string query);
+        dynamic QueryDatabaseSingle(string query);
+        IEnumerable<dynamic> QueryDatabase(string query);
+    }
+}
