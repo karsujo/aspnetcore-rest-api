@@ -16,13 +16,13 @@ namespace Infrastructure.Tests
     public class RepositoryBaseTests
     {
 
-        private RepositoryBase _repo;
+        private SqlRepositoryBase _repo;
 
         public RepositoryBaseTests()
         {
             var opt = Options.Create(new PersistenceConfigurations());
             opt.Value.ConnectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=pubs;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-            _repo = new RepositoryBase(opt);
+            _repo = new SqlRepositoryBase(opt);
         }
         [Fact]
         public void DbConnectionTest()
@@ -33,7 +33,18 @@ namespace Infrastructure.Tests
         [Fact]
         public void QueryDatabaseGenericTest()
         {
-            string sql = "SELECT * FROM AUTHORS";
+            string sql = @"SELECT 
+              au_id AuthorId,
+              au_fname FirstName, 
+              au_lname LastName,
+              phone,
+              address,
+              city,
+              state,
+              zip,
+              contract
+            FROM
+              AUTHORS ";
             var result = _repo.QueryDatabase<Author>(sql);
             Assert.IsType<List<Author>>(result);
             Assert.NotEmpty(result);

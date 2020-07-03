@@ -9,11 +9,11 @@ using System.Linq;
 
 namespace OdysseyPublishers.Infrastructure.Common
 {
-    public class RepositoryBase : IRepository
+    public class SqlRepositoryBase : IRepository
     {
         private readonly PersistenceConfigurations _persistenceconfigurations;
 
-        public RepositoryBase(IOptions<PersistenceConfigurations> persistenceconfigurations)
+        public SqlRepositoryBase(IOptions<PersistenceConfigurations> persistenceconfigurations)
         {
             _persistenceconfigurations = persistenceconfigurations.Value;
         }
