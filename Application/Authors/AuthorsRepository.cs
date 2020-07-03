@@ -12,7 +12,7 @@ namespace OdysseyPublishers.Application.Authors
 
         private readonly IRepository _repository;
 
-        public AuthorsRepository(IRepository repository, IConfiguration configuration) : base(configuration)
+        public AuthorsRepository(IRepository repository, IConfiguration configuration) 
         {
             _repository = repository;
         }
