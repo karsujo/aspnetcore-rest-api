@@ -5,23 +5,26 @@ using Dapper;
 using System.Linq;
 using System.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
+using System.Runtime.CompilerServices;
+using Microsoft.Extensions.Options;
+using Application.Common;
 
 namespace OdysseyPublishers.Infrastructure.Common
 {
     public abstract class AbstractRepositoryBase : IRepository
     {
-        private readonly string connString;
+        private readonly PersistenceConfigurations _persistenceconfigurations;
 
         private readonly SqlConnection sqlConnection;
-        public AbstractRepositoryBase(IConfiguration configuration)
+        public AbstractRepositoryBase(IOptions<PersistenceConfigurations> persistenceconfigurations)
         {
-            connString = configuration.GetConnectionString("sqlConnection");
+            _persistenceconfigurations = persistenceconfigurations.Value;
         }
 
         public DbConnection GetDbConnection()
         {
 
-            return new SqlConnection(connString);
+            return new SqlConnection(_persistenceconfigurations.ConnectionString);
 
         }
 
