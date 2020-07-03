@@ -18,5 +18,13 @@ namespace OdysseyPublishers.API.Controllers
             _repository = authorsRepository;
         }
 
+        [HttpGet]
+        public ActionResult GetAuthors()
+        {
+            return Ok(_repository.GetAuthors());
+        }
+
     }
+
+   
 }

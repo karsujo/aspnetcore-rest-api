@@ -1,6 +1,7 @@
 ﻿using AutoMapper.Configuration;
 using OdysseyPublishers.Application.Common;
 using OdysseyPublishers.Domain;
+using OdysseyPublishers.Domain.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -30,9 +31,14 @@ namespace Application.Books
 
         public bool BookExists(string BookId)
         {
-     
-            string sql = "";
-            return true;
+            try
+            {
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new BookNotFoundException(BookId, ex);
+            }
         }
     }
 }

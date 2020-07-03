@@ -1,23 +1,19 @@
-﻿using System.Collections.Generic;
+﻿using Application.Common;
+using Dapper;
+using Microsoft.Extensions.Options;
+using OdysseyPublishers.Application.Common;
+using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SqlClient;
-using Dapper;
 using System.Linq;
-using System.Data.SqlClient;
-using Microsoft.Extensions.Configuration;
-using System.Runtime.CompilerServices;
-using Microsoft.Extensions.Options;
-using Application.Common;
-using OdysseyPublishers.Application.Common;
 
 namespace OdysseyPublishers.Infrastructure.Common
 {
-    public abstract class AbstractRepositoryBase : IRepository
+    public class RepositoryBase : IRepository
     {
         private readonly PersistenceConfigurations _persistenceconfigurations;
 
-        private readonly SqlConnection sqlConnection;
-        public AbstractRepositoryBase(IOptions<PersistenceConfigurations> persistenceconfigurations)
+        public RepositoryBase(IOptions<PersistenceConfigurations> persistenceconfigurations)
         {
             _persistenceconfigurations = persistenceconfigurations.Value;
         }
@@ -39,7 +35,7 @@ namespace OdysseyPublishers.Infrastructure.Common
                 result = connection.Query<T>(commandQuery);
             }
 
-            return result.ToList();
+            return result;
 
         }
 

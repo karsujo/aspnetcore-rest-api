@@ -3,10 +3,10 @@ using Xunit;
 
 namespace Application.Tests
 {
-    public class UnitTest1
+    public class AuthorsRepositoryTests
     {
         [Fact]
-        public void Test1()
+        public void GetAuthorsTest()
         {
 
         }

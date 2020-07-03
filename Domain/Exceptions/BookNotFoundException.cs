@@ -6,6 +6,6 @@ namespace OdysseyPublishers.Domain.Exceptions
 {
     public class BookNotFoundException :Exception
     {
-        public BookNotFoundException(string book, string author, Exception ex) : base($"Book : {book} not found for author : {author}", ex) { }
+        public BookNotFoundException(string book, Exception ex) : base($"Book : {book} not found ", ex) { }
     }
 }
