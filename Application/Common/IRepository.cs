@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace OdysseyPublishers.Infrastructure.Common
+namespace OdysseyPublishers.Application.Common
 {
     public interface IRepository
     {

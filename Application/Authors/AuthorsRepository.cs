@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using Microsoft.Extensions.Configuration;
+using OdysseyPublishers.Application.Common;
 using OdysseyPublishers.Domain;
-using OdysseyPublishers.Infrastructure.Common;
 
 namespace OdysseyPublishers.Application.Authors
 {
