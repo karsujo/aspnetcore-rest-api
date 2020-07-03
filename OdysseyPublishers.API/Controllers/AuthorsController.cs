@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using OdysseyPublishers.Application.Authors;
+using OdysseyPublishers.Infrastructure.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +12,11 @@ namespace OdysseyPublishers.API.Controllers
     [Route("/api/authors")]
     public class AuthorsController : ControllerBase
     {
+        private readonly IAuthorsRepository _repository;
+        public AuthorsController(IAuthorsRepository authorsRepository)
+        {
+            _repository = authorsRepository;
+        }
 
     }
 }

@@ -4,17 +4,18 @@ using System.Data.SqlClient;
 using Dapper;
 using System.Linq;
 using System.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 
 namespace OdysseyPublishers.Infrastructure.Common
 {
-    public abstract class AbstractRepositoryBase<T> : IRepository<T>, IAbstractRepositoryBase
+    public abstract class AbstractRepositoryBase : IRepository
     {
         private readonly string connString;
 
         private readonly SqlConnection sqlConnection;
-        public AbstractRepositoryBase(string connectionString)
+        public AbstractRepositoryBase(IConfiguration configuration)
         {
-            connString = connectionString;
+            connString = configuration.GetConnectionString("sqlConnection");
         }
 
         public DbConnection GetDbConnection()

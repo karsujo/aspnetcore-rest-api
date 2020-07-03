@@ -4,7 +4,7 @@ using System.Text;
 
 namespace OdysseyPublishers.Infrastructure.Common
 {
-    public interface IRepository<T>
+    public interface IRepository
     {
         IEnumerable<T> QueryDatabase<T>( string query);
         T QueryDatabaseSingle<T>( string query);
