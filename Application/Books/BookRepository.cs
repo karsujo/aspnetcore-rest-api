@@ -20,13 +20,13 @@ namespace Application.Books
         public IEnumerable<Book> GetBooks()
         {
             string sql = "";
-            return _repository.QueryDatabase<Book>(sql);
+            return _repository.QueryDatabase<Book>(sql, null);
         }
 
         public Book GetBook(string BookId)
         {
             string sql = "";
-            return _repository.QueryDatabaseSingle<Book>(sql);
+            return _repository.QueryDatabaseSingle<Book>(sql, null);
         }
 
         public bool BookExists(string BookId)

@@ -45,7 +45,7 @@ namespace Infrastructure.Tests
               contract
             FROM
               AUTHORS ";
-            var result = _repo.QueryDatabase<Author>(sql);
+            var result = _repo.QueryDatabase<Author>(sql, null);
             Assert.IsType<List<Author>>(result);
             Assert.NotEmpty(result);
         }

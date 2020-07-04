@@ -26,20 +26,20 @@ namespace OdysseyPublishers.Infrastructure.Common
         }
 
 
-        public IEnumerable<T> QueryDatabase<T>(string commandQuery)
+        public IEnumerable<T> QueryDatabase<T>(string commandQuery, DynamicParameters parameters)
         {
             var connection = GetDbConnection();
             IEnumerable<T> result = null;
             using (connection)
             {
-                result = connection.Query<T>(commandQuery);
+                result = connection.Query<T>(commandQuery, parameters);
             }
 
             return result;
 
         }
 
-        public IEnumerable<dynamic> QueryDatabase(string command)
+        public IEnumerable<dynamic> QueryDatabase(string command, DynamicParameters parameters)
         {
 
             var connection = GetDbConnection();
@@ -55,7 +55,7 @@ namespace OdysseyPublishers.Infrastructure.Common
 
         }
 
-        public dynamic QueryDatabaseSingle(string command)
+        public dynamic QueryDatabaseSingle(string command, DynamicParameters parameters)
         {
 
             var connection = GetDbConnection();
@@ -74,7 +74,7 @@ namespace OdysseyPublishers.Infrastructure.Common
 
         }
 
-        public T QueryDatabaseSingle<T>(string commandQuery)
+        public T QueryDatabaseSingle<T>(string commandQuery, DynamicParameters parameters)
         {
             var connection = GetDbConnection();
             dynamic result = null;

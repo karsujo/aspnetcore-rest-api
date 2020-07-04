@@ -19,14 +19,27 @@ namespace OdysseyPublishers.Application.Authors
 
         public IEnumerable<Author> GetAuthors()
         {
-            string sql = "";
-            return _repository.QueryDatabase<Author>(sql);
+
+            //Get all authors, and for each author get books
+            string sql = @"SELECT 
+              au_id AuthorId,
+              au_fname FirstName, 
+              au_lname LastName,
+              phone,
+              address,
+              city,
+              state,
+              zip,
+              contract
+            FROM
+              AUTHORS ";
+            return _repository.QueryDatabase<Author>(sql, null);
         }
 
         public Author GetAuthor(string authorId)
         {
-            string sql = "";
-            return _repository.QueryDatabaseSingle<Author>(sql);
+            string sql = "select* from authors where au_id = '267-41-2394'";
+            return _repository.QueryDatabaseSingle<Author>(sql, null);
         }
 
         public bool AuthorExists(string authorId)

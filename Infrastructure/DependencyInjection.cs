@@ -10,7 +10,7 @@ namespace Infrastructure
     {
         public static IServiceCollection AddInfrastructure( this IServiceCollection services, IConfiguration configuration )
         {
-            services.AddTransient<IRepository, SqlRepositoryBase>();
+            services.AddScoped<IRepository, SqlRepositoryBase>(); //Or Singleton / Or Transient -- EF uses Scodped?
             return services;
         }
     }
