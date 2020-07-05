@@ -1,9 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.Extensions.Configuration;
+﻿using Application.DbEntities;
+using AutoMapper;
+using Dapper;
 using OdysseyPublishers.Application.Common;
 using OdysseyPublishers.Domain;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
 
 namespace OdysseyPublishers.Application.Authors
 {
@@ -11,9 +13,11 @@ namespace OdysseyPublishers.Application.Authors
     {
 
         private readonly IRepository _repository;
+        private readonly IMapper _mapper;
 
-        public AuthorsRepository(IRepository repository) 
+        public AuthorsRepository(IRepository repository, IMapper mapper)
         {
+            _mapper = mapper;
             _repository = repository;
         }
 
@@ -21,30 +25,25 @@ namespace OdysseyPublishers.Application.Authors
         {
 
             //Get all authors, and for each author get books
-            string sql = @"SELECT 
-              au_id AuthorId,
-              au_fname FirstName, 
-              au_lname LastName,
-              phone,
-              address,
-              city,
-              state,
-              zip,
-              contract
+            string sql = @" SELECT *
             FROM
               AUTHORS ";
-            return _repository.QueryDatabase<Author>(sql, null);
+            var result = _repository.QueryDatabase<AuthorEntity>(sql, null);
+            return _mapper.Map<IEnumerable<Author>>(result);
         }
 
         public Author GetAuthor(string authorId)
         {
-            string sql = "select* from authors where au_id = '267-41-2394'";
-            return _repository.QueryDatabaseSingle<Author>(sql, null);
+            string sql = "select* from authors where au_id = @AuthorId";
+            var parameters = new DynamicParameters();
+            parameters.Add("@AuthorId", authorId, DbType.String, ParameterDirection.Input, authorId.Length);
+            var result = _repository.QueryDatabase<AuthorEntity>(sql, parameters).FirstOrDefault();
+            return _mapper.Map<Author>(result);
         }
 
         public bool AuthorExists(string authorId)
         {
-            string sql = "";
+           // string sql = "";
             return true;
         }
 

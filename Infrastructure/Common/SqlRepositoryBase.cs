@@ -1,4 +1,5 @@
 ﻿using Application.Common;
+using AutoMapper;
 using Dapper;
 using Microsoft.Extensions.Options;
 using OdysseyPublishers.Application.Common;
@@ -15,6 +16,8 @@ namespace OdysseyPublishers.Infrastructure.Common
 
         public SqlRepositoryBase(IOptions<PersistenceConfigurations> persistenceconfigurations)
         {
+  
+
             _persistenceconfigurations = persistenceconfigurations.Value;
         }
 
@@ -39,13 +42,22 @@ namespace OdysseyPublishers.Infrastructure.Common
 
         }
 
-        public IEnumerable<dynamic> QueryDatabase(string command, DynamicParameters parameters)
+        public IEnumerable<dynamic> QueryDatabase(string command, DbParameterCollection parameters = null)
         {
 
             var connection = GetDbConnection();
             using (connection)
             {
+                connection.Open();
                 var sqlCommand = new SqlCommand(command, (SqlConnection)connection);
+                if (parameters != null)
+                {
+                    foreach (var parameter in parameters)
+                    {
+                        sqlCommand.Parameters.Add(parameter);
+                    }
+                }
+
                 var reader = sqlCommand.ExecuteReader();
                 while (reader.Read())
                 {
@@ -55,7 +67,7 @@ namespace OdysseyPublishers.Infrastructure.Common
 
         }
 
-        public dynamic QueryDatabaseSingle(string command, DynamicParameters parameters)
+        public dynamic QueryDatabaseSingle(string command, DbParameterCollection parameters)
         {
 
             var connection = GetDbConnection();
@@ -63,7 +75,14 @@ namespace OdysseyPublishers.Infrastructure.Common
             using (connection)
             {
                 var sqlCommand = new SqlCommand(command, (SqlConnection)connection);
+
+                foreach (var parameter in parameters)
+                {
+                    sqlCommand.Parameters.Add(parameter);
+                }
+
                 var reader = sqlCommand.ExecuteReader();
+
                 while (reader.Read())
                 {
                     res = reader;
@@ -80,11 +99,42 @@ namespace OdysseyPublishers.Infrastructure.Common
             dynamic result = null;
             using (connection)
             {
-                result = connection.Query<T>(commandQuery).FirstOrDefault();
+                result = connection.Query<T>(commandQuery, parameters).FirstOrDefault();
             }
 
             return result;
         }
+
+
+        //private T ExecuteGenericQuery<T>( string commandQuery, DynamicParameters parameters)
+        //{
+        //    var connection = GetDbConnection();
+        //    dynamic result = null;
+
+        //        if(typeof(T).Name == "Author")
+        //        {
+        //        using (connection)
+        //        {
+        //            result = connection.Query<AuthorEntity>(commandQuery, parameters).FirstOrDefault();
+        //        }
+
+        //        return _mapper.Map<Author>(result);
+        //        }
+        //        if(typeof(T).Name == "Book")
+        //        {
+        //        using (connection)
+        //        {
+        //            result = connection.Query<BookEntity>(commandQuery, parameters).FirstOrDefault();
+        //        }
+        //        return _mapper.Map<Book>(result);
+        //        }
+
+        //    return default(T);
+
+
+
+
+        //}
 
     }
 }

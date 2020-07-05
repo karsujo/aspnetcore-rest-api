@@ -11,6 +11,7 @@ namespace Infrastructure
         public static IServiceCollection AddInfrastructure( this IServiceCollection services, IConfiguration configuration )
         {
             services.AddScoped<IRepository, SqlRepositoryBase>(); //Or Singleton / Or Transient -- EF uses Scodped?
+           //AutoMapper?
             return services;
         }
     }
