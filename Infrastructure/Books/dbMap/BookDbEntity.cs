@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Infrastructure.Books
 {
-   public class BookDbEntity
+    public class BookDbEntity
     {
         public string title_id { get; set; }
         public string title { get; set; }

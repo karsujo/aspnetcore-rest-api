@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
 namespace OdysseyPublishers.Domain
 {
@@ -15,7 +13,7 @@ namespace OdysseyPublishers.Domain
         public string LastName { get; set; }
         public string City { get; set; }
         public string Address { get; set; }
-        public string  Phone { get; set; }
+        public string Phone { get; set; }
         public string State { get; set; }
 
         public string Zip { get; set; }

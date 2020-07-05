@@ -1,6 +1,5 @@
 ﻿using Application.Authors;
 using Microsoft.AspNetCore.Mvc;
-using OdysseyPublishers.Application.Authors;
 
 namespace OdysseyPublishers.API.Controllers
 {

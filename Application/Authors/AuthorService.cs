@@ -2,7 +2,6 @@
 using OdysseyPublishers.Application.Authors;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Application.Authors
 {
@@ -20,9 +19,9 @@ namespace Application.Authors
         {
             var result = _authorRepository.GetAuthor(authorId);
             result.Validate();
-           return _mapper.Map<AuthorDto>(result);
+            return _mapper.Map<AuthorDto>(result);
         }
-        
+
 
         public IEnumerable<AuthorDto> GetAuthors()
         {

@@ -1,5 +1,4 @@
 ﻿using Application.Common;
-using AutoMapper;
 using Dapper;
 using Microsoft.Extensions.Options;
 using OdysseyPublishers.Application.Common;
@@ -14,17 +13,17 @@ namespace OdysseyPublishers.Infrastructure.Common
     //TODO: Does this need to inherit from IRepository?
     public class SqlRepositoryBase : IRepository
     {
-        private readonly PersistenceConfigurations _persistenceconfigurations;
+        private readonly PersistenceConfigurations _persistenceConfigurations;
 
         public SqlRepositoryBase(IOptions<PersistenceConfigurations> persistenceconfigurations)
         {
-            _persistenceconfigurations = persistenceconfigurations.Value;
+            _persistenceConfigurations = persistenceconfigurations.Value;
         }
 
         public DbConnection GetDbConnection()
         {
 
-            return new SqlConnection(_persistenceconfigurations.ConnectionString);
+            return new SqlConnection(_persistenceConfigurations.ConnectionString);
 
         }
 
