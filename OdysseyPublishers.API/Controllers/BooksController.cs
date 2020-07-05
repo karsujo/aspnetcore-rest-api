@@ -1,5 +1,6 @@
 ﻿using Application.Books;
 using Microsoft.AspNetCore.Mvc;
+using OdysseyPublishers.Domain.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +23,19 @@ namespace OdysseyPublishers.API.Controllers
         public ActionResult GetBooks()
         {
             return Ok(_bookRepository.GetBooks());
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult GetBook( string id)
+        {
+            //if (!_bookRepository.BookExists(id))
+            //    throw new BookNotFoundException(id, null);
+
+            var res = _bookRepository.GetBook(id);
+            if(res == null)
+                throw new BookNotFoundException(id, null);
+
+            return Ok(res);
         }
     }
 }

@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
 using AutoMapper.Configuration;
+using Dapper;
 using OdysseyPublishers.Application.Common;
 using OdysseyPublishers.Domain;
 using OdysseyPublishers.Domain.Exceptions;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Text;
 
 namespace Application.Books
@@ -30,8 +32,11 @@ namespace Application.Books
 
         public Book GetBook(string BookId)
         {
-            string sql = "";
-            return _repository.QueryDatabaseSingle<Book>(sql, null);
+            string sql = "select* from titles where title_id = @BookId";
+            var parameters = new DynamicParameters();
+            parameters.Add("@BookId", BookId, DbType.String, ParameterDirection.Input, BookId.Length);
+            var res = _repository.QueryDatabaseSingle<BookDbEntity>(sql, parameters);
+            return _mapper.Map<Book>(res);
         }
 
         public bool BookExists(string BookId)

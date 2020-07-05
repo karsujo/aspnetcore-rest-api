@@ -15,6 +15,7 @@ namespace Application
             {
                 opt.AddProfile(new AuthorDbProfile());
                 opt.AddProfile(new BookDbProfile());
+         
             });
 
             var mapper = config.CreateMapper();
