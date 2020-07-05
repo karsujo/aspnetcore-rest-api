@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using OdysseyPublishers.Domain;
 
-namespace Application.Books
+namespace Infrastructure.Books
 {
     public class BookDbProfile : Profile
     {

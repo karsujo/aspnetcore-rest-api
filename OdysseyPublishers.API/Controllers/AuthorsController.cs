@@ -1,10 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using OdysseyPublishers.Application.Authors;
-using OdysseyPublishers.Infrastructure.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace OdysseyPublishers.API.Controllers
 {
@@ -12,8 +7,8 @@ namespace OdysseyPublishers.API.Controllers
     [Route("/api/authors")]
     public class AuthorsController : ControllerBase
     {
-        private readonly IAuthorsRepository _repository;
-        public AuthorsController(IAuthorsRepository authorsRepository)
+        private readonly IAuthorRepository _repository;
+        public AuthorsController(IAuthorRepository authorsRepository)
         {
             _repository = authorsRepository;
         }
@@ -22,9 +17,9 @@ namespace OdysseyPublishers.API.Controllers
         public ActionResult GetAuthors()
         {
             return Ok(_repository.GetAuthors());
-        }       
+        }
 
     }
 
-   
+
 }

@@ -1,10 +1,10 @@
-using Application.Authors;
-using Application.Books;
 using Application.Common;
 using AutoMapper;
+using Infrastructure.Authors;
+using Infrastructure.Books;
 using Microsoft.Extensions.Options;
-using OdysseyPublishers.Application.Authors;
 using OdysseyPublishers.Domain;
+using OdysseyPublishers.Infrastructure.Authors;
 using OdysseyPublishers.Infrastructure.Common;
 using System.Collections.Generic;
 using Xunit;
@@ -15,7 +15,7 @@ namespace Application.Tests
     {
 
         private readonly SqlRepositoryBase _repo;
-        private readonly AuthorsRepository _auRepo;
+        private readonly AuthorRepository _auRepo;
 
         public AuthorsRepositoryTests()
         {
@@ -33,7 +33,7 @@ namespace Application.Tests
 
             opt.Value.ConnectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=pubs;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             _repo = new SqlRepositoryBase(opt);
-            _auRepo = new AuthorsRepository(_repo, mapper);
+            _auRepo = new AuthorRepository(_repo, mapper);
         }
         [Fact]
         public void GetAuthorsTest()

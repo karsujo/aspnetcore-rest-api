@@ -1,5 +1,5 @@
-﻿using AutoMapper;
-using AutoMapper.Configuration;
+﻿using Application.Books;
+using AutoMapper;
 using Dapper;
 using OdysseyPublishers.Application.Common;
 using OdysseyPublishers.Domain;
@@ -7,9 +7,8 @@ using OdysseyPublishers.Domain.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Text;
 
-namespace Application.Books
+namespace Infrastructure.Books
 {
     public class BookRepository : IBookRepository
     {
@@ -26,7 +25,7 @@ namespace Application.Books
         public IEnumerable<Book> GetBooks()
         {
             string sql = "SELECT * FROM TITLES";
-           var res =  _repository.QueryDatabase<BookDbEntity>(sql, null);
+            var res = _repository.QueryDatabase<BookDbEntity>(sql, null);
             return _mapper.Map<IEnumerable<Book>>(res);
         }
 

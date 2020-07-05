@@ -1,11 +1,7 @@
-﻿using System;
+﻿using Infrastructure.Books;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
-using System.Linq;
-using Application.Books;
 
-namespace Application.Authors
+namespace Infrastructure.Authors
 {
     public class AuthorDbEntity
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace OdysseyPublishers.Application.Authors
 {
-    public interface IAuthorsRepository
+    public interface IAuthorRepository
     {
         bool AuthorExists(string authorId);
         Author GetAuthor(string authorId);

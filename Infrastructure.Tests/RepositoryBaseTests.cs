@@ -1,8 +1,8 @@
-using Application.Authors;
-using Application.Books;
 using Application.Common;
 using AutoMapper;
 using Dapper;
+using Infrastructure.Authors;
+using Infrastructure.Books;
 using Microsoft.Extensions.Options;
 using OdysseyPublishers.Domain;
 using OdysseyPublishers.Infrastructure.Common;

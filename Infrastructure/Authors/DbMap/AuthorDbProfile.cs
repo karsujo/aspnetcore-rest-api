@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using OdysseyPublishers.Domain;
 
-namespace Application.Authors
+namespace Infrastructure.Authors
 {
     public class AuthorDbProfile : Profile
     {

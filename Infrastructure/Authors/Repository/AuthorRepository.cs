@@ -1,21 +1,22 @@
-﻿using Application.Authors;
-using AutoMapper;
+﻿using AutoMapper;
 using Dapper;
+using Infrastructure.Authors;
+using OdysseyPublishers.Application.Authors;
 using OdysseyPublishers.Application.Common;
 using OdysseyPublishers.Domain;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 
-namespace OdysseyPublishers.Application.Authors
+namespace OdysseyPublishers.Infrastructure.Authors
 {
-    public class AuthorsRepository : IAuthorsRepository
+    public class AuthorRepository : IAuthorRepository
     {
 
         private readonly IRepository _repository;
         private readonly IMapper _mapper;
 
-        public AuthorsRepository(IRepository repository, IMapper mapper)
+        public AuthorRepository(IRepository repository, IMapper mapper)
         {
             _mapper = mapper;
             _repository = repository;
