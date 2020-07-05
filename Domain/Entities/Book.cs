@@ -4,7 +4,7 @@ namespace OdysseyPublishers.Domain
 {
     public class Book
     {
-        public string TitleId { get; set; }
+        public string BookId { get; set; }
         public string Title { get; set; }
 
         public string Type { get; set; }
@@ -19,7 +19,7 @@ namespace OdysseyPublishers.Domain
 
         public int Sales { get; set; }
 
-        public string Nodes { get; set; }
+        public string Notes { get; set; }
 
         public DateTime PublishedDate { get; set; }
     }

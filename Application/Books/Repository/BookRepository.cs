@@ -1,4 +1,5 @@
-﻿using AutoMapper.Configuration;
+﻿using AutoMapper;
+using AutoMapper.Configuration;
 using OdysseyPublishers.Application.Common;
 using OdysseyPublishers.Domain;
 using OdysseyPublishers.Domain.Exceptions;
@@ -12,15 +13,19 @@ namespace Application.Books
     {
         private readonly IRepository _repository;
 
-        public BookRepository(IRepository repository)
+        private readonly IMapper _mapper;
+
+        public BookRepository(IRepository repository, IMapper mapper)
         {
+            _mapper = mapper;
             _repository = repository;
         }
 
         public IEnumerable<Book> GetBooks()
         {
-            string sql = "";
-            return _repository.QueryDatabase<Book>(sql, null);
+            string sql = "SELECT * FROM TITLES";
+           var res =  _repository.QueryDatabase<BookDbEntity>(sql, null);
+            return _mapper.Map<IEnumerable<Book>>(res);
         }
 
         public Book GetBook(string BookId)

@@ -22,7 +22,7 @@ namespace OdysseyPublishers.API.Controllers
         public ActionResult GetAuthors()
         {
             return Ok(_repository.GetAuthors());
-        }
+        }       
 
     }
 

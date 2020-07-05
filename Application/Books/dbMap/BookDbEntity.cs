@@ -6,23 +6,23 @@ namespace Application.Books
 {
    public class BookDbEntity
     {
-        public string TitleId { get; set; }
-        public string Title { get; set; }
+        public string title_id { get; set; }
+        public string title { get; set; }
 
-        public string Type { get; set; }
+        public string type { get; set; }
 
-        public string PubId { get; set; }
+        public string pub_id { get; set; }
 
-        public decimal Price { get; set; }
+        public decimal price { get; set; }
 
-        public decimal Advance { get; set; }
+        public decimal advance { get; set; }
 
-        public int Royalty { get; set; }
+        public int royalty { get; set; }
 
-        public int Sales { get; set; }
+        public int ytd_sales { get; set; }
 
-        public string Nodes { get; set; }
+        public string notes { get; set; }
 
-        public DateTime PublishedDate { get; set; }
+        public DateTime pubdate { get; set; }
     }
 }
