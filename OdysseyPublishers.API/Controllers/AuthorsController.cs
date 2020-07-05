@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Application.Authors;
+using Microsoft.AspNetCore.Mvc;
 using OdysseyPublishers.Application.Authors;
 
 namespace OdysseyPublishers.API.Controllers
@@ -7,16 +8,16 @@ namespace OdysseyPublishers.API.Controllers
     [Route("/api/authors")]
     public class AuthorsController : ControllerBase
     {
-        private readonly IAuthorRepository _repository;
-        public AuthorsController(IAuthorRepository authorsRepository)
+        private readonly IAuthorService _authorService;
+        public AuthorsController(IAuthorService authorService)
         {
-            _repository = authorsRepository;
+            _authorService = authorService;
         }
 
         [HttpGet]
         public ActionResult GetAuthors()
         {
-            return Ok(_repository.GetAuthors());
+            return Ok(_authorService.GetAuthors());
         }
 
     }

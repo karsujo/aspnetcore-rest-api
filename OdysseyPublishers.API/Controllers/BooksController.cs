@@ -8,17 +8,17 @@ namespace OdysseyPublishers.API.Controllers
     [Route("/api/books")]
     public class BooksController : ControllerBase
     {
-        private readonly IBookRepository _bookRepository;
-        public BooksController(IBookRepository bookRepository)
+        private readonly IBookService _bookService;
+        public BooksController(IBookService bookService)
         {
-            _bookRepository = bookRepository;
+            _bookService = bookService;
         }
 
         [HttpGet]
 
         public ActionResult GetBooks()
         {
-            return Ok(_bookRepository.GetBooks());
+            return Ok(_bookService.GetBooks());
         }
 
         [HttpGet("{id}")]
@@ -27,7 +27,7 @@ namespace OdysseyPublishers.API.Controllers
             //if (!_bookRepository.BookExists(id))
             //    throw new BookNotFoundException(id, null);
 
-            var res = _bookRepository.GetBook(id);
+            var res = _bookService.GetBook(id);
             if (res == null)
                 throw new BookNotFoundException(id, null);
 
