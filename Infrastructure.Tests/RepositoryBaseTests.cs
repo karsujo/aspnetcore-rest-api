@@ -1,5 +1,6 @@
+using Application.Authors;
+using Application.Books;
 using Application.Common;
-using Application.DbMappings;
 using AutoMapper;
 using Dapper;
 using Microsoft.Extensions.Options;
@@ -22,8 +23,8 @@ namespace Infrastructure.Tests
         {
             var config = new MapperConfiguration(opt =>
             {
-                opt.AddProfile(new AuthorProfile());
-                opt.AddProfile(new BookProfile());
+                opt.AddProfile(new AuthorDbProfile());
+                opt.AddProfile(new BookDbProfile());
             });
 
             var mapper = config.CreateMapper();

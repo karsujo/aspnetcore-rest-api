@@ -1,14 +1,13 @@
-﻿using Application.DbEntities;
-using AutoMapper;
+﻿using AutoMapper;
 using OdysseyPublishers.Domain;
 
-namespace Application.DbMappings
+namespace Application.Authors
 {
-    public class AuthorProfile : Profile
+    public class AuthorDbProfile : Profile
     {
-        public AuthorProfile()
+        public AuthorDbProfile()
         {
-            CreateMap<AuthorEntity, Author>()
+            CreateMap<AuthorDbEntity, Author>()
                .ForMember(dest => dest.AuthorId, opt => opt.MapFrom(src => src.au_Id))
                .ForMember(dest => dest.FirstName, opt => opt.MapFrom(src => src.au_fname))
                .ForMember(dest => dest.LastName, opt => opt.MapFrom(src => src.au_lname));

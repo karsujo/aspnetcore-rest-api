@@ -3,15 +3,16 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 using System.Linq;
+using Application.Books;
 
-namespace Application.DbEntities
+namespace Application.Authors
 {
-    public class AuthorEntity
+    public class AuthorDbEntity
     {
 
-        public AuthorEntity()
+        public AuthorDbEntity()
         {
-            Books = new HashSet<BookEntity>();
+            Books = new HashSet<BookDbEntity>();
         }
 
         public string au_Id { get; set; }
@@ -26,7 +27,7 @@ namespace Application.DbEntities
 
         public bool Contract { get; set; }
 
-        public ICollection<BookEntity> Books { get; set; }
+        public ICollection<BookDbEntity> Books { get; set; }
 
     }
 }

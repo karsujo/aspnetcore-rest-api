@@ -1,4 +1,4 @@
-﻿using Application.DbEntities;
+﻿using Application.Authors;
 using AutoMapper;
 using Dapper;
 using OdysseyPublishers.Application.Common;
@@ -28,7 +28,7 @@ namespace OdysseyPublishers.Application.Authors
             string sql = @" SELECT *
             FROM
               AUTHORS ";
-            var result = _repository.QueryDatabase<AuthorEntity>(sql, null);
+            var result = _repository.QueryDatabase<AuthorDbEntity>(sql, null);
             return _mapper.Map<IEnumerable<Author>>(result);
         }
 
@@ -37,13 +37,13 @@ namespace OdysseyPublishers.Application.Authors
             string sql = "select* from authors where au_id = @AuthorId";
             var parameters = new DynamicParameters();
             parameters.Add("@AuthorId", authorId, DbType.String, ParameterDirection.Input, authorId.Length);
-            var result = _repository.QueryDatabase<AuthorEntity>(sql, parameters).FirstOrDefault();
+            var result = _repository.QueryDatabase<AuthorDbEntity>(sql, parameters).FirstOrDefault();
             return _mapper.Map<Author>(result);
         }
 
         public bool AuthorExists(string authorId)
         {
-           // string sql = "";
+            // string sql = "";
             return true;
         }
 

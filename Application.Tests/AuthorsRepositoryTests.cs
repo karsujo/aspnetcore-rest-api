@@ -1,6 +1,6 @@
+using Application.Authors;
+using Application.Books;
 using Application.Common;
-using Application.DbEntities;
-using Application.DbMappings;
 using AutoMapper;
 using Microsoft.Extensions.Options;
 using OdysseyPublishers.Application.Authors;
@@ -21,13 +21,13 @@ namespace Application.Tests
         {
             var config = new MapperConfiguration(opt =>
             {
-                opt.AddProfile(new AuthorProfile());
-                opt.AddProfile(new BookProfile());
+                opt.AddProfile(new AuthorDbProfile());
+                opt.AddProfile(new BookDbProfile());
             });
 
             var mapper = config.CreateMapper();
 
-            var test = mapper.Map<Author>(new AuthorEntity());
+            var test = mapper.Map<Author>(new AuthorDbEntity());
 
             var opt = Options.Create(new PersistenceConfigurations());
 

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Application.DbEntities
+namespace Application.Books
 {
-   public class BookEntity
+   public class BookDbEntity
     {
         public string TitleId { get; set; }
         public string Title { get; set; }
