@@ -1,5 +1,7 @@
 ﻿using Domain.Exceptions;
 using OdysseyPublishers.Domain;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Application.Authors
 {
@@ -12,6 +14,15 @@ namespace Application.Authors
                 throw new AuthorNotFoundException(author.AuthorId, null);
             }
 
+        }
+
+        public static void Validate(this IEnumerable<Author> authors)
+        {
+           foreach( var author in authors)
+            {
+                if (author == null)
+                    throw new AuthorNotFoundException(author.AuthorId, null);
+            }
         }
     }
 }

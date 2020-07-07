@@ -19,6 +19,12 @@ namespace OdysseyPublishers.API.Controllers
             return Ok(_authorService.GetAuthors());
         }
 
+        [HttpGet("{id}")]
+        public ActionResult GetAuthor(string id)
+        {
+            return Ok(_authorService.GetAuthor(id));
+        }
+
     }
 
 

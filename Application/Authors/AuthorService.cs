@@ -22,10 +22,11 @@ namespace Application.Authors
             return _mapper.Map<AuthorDto>(result);
         }
 
-
         public IEnumerable<AuthorDto> GetAuthors()
         {
-            throw new NotImplementedException();
+            var result = _authorRepository.GetAuthors();
+            result.Validate();
+            return _mapper.Map<IEnumerable<AuthorDto>>(result);
         }
 
         public IEnumerable<AuthorDto> GetAuthors(IEnumerable<string> authors)

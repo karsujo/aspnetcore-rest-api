@@ -1,6 +1,10 @@
 using Application;
+using Application.Authors;
 using Application.Common;
+using AutoMapper;
 using Infrastructure;
+using Infrastructure.Authors;
+using Infrastructure.Books;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -24,6 +28,20 @@ namespace OdysseyPublishers.API
             services.AddInfrastructure(Configuration);
             services.AddApplication(Configuration);
 
+
+            var config = new MapperConfiguration(opt =>
+            {
+                opt.AddProfile(new AuthorDbProfile());
+                opt.AddProfile(new BookDbProfile());
+                opt.AddProfile(new AuthorDtoProfile());
+
+
+            });
+
+            var mapper = config.CreateMapper();
+     
+
+            services.AddSingleton(mapper);
 
             services.AddControllers();
             services.Configure<PersistenceConfigurations>(Configuration.GetSection("PersistenceSettings"));
