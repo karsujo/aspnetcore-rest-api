@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 
 namespace Application.Books
@@ -6,20 +7,26 @@ namespace Application.Books
     public class BookService : IBookService
     {
         private readonly IBookRepository _bookRepository;
-        public BookService(IBookRepository bookRepository)
+        private readonly IMapper _mapper;
+        public BookService(IBookRepository bookRepository, IMapper mapper)
         {
+            _mapper = mapper;
             _bookRepository = bookRepository;
 
         }
 
         public BookDto GetBook(string Id)
         {
-            throw new NotImplementedException();
+            var res = _bookRepository.GetBook(Id);
+            res.Validate();
+            return _mapper.Map<BookDto>(res);
         }
 
         public IEnumerable<BookDto> GetBooks()
         {
-            throw new NotImplementedException();
+            var res = _bookRepository.GetBooks();
+            //validate
+            return _mapper.Map<List<BookDto>>(res);
         }
 
         public IEnumerable<BookDto> GetBooks(IEnumerable<string> Ids)

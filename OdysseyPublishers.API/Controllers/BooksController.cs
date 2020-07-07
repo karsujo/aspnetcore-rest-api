@@ -24,14 +24,7 @@ namespace OdysseyPublishers.API.Controllers
         [HttpGet("{id}")]
         public ActionResult GetBook(string id)
         {
-            //if (!_bookRepository.BookExists(id))
-            //    throw new BookNotFoundException(id, null);
-
-            var res = _bookService.GetBook(id);
-            if (res == null)
-                throw new BookNotFoundException(id, null);
-
-            return Ok(res);
+            return Ok(_bookService.GetBook(id));
         }
     }
 }

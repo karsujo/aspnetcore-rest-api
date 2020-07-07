@@ -1,5 +1,6 @@
 using Application;
 using Application.Authors;
+using Application.Books;
 using Application.Common;
 using AutoMapper;
 using Infrastructure;
@@ -34,6 +35,7 @@ namespace OdysseyPublishers.API
                 opt.AddProfile(new AuthorDbProfile());
                 opt.AddProfile(new BookDbProfile());
                 opt.AddProfile(new AuthorDtoProfile());
+                opt.AddProfile(new BookDtoProfile());
 
 
             });
