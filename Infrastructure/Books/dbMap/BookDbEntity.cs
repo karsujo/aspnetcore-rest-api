@@ -4,6 +4,7 @@ namespace Infrastructure.Books
 {
     public class BookDbEntity
     {
+        public string au_id { get; set; }
         public string title_id { get; set; }
         public string title { get; set; }
 

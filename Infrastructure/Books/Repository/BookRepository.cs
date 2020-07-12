@@ -24,14 +24,40 @@ namespace Infrastructure.Books
 
         public IEnumerable<Book> GetBooks()
         {
-            string sql = "SELECT * FROM TITLES";
+            string sql = @"SELECT 
+        T.title_id,
+        T.title,
+        T.type,
+        T.price,
+        T.pub_id,
+        T.price,
+        T.advance,
+        T.royalty,
+        T.ytd_sales,
+        T.notes,
+        T.pubdate,
+        TA.au_id
+        FROM TITLES T inner join TITLEAUTHOR TA on T.TITLE_ID = TA.TITLE_ID";
             var res = _repository.QueryDatabase<BookDbEntity>(sql, null);
             return _mapper.Map<IEnumerable<Book>>(res);
         }
 
         public Book GetBook(string BookId)
         {
-            string sql = "select* from titles where title_id = @BookId";
+            string sql = @"SELECT 
+        T.title_id,
+        T.title,
+        T.type,
+        T.price,
+        T.pub_id,
+        T.price,
+        T.advance,
+        T.royalty,
+        T.ytd_sales,
+        T.notes,
+        T.pubdate,
+        TA.au_id
+        FROM TITLES T inner join TITLEAUTHOR TA on T.TITLE_ID = TA.TITLE_ID where T.title_id = @BookId";
             var parameters = new DynamicParameters();
             parameters.Add("@BookId", BookId, DbType.String, ParameterDirection.Input, BookId.Length);
             var res = _repository.QueryDatabaseSingle<BookDbEntity>(sql, parameters);
