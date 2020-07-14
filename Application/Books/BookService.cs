@@ -15,13 +15,20 @@ namespace Application.Books
 
         }
 
-        public BookDto GetBook(string Id)
+        public IEnumerable<BookDto> GetBooksForAuthor(string authorId)
         {
-            var res = _bookRepository.GetBook(Id);
+            var res = _bookRepository.GetBooksForAuthor(authorId);
+            return _mapper.Map<IEnumerable<BookDto>>(res);
+        }
+
+        public BookDto GetBookForAuthor(string Id)
+        {
+            var res = _bookRepository.GetBookForAuthor(Id);
             res.Validate();
             return _mapper.Map<BookDto>(res);
         }
 
+       
         public IEnumerable<BookDto> GetBooks()
         {
             var res = _bookRepository.GetBooks();

@@ -7,11 +7,11 @@ namespace Application.Authors
 {
     public static class ValidateAuthor
     {
-        public static void Validate(this Author author)
+        public static void Validate(this Author author, string authorId)
         {
             if (author == null)
             {
-                throw new AuthorNotFoundException(author.AuthorId, null);
+                throw new AuthorNotFoundException(authorId, null);
             }
 
         }

@@ -6,7 +6,8 @@ namespace Application.Authors
     {
         AuthorDto GetAuthor(string authorId);
         IEnumerable<AuthorDto> GetAuthors();
-        IEnumerable<AuthorDto> GetAuthors(IEnumerable<string> authors);
+        bool AuthorExists(string authorId);
+
 
     }
 }

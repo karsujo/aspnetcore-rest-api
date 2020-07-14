@@ -1,8 +1,10 @@
 ﻿using Application.Authors;
 using Microsoft.AspNetCore.Mvc;
+using System;
 
 namespace OdysseyPublishers.API.Controllers
 {
+    //TODO: Searching and Filtering
     [ApiController]
     [Route("/api/authors")]
     public class AuthorsController : ControllerBase
@@ -22,6 +24,10 @@ namespace OdysseyPublishers.API.Controllers
         [HttpGet("{id}")]
         public ActionResult GetAuthor(string id)
         {
+            if(string.IsNullOrEmpty(id))
+            {
+                throw new ArgumentNullException(nameof(id));
+            }
             return Ok(_authorService.GetAuthor(id));
         }
 

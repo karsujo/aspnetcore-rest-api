@@ -23,8 +23,8 @@ namespace Application.Authors
         public AuthorDto GetAuthor(string authorId)
         {
             var authorResult = _authorRepository.GetAuthor(authorId);
-            authorResult.Validate();
-     
+            authorResult.Validate(authorId);
+            //  var bookResult = _bookRepository.GetBook()
             return _mapper.Map<AuthorDto>(authorResult);
         }
 
@@ -33,19 +33,21 @@ namespace Application.Authors
             var authorDtos = new List<AuthorDto>();
             var authorResult = _authorRepository.GetAuthors();
             var bookResult = _bookRepository.GetBooks();
-             //Convert tot Linq
-            foreach(var author in authorResult)
+            //Convert tot Linq
+            foreach (var author in authorResult)
             {
                 author.Books = bookResult.Where(b => b.AuthorId == author.AuthorId).ToList();
                 authorDtos.Add(_mapper.Map<AuthorDto>(author));
-          
+
             }
+
             return authorDtos;
+
         }
 
-        public IEnumerable<AuthorDto> GetAuthors(IEnumerable<string> authors)
+        public bool AuthorExists(string authorId)
         {
-            throw new NotImplementedException();
+            return _authorRepository.AuthorExists(authorId);
         }
     }
 }

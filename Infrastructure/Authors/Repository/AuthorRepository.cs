@@ -44,8 +44,12 @@ namespace OdysseyPublishers.Infrastructure.Authors
 
         public bool AuthorExists(string authorId)
         {
-            // string sql = "";
-            return true;
+            string sql = "select* from authors where au_id = @AuthorId";
+            var parameters = new DynamicParameters();
+            parameters.Add("@AuthorId", authorId, DbType.String, ParameterDirection.Input, authorId.Length);
+            var result = _repository.QueryDatabase<AuthorDbEntity>(sql, parameters).FirstOrDefault();
+    
+            return result == null? false:true;
         }
 
     }

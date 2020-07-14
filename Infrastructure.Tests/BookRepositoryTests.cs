@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xunit;
 
-namespace Application.Tests
+namespace Infrastructure.Tests
 {
     public class BookRepositoryTests
     {
@@ -47,10 +47,29 @@ namespace Application.Tests
         [Fact]
         public void GetBook()
         {
-            string bookId = "132-154";
-            var res = _bkRepo.GetBook(bookId);
+            string bookId = "BU1032";
+            var res = _bkRepo.GetBookForAuthor(bookId);
             Assert.IsType<Book>(res);
         }
 
+        [Fact]
+
+        public void GetAuthorBook()
+        {
+            string authorId = "267-41-2394";
+            var res = _bkRepo.GetBooksForAuthor(authorId);
+            Assert.IsType<Book>(res);
+        }
+
+
+        [Fact]
+
+        public void BookExists()
+        {
+            string bookId = "BU1032";
+            var res = _bkRepo.BookExists(bookId);
+            Assert.IsType<bool>(res);
+
+        }
     }
 }

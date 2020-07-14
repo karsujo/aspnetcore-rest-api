@@ -9,7 +9,7 @@ using OdysseyPublishers.Infrastructure.Common;
 using System.Collections.Generic;
 using Xunit;
 
-namespace Application.Tests
+namespace Infrastructure.Tests
 {
     public class AuthorsRepositoryTests
     {
@@ -36,7 +36,7 @@ namespace Application.Tests
             _auRepo = new AuthorRepository(_repo, mapper);
         }
         [Fact]
-        public void GetAuthorsTest()
+        public void GetAuthors()
         {
 
             var result = _auRepo.GetAuthors();
@@ -52,6 +52,13 @@ namespace Application.Tests
             Assert.IsType<Author>(result);
         }
 
+        [Fact]
+
+        public void AuthorExists()
+        {
+            var result = _auRepo.AuthorExists("267-41-4");
+            Assert.IsType<bool>(result);
+        }
 
     
     }
