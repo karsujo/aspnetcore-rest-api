@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Application.Authors
 {
-    public class AuthtorResourceParameters
+    public class AuthorResourceParameters
     {
         public string State { get; set; }
         public string  City { get; set; }

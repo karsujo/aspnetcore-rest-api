@@ -49,7 +49,7 @@ namespace Infrastructure.Tests
 
         public void GetAuthorsFiltered()
         {
-            AuthtorResourceParameters resourceParameters = new AuthtorResourceParameters { State = "CA", City = "Oakland" };
+            AuthorResourceParameters resourceParameters = new AuthorResourceParameters { State = "CA", City = "Oakland" };
             var result = _auRepo.GetAuthors(resourceParameters);
             Assert.IsType<List<Author>>(result);
             Assert.NotEmpty(result);

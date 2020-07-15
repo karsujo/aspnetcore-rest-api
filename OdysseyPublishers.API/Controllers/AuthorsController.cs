@@ -18,7 +18,7 @@ namespace OdysseyPublishers.API.Controllers
 
         [HttpGet]
         [HttpHead]
-        public ActionResult<IEnumerable<AuthorDto>> GetAuthors([FromQuery]AuthtorResourceParameters resourceParameters)
+        public ActionResult<IEnumerable<AuthorDto>> GetAuthors([FromQuery]AuthorResourceParameters resourceParameters)
         {
             return Ok(_authorService.GetAuthors(resourceParameters));
         }

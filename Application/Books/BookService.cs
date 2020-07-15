@@ -29,16 +29,18 @@ namespace Application.Books
         }
 
        
+        public IEnumerable<BookDto> GetBooks(BookResourceParameters bookResourceParameters)
+        {
+            var res = _bookRepository.GetBooks(bookResourceParameters);
+            //validate
+            return _mapper.Map<List<BookDto>>(res);
+        }
+
         public IEnumerable<BookDto> GetBooks()
         {
             var res = _bookRepository.GetBooks();
             //validate
             return _mapper.Map<List<BookDto>>(res);
-        }
-
-        public IEnumerable<BookDto> GetBooks(IEnumerable<string> Ids)
-        {
-            throw new NotImplementedException();
         }
     }
 }

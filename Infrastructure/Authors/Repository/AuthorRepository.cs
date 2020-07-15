@@ -36,7 +36,7 @@ namespace OdysseyPublishers.Infrastructure.Authors
             return _mapper.Map<IEnumerable<Author>>(result);
         }
 
-        public IEnumerable<Author> GetAuthors(AuthtorResourceParameters resourceParameters)
+        public IEnumerable<Author> GetAuthors(AuthorResourceParameters resourceParameters)
         {
 
             //Get all authors, and for each author get books

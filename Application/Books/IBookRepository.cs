@@ -8,6 +8,7 @@ namespace Application.Books
         bool BookExists(string BookId);
         Book GetBookForAuthor(string BookId);
         IEnumerable<Book> GetBooksForAuthor(string authorId);
+        IEnumerable<Book> GetBooks(BookResourceParameters bookResourceParameters);
         IEnumerable<Book> GetBooks();
     }
 }

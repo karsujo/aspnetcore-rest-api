@@ -6,11 +6,10 @@ namespace Application.Books
     {
         BookDto GetBookForAuthor(string Id);
 
+        IEnumerable<BookDto> GetBooks(BookResourceParameters bookResourceParameters);
         IEnumerable<BookDto> GetBooks();
-
         IEnumerable<BookDto> GetBooksForAuthor(string authorId);
 
-        IEnumerable<BookDto> GetBooks(IEnumerable<string> Ids);
 
     }
 }

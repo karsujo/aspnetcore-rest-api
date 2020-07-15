@@ -8,7 +8,7 @@ namespace OdysseyPublishers.Application.Authors
     {
         bool AuthorExists(string authorId);
         Author GetAuthor(string authorId);
-        IEnumerable<Author> GetAuthors(AuthtorResourceParameters parameters);
+        IEnumerable<Author> GetAuthors(AuthorResourceParameters parameters);
         IEnumerable<Author> GetAuthors();
     }
 }

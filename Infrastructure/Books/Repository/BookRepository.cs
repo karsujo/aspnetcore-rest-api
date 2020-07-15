@@ -42,6 +42,33 @@ namespace Infrastructure.Books
             return _mapper.Map<IEnumerable<Book>>(res);
         }
 
+        public IEnumerable<Book> GetBooks(BookResourceParameters bookResourceParameters)
+        {
+            if(string.IsNullOrEmpty(bookResourceParameters.Genre))
+            {
+                return GetBooks();
+            }
+
+            string sql = @"SELECT 
+        T.title_id,
+        T.title,
+        T.type,
+        T.price,
+        T.pub_id,
+        T.price,
+        T.advance,
+        T.royalty,
+        T.ytd_sales,
+        T.notes,
+        T.pubdate,
+        TA.au_id
+        FROM TITLES T inner join TITLEAUTHOR TA on T.TITLE_ID = TA.TITLE_ID WHERE T.TYPE = @Genre";
+            var parameters = new DynamicParameters();
+            parameters.Add("@Genre", bookResourceParameters.Genre, DbType.String, ParameterDirection.Input, bookResourceParameters.Genre.Length);
+            var res = _repository.QueryDatabase<BookDbEntity>(sql, parameters);
+            return _mapper.Map<IEnumerable<Book>>(res);
+        }
+
         public Book GetBookForAuthor(string BookId)
         {
          string sql = @"SELECT 

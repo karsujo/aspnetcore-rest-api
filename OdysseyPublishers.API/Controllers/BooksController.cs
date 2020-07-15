@@ -23,9 +23,9 @@ namespace OdysseyPublishers.API.Controllers
 
         [HttpGet]
         [Route("/api/allbooks")]
-        public ActionResult<IEnumerable<BookDto>> GetBooks()
+        public ActionResult<IEnumerable<BookDto>> GetBooks([FromQuery]BookResourceParameters bookResourceParameters)
         {
-            return Ok(_bookService.GetBooks());
+            return Ok(_bookService.GetBooks(bookResourceParameters));
         }
 
         [HttpGet]
