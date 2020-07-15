@@ -44,7 +44,7 @@ namespace Infrastructure.Books
 
         public Book GetBookForAuthor(string BookId)
         {
-            string sql = @"SELECT 
+         string sql = @"SELECT 
         T.title_id,
         T.title,
         T.type,
@@ -66,14 +66,24 @@ namespace Infrastructure.Books
 
         public bool BookExists(string BookId)
         {
-            try
-            {
-                return true;
-            }
-            catch (Exception ex)
-            {
-                throw new BookNotFoundException(BookId, ex);
-            }
+            string sql = @"SELECT 
+        T.title_id,
+        T.title,
+        T.type,
+        T.price,
+        T.pub_id,
+        T.price,
+        T.advance,
+        T.royalty,
+        T.ytd_sales,
+        T.notes,
+        T.pubdate,
+        TA.au_id
+        FROM TITLES T inner join TITLEAUTHOR TA on T.TITLE_ID = TA.TITLE_ID where T.title_id = @BookId";
+            var parameters = new DynamicParameters();
+            parameters.Add("@BookId", BookId, DbType.String, ParameterDirection.Input, BookId.Length);
+            var res = _repository.QueryDatabaseSingle<BookDbEntity>(sql, parameters);
+            return res == null ? false : true;
         }
 
         public IEnumerable<Book> GetBooksForAuthor(string authorId)

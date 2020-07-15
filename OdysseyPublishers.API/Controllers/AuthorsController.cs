@@ -1,6 +1,7 @@
 ﻿using Application.Authors;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 
 namespace OdysseyPublishers.API.Controllers
 {
@@ -16,18 +17,26 @@ namespace OdysseyPublishers.API.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetAuthors()
+        [HttpHead]
+        public ActionResult<IEnumerable<AuthorDto>> GetAuthors()
         {
             return Ok(_authorService.GetAuthors());
         }
 
         [HttpGet("{id}")]
-        public ActionResult GetAuthor(string id)
+        public ActionResult<AuthorDto> GetAuthor(string id)
         {
-            if(string.IsNullOrEmpty(id))
+
+            if (string.IsNullOrEmpty(id))
             {
                 throw new ArgumentNullException(nameof(id));
             }
+
+            if (!_authorService.AuthorExists(id))
+            {
+                return NotFound();
+            }
+       
             return Ok(_authorService.GetAuthor(id));
         }
 

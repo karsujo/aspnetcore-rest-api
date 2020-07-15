@@ -24,7 +24,7 @@ namespace Application.Books
         public BookDto GetBookForAuthor(string Id)
         {
             var res = _bookRepository.GetBookForAuthor(Id);
-            res.Validate();
+            //res.Validate();
             return _mapper.Map<BookDto>(res);
         }
 

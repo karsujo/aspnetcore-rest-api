@@ -58,7 +58,7 @@ namespace Infrastructure.Tests
         {
             string authorId = "267-41-2394";
             var res = _bkRepo.GetBooksForAuthor(authorId);
-            Assert.IsType<Book>(res);
+            Assert.IsType<List<Book>>(res);
         }
 
 

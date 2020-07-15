@@ -4,6 +4,7 @@ using Domain.Exceptions;
 using Microsoft.AspNetCore.Mvc;
 using OdysseyPublishers.Domain.Exceptions;
 using System;
+using System.Collections.Generic;
 
 namespace OdysseyPublishers.API.Controllers
 {
@@ -22,13 +23,13 @@ namespace OdysseyPublishers.API.Controllers
 
         [HttpGet]
         [Route("/api/allbooks")]
-        public ActionResult GetBooks()
+        public ActionResult<IEnumerable<BookDto>> GetBooks()
         {
             return Ok(_bookService.GetBooks());
         }
 
         [HttpGet]
-        public ActionResult GetBooksForAuthor([FromRoute] string authorId)
+        public ActionResult<IEnumerable<BookDto>> GetBooksForAuthor([FromRoute] string authorId)
         {
             if(string.IsNullOrEmpty(authorId))
             {
@@ -39,18 +40,30 @@ namespace OdysseyPublishers.API.Controllers
                 return NotFound(new AuthorNotFoundException(authorId, null));
             }
 
-            return Ok(_bookService.GetBooksForAuthor(authorId));
+            var res = _bookService.GetBooksForAuthor(authorId);
+
+            if(res == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(res);
 
         }
 
         [HttpGet("{bookId}")]
-        public ActionResult GetBookForAuthor(string bookId)
+        public ActionResult<BookDto> GetBookForAuthor(string bookId)
         {
             if (string.IsNullOrEmpty(bookId))
             {
                 throw new ArgumentNullException(nameof(bookId));
             }
-            return Ok(_bookService.GetBookForAuthor(bookId));
+            var res = _bookService.GetBookForAuthor(bookId);
+            if(res ==null)
+            {
+                return NotFound();
+            }
+            return Ok(res);
         }
     }
 }
