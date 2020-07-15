@@ -5,7 +5,7 @@ namespace Application.Authors
     public interface IAuthorService
     {
         AuthorDto GetAuthor(string authorId);
-        IEnumerable<AuthorDto> GetAuthors();
+        IEnumerable<AuthorDto> GetAuthors(AuthtorResourceParameters resourceParameters);
         bool AuthorExists(string authorId);
 
 

@@ -1,3 +1,4 @@
+using Application.Authors;
 using Application.Common;
 using AutoMapper;
 using Infrastructure.Authors;
@@ -40,6 +41,16 @@ namespace Infrastructure.Tests
         {
 
             var result = _auRepo.GetAuthors();
+            Assert.IsType<List<Author>>(result);
+            Assert.NotEmpty(result);
+        }
+
+        [Fact]
+
+        public void GetAuthorsFiltered()
+        {
+            AuthtorResourceParameters resourceParameters = new AuthtorResourceParameters { State = "CA", City = "Oakland" };
+            var result = _auRepo.GetAuthors(resourceParameters);
             Assert.IsType<List<Author>>(result);
             Assert.NotEmpty(result);
         }

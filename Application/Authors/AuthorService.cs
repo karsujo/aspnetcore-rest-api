@@ -28,10 +28,10 @@ namespace Application.Authors
             return _mapper.Map<AuthorDto>(authorResult);
         }
 
-        public IEnumerable<AuthorDto> GetAuthors()
+        public IEnumerable<AuthorDto> GetAuthors(AuthtorResourceParameters resourceParameters)
         {
             var authorDtos = new List<AuthorDto>();
-            var authorResult = _authorRepository.GetAuthors();
+            var authorResult = _authorRepository.GetAuthors(resourceParameters);
             var bookResult = _bookRepository.GetBooks();
             //Convert tot Linq
             foreach (var author in authorResult)

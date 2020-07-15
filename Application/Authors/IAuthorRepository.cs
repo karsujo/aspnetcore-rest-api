@@ -1,4 +1,5 @@
-﻿using OdysseyPublishers.Domain;
+﻿using Application.Authors;
+using OdysseyPublishers.Domain;
 using System.Collections.Generic;
 
 namespace OdysseyPublishers.Application.Authors
@@ -7,6 +8,7 @@ namespace OdysseyPublishers.Application.Authors
     {
         bool AuthorExists(string authorId);
         Author GetAuthor(string authorId);
+        IEnumerable<Author> GetAuthors(AuthtorResourceParameters parameters);
         IEnumerable<Author> GetAuthors();
     }
 }
