@@ -10,5 +10,6 @@ namespace OdysseyPublishers.Application.Common
         T QueryDatabaseSingle<T>(string query, DynamicParameters parameters);
         dynamic QueryDatabaseSingle(string query, DbParameterCollection parameters);
         IEnumerable<dynamic> QueryDatabase(string query, DbParameterCollection parameters);
+        dynamic ModifyDatabase(string query, DynamicParameters parameters);
     }
 }

@@ -5,6 +5,7 @@ using Infrastructure.Authors;
 using OdysseyPublishers.Application.Authors;
 using OdysseyPublishers.Application.Common;
 using OdysseyPublishers.Domain;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -90,6 +91,59 @@ namespace OdysseyPublishers.Infrastructure.Authors
             return result == null? false:true;
         }
 
+        public void CreateAuthor(AuthorForCreationDto authorForCreationDto)
+        {
+            string sql = @"insert into authors( au_id,
+            au_lname ,
+            au_fname ,
+            phone   ,
+            address ,
+            city   ,
+            state  ,
+            zip    ,
+            contract) 
+          values( @au_id,
+            @au_lname ,
+            @au_fname ,
+            @phone   ,
+            @address ,
+            @city   ,
+            @state  ,
+            @zip    ,
+            @contract)";
+            var parameters = new DynamicParameters();
+            parameters.Add("@au_id", GenerateAuthorId(), DbType.String, ParameterDirection.Input, 11);
+            parameters.Add("@au_fname", authorForCreationDto.LastName, DbType.String, ParameterDirection.Input, authorForCreationDto.LastName.Length);
+            parameters.Add("@au_lname", authorForCreationDto.FirstName, DbType.String, ParameterDirection.Input, authorForCreationDto.FirstName.Length);
+            parameters.Add("@phone", authorForCreationDto.Phone, DbType.String, ParameterDirection.Input, authorForCreationDto.Phone.Length);
+            parameters.Add("@address", authorForCreationDto.Address, DbType.String, ParameterDirection.Input, authorForCreationDto.Address.Length);
+            parameters.Add("@city", authorForCreationDto.City, DbType.String, ParameterDirection.Input, authorForCreationDto.City.Length);
+            parameters.Add("@state", authorForCreationDto.State, DbType.String, ParameterDirection.Input, authorForCreationDto.State.Length);
+            parameters.Add("@zip", authorForCreationDto.Zip, DbType.String, ParameterDirection.Input, authorForCreationDto.Zip.Length);
+            parameters.Add("@contract", authorForCreationDto.Contract==true?"True":"False", DbType.String, ParameterDirection.Input, 4);
+
+            _repository.ModifyDatabase(sql, parameters);
+
+        }
+
+        private string  GenerateAuthorId()
+        {
+            Random rand = new Random();
+            string prefix = "000-00-";
+            string suffix = rand.Next(1000, 9999).ToString();
+            return prefix + suffix;
+     
+        }
+
+        public void UpdateAuthor()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void DeleteAuthor()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 
 }

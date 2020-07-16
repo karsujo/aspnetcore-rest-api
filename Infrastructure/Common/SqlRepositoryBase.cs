@@ -104,36 +104,15 @@ namespace OdysseyPublishers.Infrastructure.Common
             return result;
         }
 
-
-        //private T ExecuteGenericQuery<T>( string commandQuery, DynamicParameters parameters)
-        //{
-        //    var connection = GetDbConnection();
-        //    dynamic result = null;
-
-        //        if(typeof(T).Name == "Author")
-        //        {
-        //        using (connection)
-        //        {
-        //            result = connection.Query<AuthorEntity>(commandQuery, parameters).FirstOrDefault();
-        //        }
-
-        //        return _mapper.Map<Author>(result);
-        //        }
-        //        if(typeof(T).Name == "Book")
-        //        {
-        //        using (connection)
-        //        {
-        //            result = connection.Query<BookEntity>(commandQuery, parameters).FirstOrDefault();
-        //        }
-        //        return _mapper.Map<Book>(result);
-        //        }
-
-        //    return default(T);
-
-
-
-
-        //}
-
+        public dynamic ModifyDatabase(string query, DynamicParameters parameters)
+        {
+            var connection = GetDbConnection();
+            dynamic result = null;
+            using (connection)
+            {
+                result = connection.Execute(query, parameters);
+            }
+            return result;
+        }
     }
 }

@@ -40,6 +40,13 @@ namespace OdysseyPublishers.API.Controllers
             return Ok(_authorService.GetAuthor(id));
         }
 
+        [HttpPost]
+        public ActionResult<AuthorDto> CreateAuthor(AuthorForCreationDto author)
+        {
+            if (author == null) return BadRequest();
+            return BadRequest();
+        }
+
     }
 
 
