@@ -11,11 +11,11 @@ namespace Application.Authors
     public class AuthorService : IAuthorService
     {
         private readonly IAuthorRepository _authorRepository;
-        private readonly IBookRepository _bookRepository;
         private readonly IMapper _mapper;
-        public AuthorService(IAuthorRepository authorRepository, IBookRepository bookRepository, IMapper mapper)
+        private readonly IBookService _bookService;
+        public AuthorService(IAuthorRepository authorRepository, IBookService bookService, IMapper mapper)
         {
-            _bookRepository = bookRepository;
+            _bookService = bookService;
             _mapper = mapper;
             _authorRepository = authorRepository;
         }
@@ -30,18 +30,15 @@ namespace Application.Authors
 
         public IEnumerable<AuthorDto> GetAuthors(AuthorResourceParameters resourceParameters)
         {
-            var authorDtos = new List<AuthorDto>();
-            var authorResult = _authorRepository.GetAuthors(resourceParameters);
-            var bookResult = _bookRepository.GetBooks();
+            var authorResult = _mapper.Map<List<AuthorDto>>(_authorRepository.GetAuthors(resourceParameters));
+            var bookResult = _bookService.GetBooks();
             //Convert tot Linq
             foreach (var author in authorResult)
             {
-                author.Books = bookResult.Where(b => b.AuthorId == author.AuthorId).ToList();
-                authorDtos.Add(_mapper.Map<AuthorDto>(author));
-
+                author.Books = bookResult.Where(b => b.Id == author.Id).ToList();
             }
 
-            return authorDtos;
+            return authorResult;
 
         }
 
@@ -49,5 +46,36 @@ namespace Application.Authors
         {
             return _authorRepository.AuthorExists(authorId);
         }
+
+        public AuthorDto CreateAuthor(AuthorForCreationDto authorForCreationDto)
+        {
+            var authorId = GenerateAuthorId();
+            _authorRepository.CreateAuthor(authorForCreationDto, authorId);
+            var authorToReturn =  _mapper.Map<AuthorDto>(authorForCreationDto);
+            authorToReturn.Id = authorId;
+            return authorToReturn;
+        }
+
+        public AuthorDto CreateAuthorWithBooks(AuthorForCreationDto authorForCreationDto)
+        {
+            foreach(var book in authorForCreationDto.Books )
+            {
+                _bookService.CreateBook(book);
+            }
+
+            return CreateAuthor(authorForCreationDto);
+        }
+
+        public string GenerateAuthorId()
+        {
+         
+                Random rand = new Random();
+                string prefix = "000-00-";
+                string suffix = rand.Next(1000, 9999).ToString();
+                return prefix + suffix;
+
+           
+        }
+
     }
 }

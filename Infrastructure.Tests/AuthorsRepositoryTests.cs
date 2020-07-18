@@ -75,8 +75,8 @@ namespace Infrastructure.Tests
 
         public void CreateAuthor()
         {
-            var model = new AuthorForCreationDto { Address = "Taxi Drive", City = "Bangalore", Contract = true, FirstName = "Karthik", LastName = "Shanmugam", Phone = "1542589", State = "KA", Zip = "50681" };
-           _auRepo.CreateAuthor(model);
+            var model = new AuthorForCreationDto { Address = "Taxi Drive", City = "Bangalore", Contract = true, FirstName = "Randi", LastName = "Ortan", Phone = "1542589", State = "KA", Zip = "50681" };
+           _auRepo.CreateAuthor(model, "000-00-1233");
         }
 
     

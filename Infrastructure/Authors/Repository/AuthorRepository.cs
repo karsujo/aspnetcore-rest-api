@@ -91,7 +91,7 @@ namespace OdysseyPublishers.Infrastructure.Authors
             return result == null? false:true;
         }
 
-        public void CreateAuthor(AuthorForCreationDto authorForCreationDto)
+        public void CreateAuthor(AuthorForCreationDto authorForCreationDto, string authorId)
         {
             string sql = @"insert into authors( au_id,
             au_lname ,
@@ -112,7 +112,7 @@ namespace OdysseyPublishers.Infrastructure.Authors
             @zip    ,
             @contract)";
             var parameters = new DynamicParameters();
-            parameters.Add("@au_id", GenerateAuthorId(), DbType.String, ParameterDirection.Input, 11);
+            parameters.Add("@au_id", authorId, DbType.String, ParameterDirection.Input, 11);
             parameters.Add("@au_fname", authorForCreationDto.LastName, DbType.String, ParameterDirection.Input, authorForCreationDto.LastName.Length);
             parameters.Add("@au_lname", authorForCreationDto.FirstName, DbType.String, ParameterDirection.Input, authorForCreationDto.FirstName.Length);
             parameters.Add("@phone", authorForCreationDto.Phone, DbType.String, ParameterDirection.Input, authorForCreationDto.Phone.Length);
@@ -126,14 +126,7 @@ namespace OdysseyPublishers.Infrastructure.Authors
 
         }
 
-        private string  GenerateAuthorId()
-        {
-            Random rand = new Random();
-            string prefix = "000-00-";
-            string suffix = rand.Next(1000, 9999).ToString();
-            return prefix + suffix;
-     
-        }
+   
 
         public void UpdateAuthor()
         {

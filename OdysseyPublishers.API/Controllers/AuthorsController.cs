@@ -23,7 +23,7 @@ namespace OdysseyPublishers.API.Controllers
             return Ok(_authorService.GetAuthors(resourceParameters));
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name ="GetAuthor")]
         public ActionResult<AuthorDto> GetAuthor(string id)
         {
 
@@ -43,8 +43,8 @@ namespace OdysseyPublishers.API.Controllers
         [HttpPost]
         public ActionResult<AuthorDto> CreateAuthor(AuthorForCreationDto author)
         {
-            if (author == null) return BadRequest();
-            return BadRequest();
+           var authorToReturn =  _authorService.CreateAuthor(author);
+            return CreatedAtRoute("GetAuthor", new { authorId = authorToReturn.Id }, authorToReturn);
         }
 
     }

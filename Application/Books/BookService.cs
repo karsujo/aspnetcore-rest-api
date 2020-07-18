@@ -42,5 +42,15 @@ namespace Application.Books
             //validate
             return _mapper.Map<List<BookDto>>(res);
         }
+
+        public string GenerateBookId()
+        {
+            throw new NotImplementedException();
+        }
+
+        public BookDto CreateBook(BookForCreationDto bookForCreationDto)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

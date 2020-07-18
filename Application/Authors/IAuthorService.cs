@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using OdysseyPublishers.Domain;
+using System.Collections.Generic;
 
 namespace Application.Authors
 {
@@ -8,6 +9,12 @@ namespace Application.Authors
         IEnumerable<AuthorDto> GetAuthors(AuthorResourceParameters resourceParameters);
         bool AuthorExists(string authorId);
 
+        AuthorDto CreateAuthor(AuthorForCreationDto authorForCreationDto);
+
+        AuthorDto CreateAuthorWithBooks(AuthorForCreationDto authorForCreationDto);
+
+        string GenerateAuthorId();
+      
 
     }
 }

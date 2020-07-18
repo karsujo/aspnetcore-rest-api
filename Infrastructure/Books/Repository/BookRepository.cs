@@ -134,5 +134,10 @@ namespace Infrastructure.Books
             var res = _repository.QueryDatabase<BookDbEntity>(sql, parameters);
             return _mapper.Map<List<Book>>(res);
         }
+
+        public void CreateBook(BookForCreationDto bookForCreationDto, string authorId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
