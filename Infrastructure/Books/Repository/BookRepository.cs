@@ -135,8 +135,9 @@ namespace Infrastructure.Books
             return _mapper.Map<List<Book>>(res);
         }
 
-        public void CreateBook(BookForCreationDto bookForCreationDto, string authorId)
+        public void CreateBook(BookForCreationDto bookForCreationDto, string authorId, int bookOrder, int royalty )
         {
+            //TODO: Insert into title and titleAuthor table.
             throw new NotImplementedException();
         }
     }

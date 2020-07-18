@@ -1,5 +1,6 @@
 ﻿namespace Application.Books
 {
+    
     public class BookDto
     {
         public string Id { get; set; }

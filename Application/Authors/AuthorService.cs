@@ -38,7 +38,6 @@ namespace Application.Authors
             }
 
             return authorResult;
-
         }
 
         public bool AuthorExists(string authorId)
@@ -46,9 +45,12 @@ namespace Application.Authors
             return _authorRepository.AuthorExists(authorId);
         }
 
-        public AuthorDto CreateAuthor(AuthorForCreationDto authorForCreationDto)
+        public AuthorDto CreateAuthor(AuthorForCreationDto authorForCreationDto, string authorId = null)
         {
-            var authorId = GenerateAuthorId();
+            if(string.IsNullOrEmpty(authorId))
+            {
+                authorId = GenerateAuthorId();
+            }        
             _authorRepository.CreateAuthor(authorForCreationDto, authorId);
             var authorToReturn =  _mapper.Map<AuthorDto>(authorForCreationDto);
             authorToReturn.Id = authorId;
@@ -57,12 +59,13 @@ namespace Application.Authors
 
         public AuthorDto CreateAuthorWithBooks(AuthorForCreationDto authorForCreationDto)
         {
-            foreach(var book in authorForCreationDto.Books )
-            {
-                _bookService.CreateBook(book);
-            }
+            string authorId = GenerateAuthorId();
+            var author = CreateAuthor(authorForCreationDto, authorId);
+           
+            _bookService.CreateBooks(authorForCreationDto.Books, authorId);
+            
 
-            return CreateAuthor(authorForCreationDto);
+            return author;
         }
 
         public string GenerateAuthorId()

@@ -11,7 +11,7 @@ namespace Application.Books
         IEnumerable<BookDto> GetBooksForAuthor(string authorId);
         string GenerateBookId();
 
-        BookDto CreateBook(BookForCreationDto bookForCreationDto);
+        public IEnumerable<BookDto> CreateBooks(IEnumerable<BookForCreationDto> bookForCreationDtos, string authorId);
 
 
     }

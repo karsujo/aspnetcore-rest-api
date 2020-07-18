@@ -48,9 +48,17 @@ namespace Application.Books
             throw new NotImplementedException();
         }
 
-        public BookDto CreateBook(BookForCreationDto bookForCreationDto)
+        public IEnumerable<BookDto> CreateBooks(IEnumerable<BookForCreationDto> bookForCreationDtos, string authorId)
         {
-            throw new NotImplementedException();
+            int bookOrder = 0;
+            const int royalty = 50;
+            foreach( var book in bookForCreationDtos )
+            {
+                bookOrder++;
+                _bookRepository.CreateBook(book, authorId, bookOrder, royalty);
+            }
+            //TODO: Setup Mapping first.
+            return _mapper.Map<List<BookDto>>(bookForCreationDtos);
         }
     }
 }

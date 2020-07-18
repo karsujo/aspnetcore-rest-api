@@ -9,7 +9,7 @@ namespace Application.Authors
         IEnumerable<AuthorDto> GetAuthors(AuthorResourceParameters resourceParameters);
         bool AuthorExists(string authorId);
 
-        AuthorDto CreateAuthor(AuthorForCreationDto authorForCreationDto);
+        AuthorDto CreateAuthor(AuthorForCreationDto authorForCreationDto, string authorId = null);
 
         AuthorDto CreateAuthorWithBooks(AuthorForCreationDto authorForCreationDto);
 
