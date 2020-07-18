@@ -120,7 +120,7 @@ namespace OdysseyPublishers.Infrastructure.Authors
             parameters.Add("@city", authorForCreationDto.City, DbType.String, ParameterDirection.Input, authorForCreationDto.City.Length);
             parameters.Add("@state", authorForCreationDto.State, DbType.String, ParameterDirection.Input, authorForCreationDto.State.Length);
             parameters.Add("@zip", authorForCreationDto.Zip, DbType.String, ParameterDirection.Input, authorForCreationDto.Zip.Length);
-            parameters.Add("@contract", authorForCreationDto.Contract==true?"True":"False", DbType.String, ParameterDirection.Input, 4);
+            parameters.Add("@contract", authorForCreationDto.Contract, DbType.Boolean, ParameterDirection.Input, 1);
 
             _repository.ModifyDatabase(sql, parameters);
 
