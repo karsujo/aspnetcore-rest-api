@@ -24,7 +24,6 @@ namespace Application.Authors
         {
             var authorResult = _authorRepository.GetAuthor(authorId);
             authorResult.Validate(authorId);
-            //  var bookResult = _bookRepository.GetBook()
             return _mapper.Map<AuthorDto>(authorResult);
         }
 
@@ -68,13 +67,10 @@ namespace Application.Authors
 
         public string GenerateAuthorId()
         {
-         
                 Random rand = new Random();
                 string prefix = "000-00-";
                 string suffix = rand.Next(1000, 9999).ToString();
-                return prefix + suffix;
-
-           
+                return prefix + suffix;       
         }
 
     }
