@@ -138,6 +138,19 @@ namespace Infrastructure.Books
         public void CreateBook(BookForCreationDto bookForCreationDto, string authorId, int bookOrder, int royalty )
         {
             //TODO: Insert into title and titleAuthor table.
+            //into title
+
+            string titleSql = @"insert titles values ('BU7832', 'Straight Talk About Computers', 'business', '1389',
+$19.99, $5000.00, 10, 4095,
+'Annotated analysis of what computers can do for you: a no-hype guide for the critical user.',
+'06/22/91')";
+
+
+            //into titleauthor
+
+            string titleAuthorSql = @"insert titleauthor values('409-56-7008', 'BU1032', 1, 60)";
+
+
             throw new NotImplementedException();
         }
     }
