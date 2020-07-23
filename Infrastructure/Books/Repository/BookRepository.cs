@@ -10,6 +10,7 @@ using System.Data;
 
 namespace Infrastructure.Books
 {
+    // Change to reflect new structure
     public class BookRepository : IBookRepository
     {
         private readonly IRepository _repository;
@@ -24,20 +25,13 @@ namespace Infrastructure.Books
 
         public IEnumerable<Book> GetBooks()
         {
-            string sql = @"SELECT 
-        T.title_id,
-        T.title,
-        T.type,
-        T.price,
-        T.pub_id,
-        T.price,
-        T.advance,
-        T.royalty,
-        T.ytd_sales,
-        T.notes,
-        T.pubdate,
-        TA.au_id
-        FROM TITLES T inner join TITLEAUTHOR TA on T.TITLE_ID = TA.TITLE_ID";
+            string sql = @"select 
+            b.au_id,
+            b.book_id,
+            b.type,
+            b.price,
+            b.title
+            from books b ";
             var res = _repository.QueryDatabase<BookDbEntity>(sql, null);
             return _mapper.Map<IEnumerable<Book>>(res);
         }
@@ -49,20 +43,13 @@ namespace Infrastructure.Books
                 return GetBooks();
             }
 
-            string sql = @"SELECT 
-        T.title_id,
-        T.title,
-        T.type,
-        T.price,
-        T.pub_id,
-        T.price,
-        T.advance,
-        T.royalty,
-        T.ytd_sales,
-        T.notes,
-        T.pubdate,
-        TA.au_id
-        FROM TITLES T inner join TITLEAUTHOR TA on T.TITLE_ID = TA.TITLE_ID WHERE T.TYPE = @Genre";
+            string sql = @"select 
+            b.au_id,
+            b.book_id,
+            b.type,
+            b.price,
+            b.title
+            from books b where b.type = @Genre";
             var parameters = new DynamicParameters();
             parameters.Add("@Genre", bookResourceParameters.Genre, DbType.String, ParameterDirection.Input, bookResourceParameters.Genre.Length);
             var res = _repository.QueryDatabase<BookDbEntity>(sql, parameters);
@@ -71,20 +58,13 @@ namespace Infrastructure.Books
 
         public Book GetBookForAuthor(string BookId)
         {
-         string sql = @"SELECT 
-        T.title_id,
-        T.title,
-        T.type,
-        T.price,
-        T.pub_id,
-        T.price,
-        T.advance,
-        T.royalty,
-        T.ytd_sales,
-        T.notes,
-        T.pubdate,
-        TA.au_id
-        FROM TITLES T inner join TITLEAUTHOR TA on T.TITLE_ID = TA.TITLE_ID where T.title_id = @BookId";
+         string sql = @"select 
+            b.au_id,
+            b.book_id,
+            b.type,
+            b.price,
+            b.title
+            from books b where b.book_id = @BookId";
             var parameters = new DynamicParameters();
             parameters.Add("@BookId", BookId, DbType.String, ParameterDirection.Input, BookId.Length);
             var res = _repository.QueryDatabaseSingle<BookDbEntity>(sql, parameters);
@@ -93,20 +73,13 @@ namespace Infrastructure.Books
 
         public bool BookExists(string BookId)
         {
-            string sql = @"SELECT 
-        T.title_id,
-        T.title,
-        T.type,
-        T.price,
-        T.pub_id,
-        T.price,
-        T.advance,
-        T.royalty,
-        T.ytd_sales,
-        T.notes,
-        T.pubdate,
-        TA.au_id
-        FROM TITLES T inner join TITLEAUTHOR TA on T.TITLE_ID = TA.TITLE_ID where T.title_id = @BookId";
+            string sql = @"select
+            b.au_id,
+            b.book_id,
+            b.type,
+            b.price,
+            b.title
+            from books b where b.book_id = @BookId";
             var parameters = new DynamicParameters();
             parameters.Add("@BookId", BookId, DbType.String, ParameterDirection.Input, BookId.Length);
             var res = _repository.QueryDatabaseSingle<BookDbEntity>(sql, parameters);
@@ -115,20 +88,13 @@ namespace Infrastructure.Books
 
         public IEnumerable<Book> GetBooksForAuthor(string authorId)
         {
-            string sql = @"SELECT 
-        T.title_id,
-        T.title,
-        T.type,
-        T.price,
-        T.pub_id,
-        T.price,
-        T.advance,
-        T.royalty,
-        T.ytd_sales,
-        T.notes,
-        T.pubdate,
-        TA.au_id
-        FROM TITLES T inner join TITLEAUTHOR TA on T.TITLE_ID = TA.TITLE_ID where  TA.au_id = @AuthorId";
+            string sql = @"select
+            b.au_id,
+            b.book_id,
+            b.type,
+            b.price,
+            b.title
+            from books b where b.au_id = @AuthorId";
             var parameters = new DynamicParameters();
             parameters.Add("@AuthorId", authorId, DbType.String, ParameterDirection.Input, authorId.Length);
             var res = _repository.QueryDatabase<BookDbEntity>(sql, parameters);
@@ -140,10 +106,7 @@ namespace Infrastructure.Books
             //TODO: Insert into title and titleAuthor table.
             //into title
 
-            string titleSql = @"insert titles values ('BU7832', 'Straight Talk About Computers', 'business', '1389',
-$19.99, $5000.00, 10, 4095,
-'Annotated analysis of what computers can do for you: a no-hype guide for the critical user.',
-'06/22/91')";
+            string titleSql = @"iinsert books values (@au_guid ,NEWID(), 'The Clone Wars Reloaded', 'fic_sci', $20.00, '09/12/99')";
 
 
             //into titleauthor

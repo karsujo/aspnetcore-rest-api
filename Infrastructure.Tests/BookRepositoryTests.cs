@@ -30,7 +30,7 @@ namespace Infrastructure.Tests
 
             var opt = Options.Create(new PersistenceConfigurations());
 
-            opt.Value.ConnectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=pubs;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            opt.Value.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Odyssey;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             _repo = new SqlRepositoryBase(opt);
             _bkRepo = new BookRepository(_repo, mapper);
         }
@@ -47,7 +47,7 @@ namespace Infrastructure.Tests
         [Fact]
         public void GetBook()
         {
-            string bookId = "BU1032";
+            string bookId = "08180BDA-CC8F-4B05-A441-AA2DE0280558";
             var res = _bkRepo.GetBookForAuthor(bookId);
             Assert.IsType<Book>(res);
         }
@@ -56,7 +56,7 @@ namespace Infrastructure.Tests
 
         public void GetAuthorBook()
         {
-            string authorId = "267-41-2394";
+            string authorId = "7CE7D8A4-8620-4222-B3C8-CE84DA685C13";
             var res = _bkRepo.GetBooksForAuthor(authorId);
             Assert.IsType<List<Book>>(res);
         }

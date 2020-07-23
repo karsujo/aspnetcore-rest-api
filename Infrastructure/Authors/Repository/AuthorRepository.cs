@@ -13,6 +13,7 @@ using System.Text;
 
 namespace OdysseyPublishers.Infrastructure.Authors
 {
+    //TODO: Change to reflect new structure
     public class AuthorRepository : IAuthorRepository
     {
 
