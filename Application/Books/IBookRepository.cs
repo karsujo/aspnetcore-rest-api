@@ -10,6 +10,6 @@ namespace Application.Books
         IEnumerable<Book> GetBooksForAuthor(string authorId);
         IEnumerable<Book> GetBooks(BookResourceParameters bookResourceParameters);
         IEnumerable<Book> GetBooks();
-        public void CreateBook(BookForCreationDto bookForCreationDto, string authorId, int bookOrder, int royalty);
+        public void CreateBook(BookForCreationDto bookForCreationDto);
     }
 }

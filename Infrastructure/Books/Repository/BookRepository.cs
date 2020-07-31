@@ -101,20 +101,19 @@ namespace Infrastructure.Books
             return _mapper.Map<List<Book>>(res);
         }
 
-        public void CreateBook(BookForCreationDto bookForCreationDto, string authorId, int bookOrder, int royalty )
+        public void CreateBook(BookForCreationDto bookForCreationDto )
         {
-            //TODO: Insert into title and titleAuthor table.
-            //into title
+            string sql = @"Insert into books(au_id, book_id, title, type, price, pubdate)
+             values(@au_id, @book_id, @title, @type, @price, @pubdate )";
 
-            string titleSql = @"iinsert books values (@au_guid ,NEWID(), 'The Clone Wars Reloaded', 'fic_sci', $20.00, '09/12/99')";
-
-
-            //into titleauthor
-
-            string titleAuthorSql = @"insert titleauthor values('409-56-7008', 'BU1032', 1, 60)";
-
-
-            throw new NotImplementedException();
+            var parameters = new DynamicParameters();
+            parameters.Add("@au_id", bookForCreationDto.AuthorId, DbType.String, ParameterDirection.Input);
+            parameters.Add("@book_id", System.Guid.NewGuid().ToString(), DbType.String, ParameterDirection.Input);
+            parameters.Add("@title", bookForCreationDto.Title, DbType.String, ParameterDirection.Input);
+            parameters.Add("@type", bookForCreationDto.Type, DbType.String, ParameterDirection.Input);
+            parameters.Add("@price", bookForCreationDto.Price, DbType.Decimal, ParameterDirection.Input);
+            parameters.Add("@pubdate", bookForCreationDto.PublishedDate, DbType.DateTime, ParameterDirection.Input);
+            _repository.ModifyDatabase(sql, parameters);
         }
     }
 }

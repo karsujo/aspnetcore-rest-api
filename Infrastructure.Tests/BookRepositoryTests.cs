@@ -1,4 +1,5 @@
-﻿using Application.Common;
+﻿using Application.Books;
+using Application.Common;
 using AutoMapper;
 using Infrastructure.Books;
 using Microsoft.Extensions.Options;
@@ -69,6 +70,15 @@ namespace Infrastructure.Tests
             string bookId = "BU1032";
             var res = _bkRepo.BookExists(bookId);
             Assert.IsType<bool>(res);
+
+        }
+
+        [Fact]
+
+        public void CreateBook()
+        {
+            var book = new BookForCreationDto { AuthorId = "10908F6C-3480-4F2E-AB6B-AE3EBD86A45A", BookId = Guid.NewGuid().ToString(), Price = 20, PublishedDate = DateTime.UtcNow, Title = "The Mon'ks Ferrari", Type = "nf_self" };
+            _bkRepo.CreateBook(book);
 
         }
     }

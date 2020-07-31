@@ -51,12 +51,9 @@ namespace Application.Books
         //TODO: Should there be a singular Create Book method that this calls? 
         public IEnumerable<BookDto> CreateBooks(IEnumerable<BookForCreationDto> bookForCreationDtos, string authorId)
         {
-            int bookOrder = 0;
-            const int royalty = 50;
             foreach( var book in bookForCreationDtos )
             {
-                bookOrder++;
-                _bookRepository.CreateBook(book, authorId, bookOrder, royalty);
+                _bookRepository.CreateBook(book);
             }
             //TODO: Setup Mapping first.
             return _mapper.Map<List<BookDto>>(bookForCreationDtos);
