@@ -1,3 +1,5 @@
+using Application.Authors;
+using Application.Books;
 using Application.Common;
 using AutoMapper;
 using Infrastructure.Authors;
@@ -10,8 +12,23 @@ using Xunit;
 
 namespace TestUtils
 {
+    //TODO: Optimize design for this class
     public static class ConstructorUtils
     {
+
+        public static IMapper mappings { get; set; } = CreateMapperInstance();
+        public static IOptions<PersistenceConfigurations> configs { get; set; } = GetPersistenceConfigs();
+
+        private static SqlRepositoryBase baseRepo { get; set; } = new SqlRepositoryBase(configs);
+
+        public static BookRepository bookRepo { get; set; } = CreateBookRepoInstance();
+
+        public static AuthorRepository authorRepo { get; set; } = CreateAuthorRepoInstance();
+
+        public static BookService bookService { get; set; } = CreateBookServiceInstance();
+
+        public static AuthorService authorService { get; set; } = CreateAuthorServiceInstance();
+
         public static IMapper CreateMapperInstance()
         {
             var config = new MapperConfiguration(opt =>
@@ -39,18 +56,9 @@ namespace TestUtils
 
         }
 
-        public static BookRepository CreateBookRepoInstance()
-        {
-            var _repo = new SqlRepositoryBase(GetPersistenceConfigs());
-           return new BookRepository(_repo, CreateMapperInstance());
-        }
-
-        public static AuthorRepository CreateAuthorInstance()
-        {
-
-            var _repo = new SqlRepositoryBase(GetPersistenceConfigs());
-            return new AuthorRepository(_repo, CreateMapperInstance());
-
-        }
+        public static BookRepository CreateBookRepoInstance() => new BookRepository(baseRepo, mappings);
+        public static AuthorRepository CreateAuthorRepoInstance() => new AuthorRepository(baseRepo, mappings);
+        public static BookService CreateBookServiceInstance() => new BookService(bookRepo, mappings);
+        public static AuthorService CreateAuthorServiceInstance() => new AuthorService(authorRepo, bookService, mappings);
     }
-    }
+}

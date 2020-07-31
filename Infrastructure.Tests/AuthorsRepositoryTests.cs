@@ -19,7 +19,7 @@ namespace Infrastructure.Tests
 
         public AuthorsRepositoryTests()
         {
-            _auRepo = TestUtils.ConstructorUtils.CreateAuthorInstance();
+            _auRepo = TestUtils.ConstructorUtils.authorRepo;
         }
          
         [Fact]

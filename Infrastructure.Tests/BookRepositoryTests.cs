@@ -18,7 +18,7 @@ namespace Infrastructure.Tests
 
         public BookRepositoryTests()
         {
-            _bkRepo = TestUtils.ConstructorUtils.CreateBookRepoInstance();
+            _bkRepo = TestUtils.ConstructorUtils.bookRepo;
         }
 
         [Fact]
