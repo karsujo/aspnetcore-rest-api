@@ -32,7 +32,7 @@ namespace Infrastructure.Tests
 
             var opt = Options.Create(new PersistenceConfigurations());
 
-            opt.Value.ConnectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=pubs;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            opt.Value.ConnectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Odyssey;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             _repo = new SqlRepositoryBase(opt);
             _auRepo = new AuthorRepository(_repo, mapper);
         }
@@ -59,7 +59,7 @@ namespace Infrastructure.Tests
 
         public void GetAuthor()
         {
-            var result = _auRepo.GetAuthor("267-41-2394");
+            var result = _auRepo.GetAuthor("10908F6C-3480-4F2E-AB6B-AE3EBD86A45A");
             Assert.IsType<Author>(result);
         }
 
@@ -67,7 +67,7 @@ namespace Infrastructure.Tests
 
         public void AuthorExists()
         {
-            var result = _auRepo.AuthorExists("267-41-4");
+            var result = _auRepo.AuthorExists("10908F6C-3480-4F2E-AB6B-AE3EBD86A45A");
             Assert.IsType<bool>(result);
         }
 
@@ -75,8 +75,8 @@ namespace Infrastructure.Tests
 
         public void CreateAuthor()
         {
-            var model = new AuthorForCreationDto { Address = "Taxi Drive", City = "Bangalore", Contract = true, FirstName = "Randi", LastName = "Ortan", Phone = "1542589", State = "KA", Zip = "50681" };
-           _auRepo.CreateAuthor(model, "000-00-1233");
+            var model = new AuthorForCreationDto { Address = "Taxi Drive", City = "Bangalore", FirstName = "Randi", LastName = "Ortan", Phone = "1542589", State = "KA", Zip = "50681" };
+           _auRepo.CreateAuthor(model, System.Guid.NewGuid().ToString());
         }
 
     

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace OdysseyPublishers.API.Controllers
 {
-    //TODO: Searching and Filtering
+
     [ApiController]
     [Route("/api/authors")]
     public class AuthorsController : ControllerBase

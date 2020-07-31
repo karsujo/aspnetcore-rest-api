@@ -101,8 +101,7 @@ namespace OdysseyPublishers.Infrastructure.Authors
             address ,
             city   ,
             state  ,
-            zip    ,
-            contract) 
+            zip) 
           values( @au_id,
             @au_lname ,
             @au_fname ,
@@ -110,10 +109,9 @@ namespace OdysseyPublishers.Infrastructure.Authors
             @address ,
             @city   ,
             @state  ,
-            @zip    ,
-            @contract)";
+            @zip )";
             var parameters = new DynamicParameters();
-            parameters.Add("@au_id", authorId, DbType.String, ParameterDirection.Input, 11);
+            parameters.Add("@au_id", authorId, DbType.String, ParameterDirection.Input, authorId.Length);
             parameters.Add("@au_fname", authorForCreationDto.LastName, DbType.String, ParameterDirection.Input, authorForCreationDto.LastName.Length);
             parameters.Add("@au_lname", authorForCreationDto.FirstName, DbType.String, ParameterDirection.Input, authorForCreationDto.FirstName.Length);
             parameters.Add("@phone", authorForCreationDto.Phone, DbType.String, ParameterDirection.Input, authorForCreationDto.Phone.Length);
@@ -121,8 +119,6 @@ namespace OdysseyPublishers.Infrastructure.Authors
             parameters.Add("@city", authorForCreationDto.City, DbType.String, ParameterDirection.Input, authorForCreationDto.City.Length);
             parameters.Add("@state", authorForCreationDto.State, DbType.String, ParameterDirection.Input, authorForCreationDto.State.Length);
             parameters.Add("@zip", authorForCreationDto.Zip, DbType.String, ParameterDirection.Input, authorForCreationDto.Zip.Length);
-            parameters.Add("@contract", authorForCreationDto.Contract, DbType.Boolean, ParameterDirection.Input, 1);
-
             _repository.ModifyDatabase(sql, parameters);
 
         }
