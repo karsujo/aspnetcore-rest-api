@@ -14,7 +14,7 @@ namespace Application.Books
         .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.BookId))
         .ForMember(dest => dest.Genre, opt => opt.MapFrom(src => src.Type));
 
-            //TODO: Create Map Attributes
+
             CreateMap<BookForCreationDto, BookDto>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.AuthorId))
                 .ForMember(dest => dest.Genre, opt => opt.MapFrom(src => src.Type));

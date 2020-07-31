@@ -14,28 +14,12 @@ namespace Infrastructure.Tests
 {
     public class BookRepositoryTests
     {
-        private readonly SqlRepositoryBase _repo;
         private readonly BookRepository _bkRepo;
 
         public BookRepositoryTests()
         {
-            var config = new MapperConfiguration(opt =>
-            {
-                opt.AddProfile(new BookDbProfile());
-                opt.AddProfile(new BookDbProfile());
-            });
-
-            var mapper = config.CreateMapper();
-
-            var test = mapper.Map<Book>(new BookDbEntity());
-
-            var opt = Options.Create(new PersistenceConfigurations());
-
-            opt.Value.ConnectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Odyssey;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-            _repo = new SqlRepositoryBase(opt);
-            _bkRepo = new BookRepository(_repo, mapper);
+            _bkRepo = TestUtils.ConstructorUtils.CreateBookRepoInstance();
         }
-
 
         [Fact]
         public void GetBooks()

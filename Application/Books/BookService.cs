@@ -48,14 +48,13 @@ namespace Application.Books
             throw new NotImplementedException();
         }
 
-        //TODO: Should there be a singular Create Book method that this calls? 
         public IEnumerable<BookDto> CreateBooks(IEnumerable<BookForCreationDto> bookForCreationDtos, string authorId)
         {
             foreach( var book in bookForCreationDtos )
             {
                 _bookRepository.CreateBook(book);
             }
-            //TODO: Setup Mapping first.
+   
             return _mapper.Map<List<BookDto>>(bookForCreationDtos);
         }
     }

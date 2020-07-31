@@ -19,7 +19,7 @@ namespace Application.Authors
             _mapper = mapper;
             _authorRepository = authorRepository;
         }
-        //TODO: Add Mappings
+
         public AuthorDto GetAuthor(string authorId)
         {
             var authorResult = _authorRepository.GetAuthor(authorId);

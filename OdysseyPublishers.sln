@@ -28,6 +28,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{
 		Seed.sql = Seed.sql
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestUtils", "TestUtils\TestUtils.csproj", "{63EACEAB-54E5-468E-83A5-71D63BDF5EDD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -66,6 +68,10 @@ Global
 		{909881DB-8046-4D88-8331-1560DE901970}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{909881DB-8046-4D88-8331-1560DE901970}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{909881DB-8046-4D88-8331-1560DE901970}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63EACEAB-54E5-468E-83A5-71D63BDF5EDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63EACEAB-54E5-468E-83A5-71D63BDF5EDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63EACEAB-54E5-468E-83A5-71D63BDF5EDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63EACEAB-54E5-468E-83A5-71D63BDF5EDD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -79,6 +85,7 @@ Global
 		{BF896EC4-6A0F-4356-9724-9A36DE59B9A5} = {64B1B705-5B68-4BC9-8234-5BD0EC4AF16D}
 		{35C68E25-3AF3-4728-8E73-257BEDF0A38B} = {64B1B705-5B68-4BC9-8234-5BD0EC4AF16D}
 		{909881DB-8046-4D88-8331-1560DE901970} = {64B1B705-5B68-4BC9-8234-5BD0EC4AF16D}
+		{63EACEAB-54E5-468E-83A5-71D63BDF5EDD} = {64B1B705-5B68-4BC9-8234-5BD0EC4AF16D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F54A2E6F-1EA2-427B-B960-F4EFF645909A}

@@ -15,27 +15,13 @@ namespace Infrastructure.Tests
     public class AuthorsRepositoryTests
     {
 
-        private readonly SqlRepositoryBase _repo;
         private readonly AuthorRepository _auRepo;
 
         public AuthorsRepositoryTests()
         {
-            var config = new MapperConfiguration(opt =>
-            {
-                opt.AddProfile(new AuthorDbProfile());
-                opt.AddProfile(new BookDbProfile());
-            });
-
-            var mapper = config.CreateMapper();
-
-            var test = mapper.Map<Author>(new AuthorDbEntity());
-
-            var opt = Options.Create(new PersistenceConfigurations());
-
-            opt.Value.ConnectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Odyssey;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
-            _repo = new SqlRepositoryBase(opt);
-            _auRepo = new AuthorRepository(_repo, mapper);
+            _auRepo = TestUtils.ConstructorUtils.CreateAuthorInstance();
         }
+         
         [Fact]
         public void GetAuthors()
         {
