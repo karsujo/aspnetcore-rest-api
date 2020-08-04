@@ -21,7 +21,6 @@ namespace Application.Authors
 
         public string Zip { get; set; }
 
-        public bool Contract { get; set; }
         public ICollection<BookForCreationDto> Books { get; set; }
     }
 }

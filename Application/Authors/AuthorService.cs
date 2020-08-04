@@ -47,12 +47,20 @@ namespace Application.Authors
 
         public AuthorDto CreateAuthor(AuthorForCreationDto authorForCreationDto, string authorId = null)
         {
-            if(string.IsNullOrEmpty(authorId))
+
+            if (string.IsNullOrEmpty(authorId))
             {
                 authorId = GenerateAuthorId();
-            }        
+            }
+            if (authorForCreationDto.Books.Count > 0)
+            {
+
+                _bookService.CreateBooks(authorForCreationDto.Books, authorId);
+
+
+            }
             _authorRepository.CreateAuthor(authorForCreationDto, authorId);
-            var authorToReturn =  _mapper.Map<AuthorDto>(authorForCreationDto);
+            var authorToReturn = _mapper.Map<AuthorDto>(authorForCreationDto);
             authorToReturn.Id = authorId;
             return authorToReturn;
         }
@@ -61,19 +69,19 @@ namespace Application.Authors
         {
             string authorId = GenerateAuthorId();
             var author = CreateAuthor(authorForCreationDto, authorId);
-           
+
             _bookService.CreateBooks(authorForCreationDto.Books, authorId);
-            
+
 
             return author;
         }
 
         public string GenerateAuthorId()
         {
-                Random rand = new Random();
-                string prefix = "000-00-";
-                string suffix = rand.Next(1000, 9999).ToString();
-                return prefix + suffix;       
+            Random rand = new Random();
+            string prefix = "000-00-";
+            string suffix = rand.Next(1000, 9999).ToString();
+            return prefix + suffix;
         }
 
     }
