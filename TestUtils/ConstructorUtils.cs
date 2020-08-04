@@ -35,6 +35,8 @@ namespace TestUtils
             {
                 opt.AddProfile(new BookDbProfile());
                 opt.AddProfile(new AuthorDbProfile());
+                opt.AddProfile(new BookDtoProfile());
+                opt.AddProfile(new AuthorDtoProfile());
 
             });
 

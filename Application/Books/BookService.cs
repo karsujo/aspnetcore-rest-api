@@ -21,9 +21,9 @@ namespace Application.Books
             return _mapper.Map<IEnumerable<BookDto>>(res);
         }
 
-        public BookDto GetBookForAuthor(string Id)
+        public BookDto GetBookForAuthor(string bookId)
         {
-            var res = _bookRepository.GetBookForAuthor(Id);
+            var res = _bookRepository.GetBookForAuthor(bookId);
             //res.Validate();
             return _mapper.Map<BookDto>(res);
         }
