@@ -43,10 +43,6 @@ namespace Application.Books
             return _mapper.Map<List<BookDto>>(res);
         }
 
-        public string GenerateBookId()
-        {
-            throw new NotImplementedException();
-        }
 
         public IEnumerable<BookDto> CreateBooks(IEnumerable<BookForCreationDto> bookForCreationDtos, string authorId)
         {

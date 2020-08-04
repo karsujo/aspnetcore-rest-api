@@ -46,7 +46,7 @@ namespace Application.Tests
         public void CreateAuthor()
         {
             var author = TestUtils.ObjectMocks.GetAuthorForCreation();
-            var res = _authorService.CreateAuthor(author, _authorService.GenerateAuthorId());
+            var res = _authorService.CreateAuthor(author, Guid.NewGuid().ToString());
         }
 
 

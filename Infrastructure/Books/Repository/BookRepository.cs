@@ -10,7 +10,7 @@ using System.Data;
 
 namespace Infrastructure.Books
 {
-    // Change to reflect new structure
+  
     public class BookRepository : IBookRepository
     {
         private readonly IRepository _repository;

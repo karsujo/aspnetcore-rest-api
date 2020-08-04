@@ -9,7 +9,6 @@ namespace Application.Books
         IEnumerable<BookDto> GetBooks(BookResourceParameters bookResourceParameters);
         IEnumerable<BookDto> GetBooks();
         IEnumerable<BookDto> GetBooksForAuthor(string authorId);
-        string GenerateBookId();
 
         public IEnumerable<BookDto> CreateBooks(IEnumerable<BookForCreationDto> bookForCreationDtos, string authorId);
 

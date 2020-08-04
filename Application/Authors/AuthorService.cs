@@ -50,7 +50,7 @@ namespace Application.Authors
 
             if (string.IsNullOrEmpty(authorId))
             {
-                authorId = GenerateAuthorId();
+                authorId = Guid.NewGuid().ToString();
             }
             if (authorForCreationDto.Books.Count > 0)
             {
@@ -67,7 +67,7 @@ namespace Application.Authors
 
         public AuthorDto CreateAuthorWithBooks(AuthorForCreationDto authorForCreationDto)
         {
-            string authorId = GenerateAuthorId();
+            string authorId = Guid.NewGuid().ToString();
             var author = CreateAuthor(authorForCreationDto, authorId);
 
             _bookService.CreateBooks(authorForCreationDto.Books, authorId);
@@ -76,13 +76,7 @@ namespace Application.Authors
             return author;
         }
 
-        public string GenerateAuthorId()
-        {
-            Random rand = new Random();
-            string prefix = "000-00-";
-            string suffix = rand.Next(1000, 9999).ToString();
-            return prefix + suffix;
-        }
+
 
     }
 }
