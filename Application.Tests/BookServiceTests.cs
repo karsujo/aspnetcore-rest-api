@@ -7,6 +7,7 @@ using Xunit;
 
 namespace Application.Tests
 {
+    //TODO: Why are some guids mixed case(bookId) while others are all caps (author id)?
     public class BookServiceTests
     {
         private readonly IBookService _bookService;
@@ -18,9 +19,7 @@ namespace Application.Tests
         public void GetBooksForAuthor()
         {
             var res = _bookService.GetBooksForAuthor("10908F6C-3480-4F2E-AB6B-AE3EBD86A45A");
-            Assert.IsType<List<BookDto>>(res);
-            
-
+            Assert.IsType<List<BookDto>>(res);          
         }
 
         [Fact]
