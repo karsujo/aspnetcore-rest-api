@@ -39,7 +39,9 @@ namespace Application.Tests
         [Fact]
         public void GetBooksFiltered()
         {
-
+            var resourceParams = new BookResourceParameters { Genre = "fic_fant" };
+            var res = _bookService.GetBooks(resourceParams);
+            Assert.IsType<List<BookDto>>(res);
         }
 
 
