@@ -5,8 +5,10 @@ using AutoMapper;
 using Infrastructure.Authors;
 using Infrastructure.Books;
 using Microsoft.Extensions.Options;
+using OdysseyPublishers.API.Controllers;
 using OdysseyPublishers.Infrastructure.Authors;
 using OdysseyPublishers.Infrastructure.Common;
+using System;
 
 namespace TestUtils
 {
@@ -26,6 +28,19 @@ namespace TestUtils
         public static BookService bookService { get; set; } = CreateBookServiceInstance();
 
         public static AuthorService authorService { get; set; } = CreateAuthorServiceInstance();
+
+        public static AuthorsController authorsController { get; set; } = CreateAuthorsControllerInstance();
+        private static BooksController booksController { get; set; } = CreateBooksControllerInstance();
+
+        private static BooksController CreateBooksControllerInstance()
+        {
+            return new BooksController(bookService,authorService);
+        }
+
+        private static AuthorsController CreateAuthorsControllerInstance()
+        {
+            return new AuthorsController(authorService);
+        }
 
         public static IMapper CreateMapperInstance()
         {

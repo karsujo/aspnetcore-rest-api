@@ -106,7 +106,7 @@ namespace Infrastructure.Books
 
             var parameters = new DynamicParameters();
             parameters.Add("@au_id", bookForCreationDto.AuthorId, DbType.String, ParameterDirection.Input);
-            parameters.Add("@book_id", System.Guid.NewGuid().ToString(), DbType.String, ParameterDirection.Input);
+            parameters.Add("@book_id",bookForCreationDto.BookId.ToString(), DbType.String, ParameterDirection.Input);
             parameters.Add("@title", bookForCreationDto.Title, DbType.String, ParameterDirection.Input);
             parameters.Add("@type", bookForCreationDto.Type, DbType.String, ParameterDirection.Input);
             parameters.Add("@price", bookForCreationDto.Price, DbType.Decimal, ParameterDirection.Input);

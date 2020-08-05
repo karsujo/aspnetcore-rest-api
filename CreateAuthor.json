@@ -1,0 +1,19 @@
+{
+  "FirstName": "Bentley",
+  "LastName": "Morrison",
+  "City": "Massachussets",
+  "Address": "Crawley Lane, Manchester Ave",
+  "Phone": "415 658-9930",
+  "State": "MA",
+  "Zip": "94105",
+  "Books": [
+    {
+      "AuthorId": "10908F6C-3480-4F2E-AB6B-AE3EBD86A45A",
+      "BookId": "abe73e7a-2f57-44c8-9413-7c49cd08703c",
+      "Title": "The Jabberwocky",
+      "Type": "fic_fant",
+      "Price": 10.0,
+      "PublishedDate": "2020-08-05T14:48:24.6620149Z"
+    }
+  ]
+}

@@ -50,7 +50,10 @@ namespace Application.Authors
             if (string.IsNullOrEmpty(authorId))
             {
                 authorId = Guid.NewGuid().ToString();
+
             }
+            _authorRepository.CreateAuthor(authorForCreationDto, authorId);
+
             if (authorForCreationDto.Books.Count > 0)
             {
 
@@ -58,7 +61,7 @@ namespace Application.Authors
 
 
             }
-            _authorRepository.CreateAuthor(authorForCreationDto, authorId);
+   
             var authorToReturn = _mapper.Map<AuthorDto>(authorForCreationDto);
             authorToReturn.Id = authorId;
             return authorToReturn;

@@ -25,10 +25,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API.Tests", "API.Tests\API.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{A1286671-1D2E-476A-ACBF-4EBA5A0178E7}"
 	ProjectSection(SolutionItems) = preProject
+		CreateAuthor.json = CreateAuthor.json
+		CreateBook.json = CreateBook.json
 		Seed.sql = Seed.sql
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestUtils", "TestUtils\TestUtils.csproj", "{63EACEAB-54E5-468E-83A5-71D63BDF5EDD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestUtils", "TestUtils\TestUtils.csproj", "{63EACEAB-54E5-468E-83A5-71D63BDF5EDD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

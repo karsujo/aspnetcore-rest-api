@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using System;
 using System.Collections.Generic;
 
 namespace Application.Books
@@ -43,11 +44,14 @@ namespace Application.Books
         }
 
 
+        // TODO: Should there be a Create book and Create Books API separately?
         public IEnumerable<BookDto> CreateBooks(IEnumerable<BookForCreationDto> bookForCreationDtos, string authorId)
         {
             foreach (var book in bookForCreationDtos)
             {
-                _bookRepository.CreateBook(book);
+                book.AuthorId = authorId;
+                book.BookId = Guid.NewGuid().ToString();
+               _bookRepository.CreateBook(book);
             }
 
             return _mapper.Map<List<BookDto>>(bookForCreationDtos);

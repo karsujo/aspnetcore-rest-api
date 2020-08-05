@@ -23,21 +23,21 @@ namespace OdysseyPublishers.API.Controllers
             return Ok(_authorService.GetAuthors(resourceParameters));
         }
 
-        [HttpGet("{id}", Name = "GetAuthor")]
-        public ActionResult<AuthorDto> GetAuthor(string id)
+        [HttpGet("{authorId}", Name = "GetAuthor")]
+        public ActionResult<AuthorDto> GetAuthor(string authorId)
         {
 
-            if (string.IsNullOrEmpty(id))
+            if (string.IsNullOrEmpty(authorId))
             {
-                throw new ArgumentNullException(nameof(id));
+                throw new ArgumentNullException(nameof(authorId));
             }
 
-            if (!_authorService.AuthorExists(id))
+            if (!_authorService.AuthorExists(authorId))
             {
                 return NotFound();
             }
 
-            return Ok(_authorService.GetAuthor(id));
+            return Ok(_authorService.GetAuthor(authorId));
         }
 
         [HttpPost]

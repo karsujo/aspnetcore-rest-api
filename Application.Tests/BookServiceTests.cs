@@ -1,4 +1,5 @@
 ﻿using Application.Books;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using Xunit;
@@ -46,7 +47,7 @@ namespace Application.Tests
         [Fact]
         public void CreateBooks()
         {
-
+            var json = JsonConvert.SerializeObject(TestUtils.ObjectMocks.GetBookForCreation());
             var bookList = new List<BookForCreationDto>();
             bookList.Add(TestUtils.ObjectMocks.GetBookForCreation());
             var res = _bookService.CreateBooks(bookList, Guid.NewGuid().ToString());

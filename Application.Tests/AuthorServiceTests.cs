@@ -1,4 +1,5 @@
 ﻿using Application.Authors;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using Xunit;
@@ -44,6 +45,7 @@ namespace Application.Tests
         public void CreateAuthor()
         {
             var author = TestUtils.ObjectMocks.GetAuthorForCreation();
+            string json = JsonConvert.SerializeObject(author);
             var res = _authorService.CreateAuthor(author, Guid.NewGuid().ToString());
             Assert.IsType<AuthorDto>(res);
         }
