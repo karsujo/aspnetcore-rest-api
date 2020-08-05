@@ -1,6 +1,4 @@
 ﻿using Application.Books;
-using AutoMapper;
-using Infrastructure.Authors;
 using Infrastructure.Books;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,7 +14,7 @@ namespace Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddScoped<IRepository, SqlRepositoryBase>(); //Or Singleton / Or Transient -- EF uses Scodped?
-                                                                 
+
             services.AddTransient<IAuthorRepository, AuthorRepository>();
             services.AddTransient<IBookRepository, BookRepository>();
 

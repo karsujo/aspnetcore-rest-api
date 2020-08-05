@@ -1,5 +1,4 @@
-﻿using OdysseyPublishers.Domain;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Application.Authors
 {
@@ -12,7 +11,7 @@ namespace Application.Authors
         AuthorDto CreateAuthor(AuthorForCreationDto authorForCreationDto, string authorId = null);
 
         AuthorDto CreateAuthorWithBooks(AuthorForCreationDto authorForCreationDto);
-      
+
 
     }
 }

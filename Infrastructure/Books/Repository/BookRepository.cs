@@ -3,14 +3,12 @@ using AutoMapper;
 using Dapper;
 using OdysseyPublishers.Application.Common;
 using OdysseyPublishers.Domain;
-using OdysseyPublishers.Domain.Exceptions;
-using System;
 using System.Collections.Generic;
 using System.Data;
 
 namespace Infrastructure.Books
 {
-  
+
     public class BookRepository : IBookRepository
     {
         private readonly IRepository _repository;
@@ -38,7 +36,7 @@ namespace Infrastructure.Books
 
         public IEnumerable<Book> GetBooks(BookResourceParameters bookResourceParameters)
         {
-            if(string.IsNullOrEmpty(bookResourceParameters.Genre))
+            if (string.IsNullOrEmpty(bookResourceParameters.Genre))
             {
                 return GetBooks();
             }
@@ -58,7 +56,7 @@ namespace Infrastructure.Books
 
         public Book GetBookForAuthor(string BookId)
         {
-         string sql = @"select 
+            string sql = @"select 
             b.au_id,
             b.book_id,
             b.type,
@@ -101,7 +99,7 @@ namespace Infrastructure.Books
             return _mapper.Map<List<Book>>(res);
         }
 
-        public void CreateBook(BookForCreationDto bookForCreationDto )
+        public void CreateBook(BookForCreationDto bookForCreationDto)
         {
             string sql = @"Insert into books(au_id, book_id, title, type, price, pubdate)
              values(@au_id, @book_id, @title, @type, @price, @pubdate )";

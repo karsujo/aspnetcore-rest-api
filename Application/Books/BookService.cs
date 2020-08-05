@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using System;
 using System.Collections.Generic;
 
 namespace Application.Books
@@ -28,7 +27,7 @@ namespace Application.Books
             return _mapper.Map<BookDto>(res);
         }
 
-       
+
         public IEnumerable<BookDto> GetBooks(BookResourceParameters bookResourceParameters)
         {
             var res = _bookRepository.GetBooks(bookResourceParameters);
@@ -46,11 +45,11 @@ namespace Application.Books
 
         public IEnumerable<BookDto> CreateBooks(IEnumerable<BookForCreationDto> bookForCreationDtos, string authorId)
         {
-            foreach( var book in bookForCreationDtos )
+            foreach (var book in bookForCreationDtos)
             {
                 _bookRepository.CreateBook(book);
             }
-   
+
             return _mapper.Map<List<BookDto>>(bookForCreationDtos);
         }
     }

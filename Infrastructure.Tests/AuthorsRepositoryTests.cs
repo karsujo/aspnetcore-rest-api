@@ -1,12 +1,6 @@
 using Application.Authors;
-using Application.Common;
-using AutoMapper;
-using Infrastructure.Authors;
-using Infrastructure.Books;
-using Microsoft.Extensions.Options;
 using OdysseyPublishers.Domain;
 using OdysseyPublishers.Infrastructure.Authors;
-using OdysseyPublishers.Infrastructure.Common;
 using System.Collections.Generic;
 using Xunit;
 
@@ -21,7 +15,7 @@ namespace Infrastructure.Tests
         {
             _auRepo = TestUtils.ConstructorUtils.authorRepo;
         }
-         
+
         [Fact]
         public void GetAuthors()
         {
@@ -62,9 +56,9 @@ namespace Infrastructure.Tests
         public void CreateAuthor()
         {
             var model = new AuthorForCreationDto { Address = "Taxi Drive", City = "Bangalore", FirstName = "Randi", LastName = "Ortan", Phone = "1542589", State = "KA", Zip = "50681" };
-           _auRepo.CreateAuthor(model, System.Guid.NewGuid().ToString());
+            _auRepo.CreateAuthor(model, System.Guid.NewGuid().ToString());
         }
 
-    
+
     }
 }

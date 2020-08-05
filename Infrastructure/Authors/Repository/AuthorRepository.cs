@@ -5,7 +5,6 @@ using Infrastructure.Authors;
 using OdysseyPublishers.Application.Authors;
 using OdysseyPublishers.Application.Common;
 using OdysseyPublishers.Domain;
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -33,7 +32,7 @@ namespace OdysseyPublishers.Infrastructure.Authors
             string sql = @" SELECT *
             FROM
               AUTHORS ";
-    
+
             var result = _repository.QueryDatabase<AuthorDbEntity>(sql, null);
             return _mapper.Map<IEnumerable<Author>>(result);
         }
@@ -42,7 +41,7 @@ namespace OdysseyPublishers.Infrastructure.Authors
         {
 
             //Get all authors, and for each author get books
-            if(string.IsNullOrEmpty(resourceParameters.State) && string.IsNullOrEmpty(resourceParameters.City))
+            if (string.IsNullOrEmpty(resourceParameters.State) && string.IsNullOrEmpty(resourceParameters.City))
             {
                 return GetAuthors();
             }
@@ -58,9 +57,9 @@ namespace OdysseyPublishers.Infrastructure.Authors
                 sql.Append(@" WHERE State = @State");
                 parameters.Add("@State", resourceParameters.State, DbType.String, ParameterDirection.Input, resourceParameters.State.Length);
             }
-            if(!string.IsNullOrEmpty(resourceParameters.City))
+            if (!string.IsNullOrEmpty(resourceParameters.City))
             {
-                if(isStateFilterAdded)
+                if (isStateFilterAdded)
                 {
                     sql.Append(@" AND City = @City");
                 }
@@ -88,8 +87,8 @@ namespace OdysseyPublishers.Infrastructure.Authors
             var parameters = new DynamicParameters();
             parameters.Add("@AuthorId", authorId, DbType.String, ParameterDirection.Input, authorId.Length);
             var result = _repository.QueryDatabase<AuthorDbEntity>(sql, parameters).FirstOrDefault();
-    
-            return result == null? false:true;
+
+            return result == null ? false : true;
         }
 
         public void CreateAuthor(AuthorForCreationDto authorForCreationDto, string authorId)
@@ -123,7 +122,7 @@ namespace OdysseyPublishers.Infrastructure.Authors
 
         }
 
-   
+
 
         public void UpdateAuthor()
         {

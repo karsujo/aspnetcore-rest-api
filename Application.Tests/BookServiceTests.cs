@@ -1,8 +1,6 @@
 ﻿using Application.Books;
-using OdysseyPublishers.Domain;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace Application.Tests
@@ -19,7 +17,7 @@ namespace Application.Tests
         public void GetBooksForAuthor()
         {
             var res = _bookService.GetBooksForAuthor("10908F6C-3480-4F2E-AB6B-AE3EBD86A45A");
-            Assert.IsType<List<BookDto>>(res);          
+            Assert.IsType<List<BookDto>>(res);
         }
 
         [Fact]
@@ -48,13 +46,13 @@ namespace Application.Tests
         [Fact]
         public void CreateBooks()
         {
-           
+
             var bookList = new List<BookForCreationDto>();
             bookList.Add(TestUtils.ObjectMocks.GetBookForCreation());
             var res = _bookService.CreateBooks(bookList, Guid.NewGuid().ToString());
             Assert.IsType<List<BookDto>>(res);
         }
 
-    
+
     }
 }

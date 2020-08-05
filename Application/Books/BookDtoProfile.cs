@@ -1,8 +1,5 @@
 ﻿using AutoMapper;
 using OdysseyPublishers.Domain;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Application.Books
 {

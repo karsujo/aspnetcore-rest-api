@@ -1,13 +1,8 @@
 ﻿using Application.Books;
-using Application.Common;
-using AutoMapper;
 using Infrastructure.Books;
-using Microsoft.Extensions.Options;
 using OdysseyPublishers.Domain;
-using OdysseyPublishers.Infrastructure.Common;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace Infrastructure.Tests
@@ -23,7 +18,7 @@ namespace Infrastructure.Tests
 
         [Fact]
         public void GetBooks()
-         {
+        {
             var res = _bkRepo.GetBooks();
             Assert.IsType<List<Book>>(res);
         }

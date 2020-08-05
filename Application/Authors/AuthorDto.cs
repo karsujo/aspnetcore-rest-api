@@ -1,7 +1,5 @@
 ﻿using Application.Books;
-using System.Collections;
 using System.Collections.Generic;
-using System.Xml;
 
 namespace Application.Authors
 {
@@ -11,7 +9,7 @@ namespace Application.Authors
         public AuthorDto()
         {
             Books = new HashSet<BookDto>();
-        }  
+        }
         public string Id { get; set; }
 
         public string Name { get; set; }

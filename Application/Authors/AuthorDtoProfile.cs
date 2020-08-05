@@ -1,12 +1,9 @@
 ﻿using AutoMapper;
 using OdysseyPublishers.Domain;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Application.Authors
 {
-    public class AuthorDtoProfile :Profile
+    public class AuthorDtoProfile : Profile
     {
         public AuthorDtoProfile()
         {

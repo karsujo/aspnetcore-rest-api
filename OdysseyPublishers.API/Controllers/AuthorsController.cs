@@ -18,12 +18,12 @@ namespace OdysseyPublishers.API.Controllers
 
         [HttpGet]
         [HttpHead]
-        public ActionResult<IEnumerable<AuthorDto>> GetAuthors([FromQuery]AuthorResourceParameters resourceParameters)
+        public ActionResult<IEnumerable<AuthorDto>> GetAuthors([FromQuery] AuthorResourceParameters resourceParameters)
         {
             return Ok(_authorService.GetAuthors(resourceParameters));
         }
 
-        [HttpGet("{id}", Name ="GetAuthor")]
+        [HttpGet("{id}", Name = "GetAuthor")]
         public ActionResult<AuthorDto> GetAuthor(string id)
         {
 
@@ -36,14 +36,14 @@ namespace OdysseyPublishers.API.Controllers
             {
                 return NotFound();
             }
-       
+
             return Ok(_authorService.GetAuthor(id));
         }
 
         [HttpPost]
         public ActionResult<AuthorDto> CreateAuthor(AuthorForCreationDto author)
         {
-           var authorToReturn =  _authorService.CreateAuthor(author);
+            var authorToReturn = _authorService.CreateAuthor(author);
             return CreatedAtRoute("GetAuthor", new { authorId = authorToReturn.Id }, authorToReturn);
         }
 

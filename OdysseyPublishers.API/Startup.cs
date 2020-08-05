@@ -42,7 +42,7 @@ namespace OdysseyPublishers.API
             });
 
             var mapper = config.CreateMapper();
-     
+
 
             services.AddSingleton(mapper);
 
@@ -59,14 +59,15 @@ namespace OdysseyPublishers.API
             }
             else
             {
-                app.UseExceptionHandler(appBuilder => {
+                app.UseExceptionHandler(appBuilder =>
+                {
 
                     appBuilder.Run(async context =>
                     {
                         context.Response.StatusCode = 500;
                         await context.Response.WriteAsync("An unexpected error occoured. Please try again later"); //Add logging here if required
                     });
-                
+
                 });
             }
 

@@ -1,8 +1,6 @@
 ﻿using Application.Authors;
-using Application.Books;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace Application.Tests
@@ -10,7 +8,7 @@ namespace Application.Tests
     public class AuthorServiceTests
     {
         private readonly IAuthorService _authorService;
- 
+
         public AuthorServiceTests()
         {
             this._authorService = TestUtils.ConstructorUtils.authorService;
@@ -35,7 +33,7 @@ namespace Application.Tests
 
         public void GetAuthors()
         {
-            var para = new AuthorResourceParameters{ City = "Berkeley", State="CA" };
+            var para = new AuthorResourceParameters { City = "Berkeley", State = "CA" };
             var res = _authorService.GetAuthors(para);
             Assert.IsType<List<AuthorDto>>(res);
         }
