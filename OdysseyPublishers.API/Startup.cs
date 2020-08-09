@@ -9,6 +9,9 @@ using Infrastructure.Books;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -46,7 +49,56 @@ namespace OdysseyPublishers.API
 
             services.AddSingleton(mapper);
 
-            services.AddControllers();
+            services.AddControllers(setupAction =>
+            {
+                setupAction.ReturnHttpNotAcceptable = true;
+            }).AddXmlDataContractSerializerFormatters().ConfigureApiBehaviorOptions(setupAction =>
+            {
+                setupAction.InvalidModelStateResponseFactory = context =>
+                {
+                    //Create problem details object
+                    var problemDetailsFactory = context.HttpContext.RequestServices.GetRequiredService<ProblemDetailsFactory>();
+                    var problemDetials = problemDetailsFactory.CreateValidationProblemDetails(context.HttpContext, context.ModelState);
+
+                    //add additional info
+
+                    problemDetials.Detail = "See the errors field for additional information.";
+                    problemDetials.Instance = context.HttpContext.Request.Path;
+                    // Find out which status code to return
+
+                    var actionExecutingContext = (ActionExecutingContext)context;
+
+                    //If model state is in error, and all params were found, they are validation errors
+
+                    if ((context.ModelState.ErrorCount > 0) && (actionExecutingContext?.ActionArguments.Count == context.ActionDescriptor.Parameters.Count))
+                    {
+                        problemDetials.Type = "https://OdysseyPub.com/modelvalidationproblem";
+                        problemDetials.Status = StatusCodes.Status422UnprocessableEntity;
+                        problemDetials.Title = "One or more validation errors occoured";
+
+                        return new UnprocessableEntityObjectResult(problemDetials)
+                        {
+                            ContentTypes = { "application/problem+json" }
+                        };
+                    }
+
+
+
+                    //If arguments werent found / couldnt be parsed
+                    problemDetials.Status = StatusCodes.Status400BadRequest;
+                    problemDetials.Title = "One or more validation errors occoured";
+                   
+
+                    return new BadRequestObjectResult(problemDetials)
+                    {
+                        ContentTypes = { "application/problem+json" }
+                    };
+                
+                  
+                };
+
+              
+            });
             services.Configure<PersistenceConfigurations>(Configuration.GetSection("PersistenceSettings"));
         }
 
