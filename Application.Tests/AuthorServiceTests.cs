@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace Application.Tests
@@ -18,16 +19,20 @@ namespace Application.Tests
         [Fact]
         public void GetAuthor()
         {
-            var res = _authorService.GetAuthor("10908F6C-3480-4F2E-AB6B-AE3EBD86A45A");
-            Assert.IsType<AuthorDto>(res);
+            var para = new AuthorResourceParameters { City = "Berkeley", State = "CA" };
+            var res = _authorService.GetAuthors(para);
+            var resp = _authorService.GetAuthor(res.First().Id);
+            Assert.IsType<AuthorDto>(resp);
         }
 
         [Fact]
 
         public void AuthorExists()
         {
-            var res = _authorService.AuthorExists("10908F6C-3480-4F2E-AB6B-AE3EBD86A45A");
-            Assert.True(res);
+            var para = new AuthorResourceParameters { City = "Berkeley", State = "CA" };
+            var res = _authorService.GetAuthors(para);
+            var resp = _authorService.AuthorExists(res.First().Id);
+            Assert.True(resp);
         }
 
         [Fact]

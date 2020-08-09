@@ -8,15 +8,15 @@ namespace TestUtils
     public static class ObjectMocks
     {
 
-        public static BookForCreationDto GetBookForCreation()
+        public static BookForCreationDto GetBookForCreation(string authorId)
         {
-            return new BookForCreationDto { AuthorId = "10908F6C-3480-4F2E-AB6B-AE3EBD86A45A", BookId = Guid.NewGuid().ToString(), Price = 10, PublishedDate = DateTime.UtcNow, Title = "The Jabberwocky", Genre = "fic_fant" };
+            return new BookForCreationDto { AuthorId = authorId, BookId = Guid.NewGuid().ToString(), Price = 10, PublishedDate = DateTime.UtcNow, Title = "The Jabberwocky", Genre = "fic_fant" };
         }
 
         public static AuthorForCreationDto GetAuthorForCreation()
         {
             var bookList = new List<BookForCreationDto>();
-            bookList.Add(GetBookForCreation());
+            bookList.Add(GetBookForCreation(Guid.NewGuid().ToString()));
             return new AuthorForCreationDto
             {
                 Address = "Crawley Lane, Manchester Ave",

@@ -26,8 +26,12 @@ namespace Application.Authors
             return _mapper.Map<AuthorDto>(authorResult);
         }
 
-        public IEnumerable<AuthorDto> GetAuthors(AuthorResourceParameters resourceParameters)
+        public IEnumerable<AuthorDto> GetAuthors(AuthorResourceParameters resourceParameters = null)
         {
+            if(resourceParameters == null)
+            {
+                return _mapper.Map<List<AuthorDto>>(_authorRepository.GetAuthors());
+            }
             var authorResult = _mapper.Map<List<AuthorDto>>(_authorRepository.GetAuthors(resourceParameters));
             var bookResult = _bookService.GetBooks();
             //Convert tot Linq

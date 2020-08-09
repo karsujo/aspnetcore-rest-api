@@ -1,7 +1,9 @@
-﻿using Application.Books;
+﻿using Application.Authors;
+using Application.Books;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace Application.Tests
@@ -10,21 +12,26 @@ namespace Application.Tests
     public class BookServiceTests
     {
         private readonly IBookService _bookService;
+        private readonly IAuthorService _authorService;
+        private string authorId;
         public BookServiceTests()
         {
             _bookService = TestUtils.ConstructorUtils.bookService;
+            _authorService = TestUtils.ConstructorUtils.authorService;
+            authorId = _authorService.GetAuthors(new AuthorResourceParameters { City = "Berkeley", State = "CA" }).First().Id;
         }
         [Fact]
         public void GetBooksForAuthor()
         {
-            var res = _bookService.GetBooksForAuthor("10908F6C-3480-4F2E-AB6B-AE3EBD86A45A");
+            var res = _bookService.GetBooksForAuthor(authorId);
             Assert.IsType<List<BookDto>>(res);
         }
 
         [Fact]
         public void GetBookForAuthor()
         {
-            var res = _bookService.GetBookForAuthor("1b62e232-0625-4b00-a135-f97ff241c052");
+            string bookId = _bookService.GetBooksForAuthor(authorId).First().Id;
+            var res = _bookService.GetBookForAuthor(bookId);
             Assert.IsType<BookDto>(res);
         }
 
@@ -47,10 +54,11 @@ namespace Application.Tests
         [Fact]
         public void CreateBooks()
         {
-            var json = JsonConvert.SerializeObject(TestUtils.ObjectMocks.GetBookForCreation());
+          
             var bookList = new List<BookForCreationDto>();
-            bookList.Add(TestUtils.ObjectMocks.GetBookForCreation());
-            var res = _bookService.CreateBooks(bookList, Guid.NewGuid().ToString());
+            var book = TestUtils.ObjectMocks.GetBookForCreation(authorId);
+            bookList.Add(book);
+            var res = _bookService.CreateBooks(bookList, book.AuthorId);
             Assert.IsType<List<BookDto>>(res);
         }
 
