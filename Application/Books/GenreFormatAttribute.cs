@@ -12,12 +12,12 @@ namespace Application.Books
 
             var book = (BookForCreationDto)validationContext.ObjectInstance;
             string genre = book.Genre;
-            if (!genre.Contains('-'))
+            if (!genre.Contains('_'))
             {
                 return new ValidationResult("The provided genre is not in the correct format", new[] { nameof(BookForCreationDto) });
             }
             string[] genreSubtypes = genre.Split('_');
-            if (genreSubtypes[0] != "fic" | genreSubtypes[0] != "nfic"){
+            if (genreSubtypes[0] != "fic" && genreSubtypes[0] != "nfic"){
 
                 return new ValidationResult("The provided genre subtype is invalid. It can be either 'fic' or 'nonfic'", new[] { nameof(BookForCreationDto) });
 

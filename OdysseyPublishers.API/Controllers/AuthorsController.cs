@@ -47,6 +47,13 @@ namespace OdysseyPublishers.API.Controllers
             return CreatedAtRoute("GetAuthor", new { authorId = authorToReturn.Id }, authorToReturn);
         }
 
+        [HttpOptions]
+        public IActionResult GetAuthorsOptions()
+        {
+            Request.Headers.Add("Allow", "GET,OPTIONS,POST");
+            return Ok();
+        }
+
     }
 
 

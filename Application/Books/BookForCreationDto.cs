@@ -8,6 +8,7 @@ namespace Application.Books
         public string BookId { get; set; }
         public string Title { get; set; }
 
+        [System.ComponentModel.DataAnnotations.Required]
         [GenreFormat]
         public string Genre { get; set; }
 

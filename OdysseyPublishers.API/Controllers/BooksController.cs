@@ -71,5 +71,12 @@ namespace OdysseyPublishers.API.Controllers
             var result = _bookService.CreateBooks(books, authorId);
             return Ok(result);
         }
+
+        [HttpOptions]
+        public IActionResult GetBooksOptions()
+        {
+            Request.Headers.Add("Allow", "GET,OPTIONS,POST");
+            return Ok();
+        }
     }
 }
