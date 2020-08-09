@@ -10,7 +10,7 @@ namespace TestUtils
 
         public static BookForCreationDto GetBookForCreation()
         {
-            return new BookForCreationDto { AuthorId = "10908F6C-3480-4F2E-AB6B-AE3EBD86A45A", BookId = Guid.NewGuid().ToString(), Price = 10, PublishedDate = DateTime.UtcNow, Title = "The Jabberwocky", Type = "fic_fant" };
+            return new BookForCreationDto { AuthorId = "10908F6C-3480-4F2E-AB6B-AE3EBD86A45A", BookId = Guid.NewGuid().ToString(), Price = 10, PublishedDate = DateTime.UtcNow, Title = "The Jabberwocky", Genre = "fic_fant" };
         }
 
         public static AuthorForCreationDto GetAuthorForCreation()

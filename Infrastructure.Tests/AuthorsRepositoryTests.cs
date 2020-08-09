@@ -2,6 +2,7 @@ using Application.Authors;
 using OdysseyPublishers.Domain;
 using OdysseyPublishers.Infrastructure.Authors;
 using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace Infrastructure.Tests
@@ -39,7 +40,8 @@ namespace Infrastructure.Tests
 
         public void GetAuthor()
         {
-            var result = _auRepo.GetAuthor("10908F6C-3480-4F2E-AB6B-AE3EBD86A45A");
+            string authorId = _auRepo.GetAuthors().First().AuthorId;
+            var result = _auRepo.GetAuthor(authorId);
             Assert.IsType<Author>(result);
         }
 
@@ -47,7 +49,8 @@ namespace Infrastructure.Tests
 
         public void AuthorExists()
         {
-            var result = _auRepo.AuthorExists("10908F6C-3480-4F2E-AB6B-AE3EBD86A45A");
+            string authorId = _auRepo.GetAuthors().First().AuthorId;
+            var result = _auRepo.AuthorExists(authorId);
             Assert.IsType<bool>(result);
         }
 

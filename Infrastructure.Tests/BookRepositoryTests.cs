@@ -1,8 +1,10 @@
 ﻿using Application.Books;
 using Infrastructure.Books;
 using OdysseyPublishers.Domain;
+using OdysseyPublishers.Infrastructure.Authors;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Xunit;
 
 namespace Infrastructure.Tests
@@ -10,10 +12,12 @@ namespace Infrastructure.Tests
     public class BookRepositoryTests
     {
         private readonly BookRepository _bkRepo;
+        private readonly AuthorRepository _auRepo;
 
         public BookRepositoryTests()
         {
             _bkRepo = TestUtils.ConstructorUtils.bookRepo;
+            _auRepo = TestUtils.ConstructorUtils.authorRepo;
         }
 
         [Fact]
@@ -27,7 +31,7 @@ namespace Infrastructure.Tests
         [Fact]
         public void GetBook()
         {
-            string bookId = "08180BDA-CC8F-4B05-A441-AA2DE0280558";
+            string bookId = _bkRepo.GetBooks().First().BookId;
             var res = _bkRepo.GetBookForAuthor(bookId);
             Assert.IsType<Book>(res);
         }
@@ -56,9 +60,9 @@ namespace Infrastructure.Tests
 
         public void CreateBook()
         {
-            var book = new BookForCreationDto { AuthorId = "10908F6C-3480-4F2E-AB6B-AE3EBD86A45A", BookId = Guid.NewGuid().ToString(), Price = 20, PublishedDate = DateTime.UtcNow, Title = "The Mon'ks Ferrari", Type = "nf_self" };
+            string authorId = _auRepo.GetAuthors().First().AuthorId;
+            var book = new BookForCreationDto { AuthorId = authorId, BookId = Guid.NewGuid().ToString(), Price = 20, PublishedDate = DateTime.UtcNow, Title = "The Mon'ks Ferrari", Genre = "nf_self" };
             _bkRepo.CreateBook(book);
-
         }
     }
 }

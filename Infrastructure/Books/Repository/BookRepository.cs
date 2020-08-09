@@ -108,7 +108,7 @@ namespace Infrastructure.Books
             parameters.Add("@au_id", bookForCreationDto.AuthorId, DbType.String, ParameterDirection.Input);
             parameters.Add("@book_id",bookForCreationDto.BookId.ToString(), DbType.String, ParameterDirection.Input);
             parameters.Add("@title", bookForCreationDto.Title, DbType.String, ParameterDirection.Input);
-            parameters.Add("@type", bookForCreationDto.Type, DbType.String, ParameterDirection.Input);
+            parameters.Add("@type", bookForCreationDto.Genre, DbType.String, ParameterDirection.Input);
             parameters.Add("@price", bookForCreationDto.Price, DbType.Decimal, ParameterDirection.Input);
             parameters.Add("@pubdate", bookForCreationDto.PublishedDate, DbType.DateTime, ParameterDirection.Input);
             _repository.ModifyDatabase(sql, parameters);

@@ -13,6 +13,7 @@ namespace Application.Authors
         [Required]
         [MaxLength(40)]
         public string FirstName { get; set; }
+
         [Required]
         [MaxLength(40)]
         public string LastName { get; set; }
