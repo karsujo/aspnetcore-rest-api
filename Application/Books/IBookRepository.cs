@@ -6,10 +6,14 @@ namespace Application.Books
     public interface IBookRepository
     {
         bool BookExists(string BookId);
-        Book GetBookForAuthor(string BookId);
+        Book GetBook(string BookId);
         IEnumerable<Book> GetBooksForAuthor(string authorId);
         IEnumerable<Book> GetBooks(BookResourceParameters bookResourceParameters);
         IEnumerable<Book> GetBooks();
-        public void CreateBook(BookForCreationDto bookForCreationDto);
+        void CreateBook(BookForCreationDto book);
+        void UpdateBook(BookForUpdateDto book);
+
+
+
     }
 }

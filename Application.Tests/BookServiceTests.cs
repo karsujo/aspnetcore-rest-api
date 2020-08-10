@@ -29,7 +29,7 @@ namespace Application.Tests
         public void GetBookForAuthor()
         {
             string bookId = _bookService.GetBooksForAuthor(authorId).First().Id;
-            var res = _bookService.GetBookForAuthor(bookId);
+            var res = _bookService.GetBook(bookId);
             Assert.IsType<BookDto>(res);
         }
 

@@ -32,7 +32,7 @@ namespace Infrastructure.Tests
         public void GetBook()
         {
             string bookId = _bkRepo.GetBooks().First().BookId;
-            var res = _bkRepo.GetBookForAuthor(bookId);
+            var res = _bkRepo.GetBook(bookId);
             Assert.IsType<Book>(res);
         }
 

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using OdysseyPublishers.Domain;
 using System;
 using System.Collections.Generic;
 
@@ -21,11 +22,17 @@ namespace Application.Books
             return _mapper.Map<IEnumerable<BookDto>>(res);
         }
 
-        public BookDto GetBookForAuthor(string bookId)
+        public BookDto GetBook(string bookId)
         {
-            var res = _bookRepository.GetBookForAuthor(bookId);
+            var res = _bookRepository.GetBook(bookId);
             //res.Validate();
             return _mapper.Map<BookDto>(res);
+        }
+
+        public bool BookExists(string bookId)
+        {
+            return _bookRepository.BookExists(bookId);
+
         }
 
 
@@ -56,5 +63,14 @@ namespace Application.Books
 
             return _mapper.Map<List<BookDto>>(bookForCreationDtos);
         }
+
+        public BookDto UpdateBook(BookForUpdateDto book, string authorId, string bookId)
+        {
+            book.SetIds(authorId, bookId);
+            _bookRepository.UpdateBook(book);
+            return _mapper.Map<BookDto>(book);
+        }
+
+  
     }
 }

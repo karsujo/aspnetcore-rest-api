@@ -9,6 +9,7 @@ using System.Data;
 namespace Infrastructure.Books
 {
 
+
     public class BookRepository : IBookRepository
     {
         private readonly IRepository _repository;
@@ -54,7 +55,7 @@ namespace Infrastructure.Books
             return _mapper.Map<IEnumerable<Book>>(res);
         }
 
-        public Book GetBookForAuthor(string BookId)
+        public Book GetBook(string BookId)
         {
             string sql = @"select 
             b.au_id,
@@ -81,7 +82,7 @@ namespace Infrastructure.Books
             var parameters = new DynamicParameters();
             parameters.Add("@BookId", BookId, DbType.String, ParameterDirection.Input, BookId.Length);
             var res = _repository.QueryDatabaseSingle<BookDbEntity>(sql, parameters);
-            return res == null ? false : true;
+            return res != null;
         }
 
         public IEnumerable<Book> GetBooksForAuthor(string authorId)
@@ -99,6 +100,7 @@ namespace Infrastructure.Books
             return _mapper.Map<List<Book>>(res);
         }
 
+        //TODO: Should we convert to domain entity or directly use the DTO?
         public void CreateBook(BookForCreationDto bookForCreationDto)
         {
             string sql = @"Insert into books(au_id, book_id, title, type, price, pubdate)
@@ -112,6 +114,11 @@ namespace Infrastructure.Books
             parameters.Add("@price", bookForCreationDto.Price, DbType.Decimal, ParameterDirection.Input);
             parameters.Add("@pubdate", bookForCreationDto.PublishedDate, DbType.DateTime, ParameterDirection.Input);
             _repository.ModifyDatabase(sql, parameters);
+        }
+
+        public void UpdateBook(BookForUpdateDto book)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }

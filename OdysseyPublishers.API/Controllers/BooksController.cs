@@ -57,7 +57,7 @@ namespace OdysseyPublishers.API.Controllers
             {
                 throw new ArgumentNullException(nameof(bookId));
             }
-            var res = _bookService.GetBookForAuthor(bookId);
+            var res = _bookService.GetBook(bookId);
             if (res == null)
             {
                 return NotFound();
@@ -76,6 +76,20 @@ namespace OdysseyPublishers.API.Controllers
         public IActionResult GetBooksOptions()
         {
             Request.Headers.Add("Allow", "GET,OPTIONS,POST");
+            return Ok();
+        }
+
+        [HttpPut("{bookId}")]
+        public ActionResult UpdateBookForAuthor([FromRoute] string authorId, [FromRoute] string bookId, BookForUpdateDto book )
+        {
+            if (!_authorService.AuthorExists(authorId))
+                return NotFound();
+
+  
+
+            if (_bookService.BookExists(bookId))
+                return NotFound();
+
             return Ok();
         }
     }
