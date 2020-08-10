@@ -86,15 +86,15 @@ namespace OdysseyPublishers.API
                     //If arguments werent found / couldnt be parsed
                     problemDetials.Status = StatusCodes.Status400BadRequest;
                     problemDetials.Title = "One or more validation errors occoured";
-                   
+
                     return new BadRequestObjectResult(problemDetials)
                     {
                         ContentTypes = { "application/problem+json" }
-                    };                
-                  
+                    };
+
                 };
 
-              
+
             });
             services.Configure<PersistenceConfigurations>(Configuration.GetSection("PersistenceSettings"));
         }

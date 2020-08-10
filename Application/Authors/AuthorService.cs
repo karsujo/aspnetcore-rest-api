@@ -28,7 +28,7 @@ namespace Application.Authors
 
         public IEnumerable<AuthorDto> GetAuthors(AuthorResourceParameters resourceParameters = null)
         {
-            if(resourceParameters == null)
+            if (resourceParameters == null)
             {
                 return _mapper.Map<List<AuthorDto>>(_authorRepository.GetAuthors());
             }
@@ -65,7 +65,7 @@ namespace Application.Authors
 
 
             }
-   
+
             var authorToReturn = _mapper.Map<AuthorDto>(authorForCreationDto);
             authorToReturn.Id = authorId;
             return authorToReturn;

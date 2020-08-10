@@ -1,7 +1,5 @@
 ﻿using Application.Authors;
 using Application.Books;
-using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
@@ -54,7 +52,7 @@ namespace Application.Tests
         [Fact]
         public void CreateBooks()
         {
-          
+
             var bookList = new List<BookForCreationDto>();
             var book = TestUtils.ObjectMocks.GetBookForCreation(authorId);
             bookList.Add(book);

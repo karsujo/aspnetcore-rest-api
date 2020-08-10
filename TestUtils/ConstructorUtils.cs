@@ -8,7 +8,6 @@ using Microsoft.Extensions.Options;
 using OdysseyPublishers.API.Controllers;
 using OdysseyPublishers.Infrastructure.Authors;
 using OdysseyPublishers.Infrastructure.Common;
-using System;
 
 namespace TestUtils
 {
@@ -34,7 +33,7 @@ namespace TestUtils
 
         private static BooksController CreateBooksControllerInstance()
         {
-            return new BooksController(bookService,authorService);
+            return new BooksController(bookService, authorService);
         }
 
         private static AuthorsController CreateAuthorsControllerInstance()

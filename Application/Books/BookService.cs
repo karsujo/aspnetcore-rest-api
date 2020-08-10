@@ -51,7 +51,7 @@ namespace Application.Books
             {
                 book.AuthorId = authorId;
                 book.BookId = Guid.NewGuid().ToString();
-               _bookRepository.CreateBook(book);
+                _bookRepository.CreateBook(book);
             }
 
             return _mapper.Map<List<BookDto>>(bookForCreationDtos);

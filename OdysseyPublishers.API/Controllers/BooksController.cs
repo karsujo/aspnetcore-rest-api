@@ -66,7 +66,7 @@ namespace OdysseyPublishers.API.Controllers
         }
 
         [HttpPost]
-        public ActionResult<BookDto> CreateBooksForAuthor([FromRoute] string authorId,List<BookForCreationDto> books )
+        public ActionResult<BookDto> CreateBooksForAuthor([FromRoute] string authorId, List<BookForCreationDto> books)
         {
             var result = _bookService.CreateBooks(books, authorId);
             return Ok(result);
