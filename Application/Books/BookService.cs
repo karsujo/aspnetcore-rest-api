@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using OdysseyPublishers.Domain;
 using System;
 using System.Collections.Generic;
 
@@ -71,6 +70,6 @@ namespace Application.Books
             return _mapper.Map<BookDto>(book);
         }
 
-  
+
     }
 }

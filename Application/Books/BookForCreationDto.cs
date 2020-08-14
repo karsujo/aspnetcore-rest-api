@@ -14,7 +14,7 @@ namespace Application.Books
         [GenreFormat]
         public string Genre { get; set; }
 
-         public decimal Price { get; set; }
+        public decimal Price { get; set; }
         public DateTime PublishedDate { get; set; }
     }
 }

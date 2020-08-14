@@ -1,14 +1,11 @@
-﻿using OdysseyPublishers.Domain;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace Application.Books
 {
     public class BookForUpdateDto
     {
-    
+
         private string AuthorId { get; set; }
         private string BookId { get; set; }
 

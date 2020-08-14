@@ -80,12 +80,12 @@ namespace OdysseyPublishers.API.Controllers
         }
 
         [HttpPut("{bookId}")]
-        public ActionResult UpdateBookForAuthor([FromRoute] string authorId, [FromRoute] string bookId, BookForUpdateDto book )
+        public ActionResult UpdateBookForAuthor([FromRoute] string authorId, [FromRoute] string bookId, BookForUpdateDto book)
         {
             if (!_authorService.AuthorExists(authorId))
                 return NotFound();
 
-  
+
 
             if (_bookService.BookExists(bookId))
                 return NotFound();
