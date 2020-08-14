@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Application.Books
 {
@@ -7,7 +8,7 @@ namespace Application.Books
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
 
-            var book = (BookForCreationDto)validationContext.ObjectInstance;
+            dynamic book = validationContext.ObjectInstance;
             string genre = book.Genre;
             if (!genre.Contains('_'))
             {
@@ -17,7 +18,7 @@ namespace Application.Books
             if (genreSubtypes[0] != "fic" && genreSubtypes[0] != "nfic")
             {
 
-                return new ValidationResult("The provided genre subtype is invalid. It can be either 'fic' or 'nonfic'", new[] { nameof(BookForCreationDto) });
+                return new ValidationResult("The provided genre subtype is invalid. It can be either 'fic' or 'nfic'", new[] { nameof(BookForCreationDto) });
 
             }
             return ValidationResult.Success;
