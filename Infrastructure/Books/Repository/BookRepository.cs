@@ -118,7 +118,15 @@ namespace Infrastructure.Books
 
         public void UpdateBook(BookForUpdateDto book)
         {
-            throw new System.NotImplementedException();
+            string sql = @"Update books set title = @title, type = @type, price = @price, pubdate = @pubdate where  book_id = @book_id";
+
+            var parameters = new DynamicParameters();
+            parameters.Add("@book_id", book.BookId.ToString(), DbType.String, ParameterDirection.Input);
+            parameters.Add("@title", book.Title, DbType.String, ParameterDirection.Input);
+            parameters.Add("@type", book.Genre, DbType.String, ParameterDirection.Input);
+            parameters.Add("@price", book.Price, DbType.Decimal, ParameterDirection.Input);
+            parameters.Add("@pubdate", book.PublishedDate, DbType.DateTime, ParameterDirection.Input);
+            _repository.ModifyDatabase(sql, parameters);
         }
     }
 }

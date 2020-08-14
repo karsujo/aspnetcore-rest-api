@@ -13,7 +13,7 @@ namespace Application.Books
 
         IEnumerable<BookDto> CreateBooks(IEnumerable<BookForCreationDto> bookForCreationDtos, string authorId);
 
-        BookDto UpdateBook(BookForUpdateDto book, string authorId, string bookId);
+        BookDto UpdateBook(BookForUpdateDto book);
 
 
     }

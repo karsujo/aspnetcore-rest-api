@@ -5,9 +5,9 @@ namespace Application.Books
 {
     public class BookForUpdateDto
     {
+        public  string AuthorId { get; set; }
 
-        private string AuthorId { get; set; }
-        private string BookId { get; set; }
+        public string BookId { get; set; }
 
         [Required]
         public string Title { get; set; }
@@ -19,11 +19,7 @@ namespace Application.Books
 
         public DateTime PublishedDate { get; set; }
 
-        public void SetIds(string authorId, string bookId)
-        {
-            AuthorId = authorId;
-            BookId = bookId;
-        }
+  
 
     }
 }

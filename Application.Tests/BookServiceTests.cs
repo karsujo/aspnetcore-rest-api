@@ -1,5 +1,6 @@
 ﻿using Application.Authors;
 using Application.Books;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Xunit;
@@ -58,6 +59,14 @@ namespace Application.Tests
             bookList.Add(book);
             var res = _bookService.CreateBooks(bookList, book.AuthorId);
             Assert.IsType<List<BookDto>>(res);
+        }
+
+        [Fact]
+
+        public void UpdateBook()
+        {
+            var book = new BookForUpdateDto { AuthorId = authorId, BookId = Guid.NewGuid().ToString(), Price = 20, PublishedDate = DateTime.UtcNow, Title = "The Mon'ks Ferrari", Genre = "nf_self" };
+            var res = _bookService.UpdateBook(book);
         }
 
 

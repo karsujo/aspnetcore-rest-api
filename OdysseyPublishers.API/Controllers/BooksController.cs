@@ -85,12 +85,15 @@ namespace OdysseyPublishers.API.Controllers
             if (!_authorService.AuthorExists(authorId))
                 return NotFound();
 
-
-
             if (_bookService.BookExists(bookId))
                 return NotFound();
 
-            return Ok();
+            book.BookId = bookId;
+            book.AuthorId = authorId;
+
+            _bookService.UpdateBook(book);
+
+            return NoContent();
         }
     }
 }

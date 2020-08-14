@@ -27,21 +27,22 @@ namespace Application.Books
             //res.Validate();
             return _mapper.Map<BookDto>(res);
         }
-
+        [DomainMap]
         public bool BookExists(string bookId)
         {
             return _bookRepository.BookExists(bookId);
 
         }
 
-
+      
         public IEnumerable<BookDto> GetBooks(BookResourceParameters bookResourceParameters)
         {
             var res = _bookRepository.GetBooks(bookResourceParameters);
             //validate
             return _mapper.Map<List<BookDto>>(res);
         }
-
+        //TODO: Make custom Action filters for validation and mapping Ex: DomainMap
+       // [DomainMap]
         public IEnumerable<BookDto> GetBooks()
         {
             var res = _bookRepository.GetBooks();
@@ -63,9 +64,8 @@ namespace Application.Books
             return _mapper.Map<List<BookDto>>(bookForCreationDtos);
         }
 
-        public BookDto UpdateBook(BookForUpdateDto book, string authorId, string bookId)
-        {
-            book.SetIds(authorId, bookId);
+        public BookDto UpdateBook(BookForUpdateDto book)
+        {          
             _bookRepository.UpdateBook(book);
             return _mapper.Map<BookDto>(book);
         }

@@ -64,5 +64,13 @@ namespace Infrastructure.Tests
             var book = new BookForCreationDto { AuthorId = authorId, BookId = Guid.NewGuid().ToString(), Price = 20, PublishedDate = DateTime.UtcNow, Title = "The Mon'ks Ferrari", Genre = "nf_self" };
             _bkRepo.CreateBook(book);
         }
+
+        [Fact]
+        public void UpdateBook()
+        {
+            string authorId = _auRepo.GetAuthors().First().AuthorId;
+            var book = new BookForUpdateDto { AuthorId = authorId, BookId = Guid.NewGuid().ToString(), Price = 20, PublishedDate = DateTime.UtcNow, Title = "The Mon'ks Ferrari", Genre = "nf_self" };
+            _bkRepo.UpdateBook(book);
+        }
     }
 }
