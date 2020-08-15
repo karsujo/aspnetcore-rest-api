@@ -3,23 +3,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Application.Books
 {
-    public class BookForUpdateDto
+    public class BookForUpdateDto: BookForManipulationDto
     {
-        public string AuthorId { get; set; }
-
-        public string BookId { get; set; }
-
-        [Required]
-        public string Title { get; set; }
-
-        [GenreFormat]
-        public string Genre { get; set; }
-
-        public decimal Price { get; set; }
-
-        public DateTime PublishedDate { get; set; }
-
-
+        [Required(ErrorMessage ="Genre is required during updation.")]
+        public override string Genre { get => base.Genre; set => base.Genre = value; }
 
     }
 }
