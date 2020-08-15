@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Application.Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -17,6 +18,6 @@ namespace Application.Books
         public virtual string Genre { get; set; }
 
         public decimal Price { get; set; }
-        public DateTime PublishedDate { get; set; } = new DateTime(1900, 1, 1);
+        public DateTime PublishedDate { get; set; } = new DateTime().OracleDefault();
     }
 }
