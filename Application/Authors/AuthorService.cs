@@ -22,7 +22,6 @@ namespace Application.Authors
         public AuthorDto GetAuthor(string authorId)
         {
             var authorResult = _authorRepository.GetAuthor(authorId);
-            authorResult.Validate(authorId);
             return _mapper.Map<AuthorDto>(authorResult);
         }
 
