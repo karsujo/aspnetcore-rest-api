@@ -5,7 +5,7 @@ namespace Application.Books
 {
     public class BookForUpdateDto
     {
-        public  string AuthorId { get; set; }
+        public string AuthorId { get; set; }
 
         public string BookId { get; set; }
 
@@ -19,7 +19,7 @@ namespace Application.Books
 
         public DateTime PublishedDate { get; set; }
 
-  
+
 
     }
 }

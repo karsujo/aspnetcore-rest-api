@@ -34,7 +34,7 @@ namespace Application.Books
 
         }
 
-      
+
         public IEnumerable<BookDto> GetBooks(BookResourceParameters bookResourceParameters)
         {
             var res = _bookRepository.GetBooks(bookResourceParameters);
@@ -42,7 +42,7 @@ namespace Application.Books
             return _mapper.Map<List<BookDto>>(res);
         }
         //TODO: Make custom Action filters for validation and mapping Ex: DomainMap
-       // [DomainMap]
+        // [DomainMap]
         public IEnumerable<BookDto> GetBooks()
         {
             var res = _bookRepository.GetBooks();
@@ -65,7 +65,7 @@ namespace Application.Books
         }
 
         public BookDto UpdateBook(BookForUpdateDto book)
-        {          
+        {
             _bookRepository.UpdateBook(book);
             return _mapper.Map<BookDto>(book);
         }
