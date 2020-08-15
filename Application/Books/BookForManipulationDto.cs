@@ -17,6 +17,6 @@ namespace Application.Books
         public virtual string Genre { get; set; }
 
         public decimal Price { get; set; }
-        public DateTime PublishedDate { get; set; }
+        public DateTime PublishedDate { get; set; } = new DateTime(1900, 1, 1);
     }
 }
