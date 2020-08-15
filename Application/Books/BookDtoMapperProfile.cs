@@ -3,9 +3,9 @@ using OdysseyPublishers.Domain;
 
 namespace Application.Books
 {
-    public class BookDtoProfile : Profile
+    public class BookDtoMapperProfile : Profile
     {
-        public BookDtoProfile()
+        public BookDtoMapperProfile()
         {
             CreateMap<Book, BookDto>()
         .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.BookId))

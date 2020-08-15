@@ -38,8 +38,8 @@ namespace OdysseyPublishers.API
             {
                 opt.AddProfile(new AuthorDbProfile());
                 opt.AddProfile(new BookDbProfile());
-                opt.AddProfile(new AuthorDtoProfile());
-                opt.AddProfile(new BookDtoProfile());
+                opt.AddProfile(new AuthorDtoMapperProfile());
+                opt.AddProfile(new BookDtoMapperProfile());
 
 
             });

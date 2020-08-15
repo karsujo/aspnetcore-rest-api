@@ -3,9 +3,9 @@ using OdysseyPublishers.Domain;
 
 namespace Application.Authors
 {
-    public class AuthorDtoProfile : Profile
+    public class AuthorDtoMapperProfile : Profile
     {
-        public AuthorDtoProfile()
+        public AuthorDtoMapperProfile()
         {
             CreateMap<Author, AuthorDto>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.AuthorId))
