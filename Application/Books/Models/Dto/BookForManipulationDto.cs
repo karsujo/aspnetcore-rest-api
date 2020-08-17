@@ -9,7 +9,7 @@ namespace Application.Books
     public abstract class BookForManipulationDto
     {
         public string AuthorId { get; set; }
-        public string BookId { get; set; }
+        public virtual string BookId { get; set; }
 
         [Required]
         public string Title { get; set; }

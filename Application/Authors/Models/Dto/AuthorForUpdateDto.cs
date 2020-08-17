@@ -1,4 +1,5 @@
-﻿using OdysseyPublishers.Domain;
+﻿using Application.Books;
+using OdysseyPublishers.Domain;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -8,6 +9,12 @@ namespace Application.Authors
 {
     public class AuthorForUpdateDto : AuthorForManipulationDto
     {
+        public AuthorForUpdateDto()
+        {
+            Books = new HashSet<BookForUpdateDto>();
+        }
+        public ICollection<BookForUpdateDto> Books { get; set; }
+        public string AuthorId { get; set; }
         [Required(ErrorMessage = "Address is required for updation.")]
         public override string Address { get => base.Address; set => base.Address = value; }
 

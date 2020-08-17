@@ -11,6 +11,7 @@ namespace Application.Authors
         AuthorDto CreateAuthor(AuthorForCreationDto authorForCreationDto, string authorId = null);
 
         AuthorDto CreateAuthorWithBooks(AuthorForCreationDto authorForCreationDto);
+        void UpdateAuthor(AuthorForUpdateDto author);
 
 
     }

@@ -6,12 +6,9 @@ using System.Text;
 
 namespace Application.Authors
 {
-    public class AuthorForManipulationDto
+    public abstract class AuthorForManipulationDto
     {
-        public AuthorForManipulationDto()
-        {
-            Books = new HashSet<BookForCreationDto>();
-        }
+    
         [Required]
         [MaxLength(40)]
         public string FirstName { get; set; }
@@ -29,7 +26,8 @@ namespace Application.Authors
 
         [RegularExpression("^[0-9]{5}$")]
         public virtual string Zip { get; set; }
-        public ICollection<BookForCreationDto> Books { get; set; }
+
+      
 
     }
 }

@@ -54,6 +54,20 @@ namespace OdysseyPublishers.API.Controllers
             return Ok();
         }
 
+        [HttpPut("{authorId}")]
+        public ActionResult UpdateAuthor([FromRoute] string authorId, AuthorForUpdateDto author)
+        {
+            if (!_authorService.AuthorExists(authorId))
+                return NotFound();
+
+             author.AuthorId = authorId;
+            _authorService.UpdateAuthor(author);
+
+            return NoContent();
+
+
+        }
+
     }
 
 

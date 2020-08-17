@@ -110,6 +110,7 @@ namespace OdysseyPublishers.Infrastructure.Authors
             @state  ,
             @zip )";
             var parameters = new DynamicParameters();
+            //TODO: Remove unnecessary params
             parameters.Add("@au_id", authorId, DbType.String, ParameterDirection.Input, authorId.Length);
             parameters.Add("@au_fname", authorForCreationDto.LastName, DbType.String, ParameterDirection.Input, authorForCreationDto.LastName.Length);
             parameters.Add("@au_lname", authorForCreationDto.FirstName, DbType.String, ParameterDirection.Input, authorForCreationDto.FirstName.Length);
@@ -124,9 +125,20 @@ namespace OdysseyPublishers.Infrastructure.Authors
 
 
 
-        public void UpdateAuthor()
+        public void UpdateAuthor(AuthorForUpdateDto author)
         {
-            throw new System.NotImplementedException();
+            string sql = @"Update authors set au_fname = @au_fname, au_lname= @au_lname, phone = @phone, address= @address, city = @city, state = @state, zip = @zip where au_id= @au_id";
+            var parameters = new DynamicParameters();
+            parameters.Add("@au_id", author.AuthorId, DbType.String, ParameterDirection.Input);
+            parameters.Add("@au_fname", author.LastName, DbType.String, ParameterDirection.Input);
+            parameters.Add("@au_lname", author.FirstName, DbType.String, ParameterDirection.Input);
+            parameters.Add("@phone", author.Phone, DbType.String, ParameterDirection.Input);
+            parameters.Add("@address", author.Address, DbType.String, ParameterDirection.Input);
+            parameters.Add("@city", author.City, DbType.String, ParameterDirection.Input);
+            parameters.Add("@state", author.State, DbType.String, ParameterDirection.Input);
+            parameters.Add("@zip", author.Zip, DbType.String, ParameterDirection.Input);
+            _repository.ModifyDatabase(sql, parameters);
+
         }
 
         public void DeleteAuthor()

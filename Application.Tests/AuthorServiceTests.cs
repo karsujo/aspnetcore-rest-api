@@ -38,7 +38,7 @@ namespace Application.Tests
         [Fact]
 
         public void GetAuthors()
-        {
+         {
             var para = new AuthorResourceParameters { City = "Berkeley", State = "CA" };
             var res = _authorService.GetAuthors(para);
             Assert.IsType<List<AuthorDto>>(res);

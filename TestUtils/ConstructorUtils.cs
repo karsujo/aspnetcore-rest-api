@@ -73,6 +73,6 @@ namespace TestUtils
         public static BookRepository CreateBookRepoInstance() => new BookRepository(baseRepo, mappings);
         public static AuthorRepository CreateAuthorRepoInstance() => new AuthorRepository(baseRepo, mappings);
         public static BookService CreateBookServiceInstance() => new BookService(bookRepo, mappings);
-        public static AuthorService CreateAuthorServiceInstance() => new AuthorService(authorRepo, bookService, mappings);
+        public static AuthorService CreateAuthorServiceInstance() => new AuthorService(authorRepo, bookService, bookRepo, mappings);
     }
 }
