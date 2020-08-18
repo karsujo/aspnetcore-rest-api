@@ -52,7 +52,8 @@ namespace OdysseyPublishers.API
             services.AddControllers(setupAction =>
             {
                 setupAction.ReturnHttpNotAcceptable = true;
-            }).AddXmlDataContractSerializerFormatters().ConfigureApiBehaviorOptions(setupAction =>
+            }).AddNewtonsoftJson().AddXmlDataContractSerializerFormatters() //Order of formatters matters!
+            .ConfigureApiBehaviorOptions(setupAction =>
             {
                 //Refer problemDetails HTTP APIs RFC for details on the standard.
                 setupAction.InvalidModelStateResponseFactory = context =>

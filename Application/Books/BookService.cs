@@ -1,5 +1,6 @@
 ﻿using Application.Books;
 using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using System;
 using System.Collections.Generic;
 
@@ -71,6 +72,7 @@ namespace Application.Books
             return _mapper.Map<BookDto>(book);
         }
 
+ 
 
     }
 }

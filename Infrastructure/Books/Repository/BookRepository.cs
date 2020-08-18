@@ -29,7 +29,8 @@ namespace Infrastructure.Books
             b.book_id,
             b.type,
             b.price,
-            b.title
+            b.title,
+            b.pubdate
             from books b ";
             var res = _repository.QueryDatabase<BookDbEntity>(sql, null);
             return _mapper.Map<IEnumerable<Book>>(res);
@@ -47,7 +48,8 @@ namespace Infrastructure.Books
             b.book_id,
             b.type,
             b.price,
-            b.title
+            b.title,
+            b.pubdate
             from books b where b.type = @Genre";
             var parameters = new DynamicParameters();
             parameters.Add("@Genre", bookResourceParameters.Genre, DbType.String, ParameterDirection.Input, bookResourceParameters.Genre.Length);
@@ -62,7 +64,8 @@ namespace Infrastructure.Books
             b.book_id,
             b.type,
             b.price,
-            b.title
+            b.title,
+            b.pubdate
             from books b where b.book_id = @BookId";
             var parameters = new DynamicParameters();
             parameters.Add("@BookId", BookId, DbType.String, ParameterDirection.Input, BookId.Length);
@@ -77,7 +80,8 @@ namespace Infrastructure.Books
             b.book_id,
             b.type,
             b.price,
-            b.title
+            b.title,
+            b.pubdate
             from books b where b.book_id = @BookId";
             var parameters = new DynamicParameters();
             parameters.Add("@BookId", BookId, DbType.String, ParameterDirection.Input, BookId.Length);
@@ -92,7 +96,8 @@ namespace Infrastructure.Books
             b.book_id,
             b.type,
             b.price,
-            b.title
+            b.title,
+            b.pubdate
             from books b where b.au_id = @AuthorId";
             var parameters = new DynamicParameters();
             parameters.Add("@AuthorId", authorId, DbType.String, ParameterDirection.Input, authorId.Length);

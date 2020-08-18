@@ -17,7 +17,7 @@ namespace Application.Tests
         {
             _bookService = TestUtils.ConstructorUtils.bookService;
             _authorService = TestUtils.ConstructorUtils.authorService;
-            authorId = _authorService.GetAuthors(new AuthorResourceParameters { City = "Berkeley", State = "CA" }).First().Id;
+            authorId = _authorService.GetAuthors(new AuthorResourceParameters { City = "Massachussets", State = "MA" }).First().Id;
         }
         [Fact]
         public void GetBooksForAuthor()

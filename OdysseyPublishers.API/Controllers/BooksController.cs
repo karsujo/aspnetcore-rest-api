@@ -1,9 +1,11 @@
 ﻿using Application.Authors;
 using Application.Books;
 using Domain.Exceptions;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace OdysseyPublishers.API.Controllers
 {
@@ -94,6 +96,37 @@ namespace OdysseyPublishers.API.Controllers
             _bookService.UpdateBook(book);
 
             return NoContent();
+        }
+
+        [HttpPatch("{bookId}")]
+        public ActionResult PatchBookForAuthor([FromRoute] string authorId, [FromRoute] string bookId, JsonPatchDocument<BookForUpdateDto> patchDocument)
+        {
+            if (!_authorService.AuthorExists(authorId))
+                return NotFound();
+
+            if (!_bookService.BookExists(bookId))
+                return NotFound();
+
+            BookDto book = _bookService.GetBooksForAuthor(authorId).Where(b => b.Id == bookId).FirstOrDefault();
+
+            BookForUpdateDto bookForUpdate = new BookForUpdateDto
+            {
+              AuthorId = authorId,
+             BookId = bookId,
+             Genre = book.Genre,
+             Price = book.Price,
+             PublishedDate = book.PublishedDate,
+             Title = book.Title
+
+            };
+
+            //validate
+            patchDocument.ApplyTo(bookForUpdate);
+
+            _bookService.UpdateBook(bookForUpdate);
+
+            return NoContent();
+
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Application.Common;
+using System;
 
 namespace Application.Books
 {
@@ -13,7 +14,7 @@ namespace Application.Books
 
         public decimal Price { get; set; }
 
-        public DateTime PublishedDate { get; set; }
+        public DateTime PublishedDate { get; set; } = new DateTime().OracleDefault();
 
     }
 }

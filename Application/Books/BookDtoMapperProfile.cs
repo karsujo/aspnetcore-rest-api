@@ -17,6 +17,7 @@ namespace Application.Books
                 .ForMember(dest => dest.Genre, opt => opt.MapFrom(src => src.Genre));
 
             CreateMap<BookForUpdateDto, BookDto>();
+            CreateMap<Book, BookForUpdateDto>();
         }
     }
 }
