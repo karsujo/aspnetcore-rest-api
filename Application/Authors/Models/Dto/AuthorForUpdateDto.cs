@@ -26,5 +26,6 @@ namespace Application.Authors
 
         [Required(ErrorMessage = "ZipCode is required for updation.")]
         public override string Zip { get => base.Zip; set => base.Zip = value; }
+
     }
 }
