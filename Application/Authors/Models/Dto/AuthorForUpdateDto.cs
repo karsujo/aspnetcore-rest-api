@@ -15,6 +15,7 @@ namespace Application.Authors
         }
         public ICollection<BookForUpdateDto> Books { get; set; }
         public string AuthorId { get; set; }
+
         [Required(ErrorMessage = "Address is required for updation.")]
         public override string Address { get => base.Address; set => base.Address = value; }
 

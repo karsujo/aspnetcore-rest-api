@@ -3,6 +3,7 @@ using Application.Books;
 using Domain.Exceptions;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -120,13 +121,22 @@ namespace OdysseyPublishers.API.Controllers
 
             };
 
-            //validate
-            patchDocument.ApplyTo(bookForUpdate);
+            if(!TryValidateModel(bookForUpdate))
+            {
+                return ValidationProblem(ModelState);
+            }
+
+            patchDocument.ApplyTo(bookForUpdate, ModelState);
 
             _bookService.UpdateBook(bookForUpdate);
 
             return NoContent();
 
+        }
+
+        public override ActionResult ValidationProblem(ModelStateDictionary modelState)
+        {
+            return base.ValidationProblem(modelState);
         }
     }
 }
