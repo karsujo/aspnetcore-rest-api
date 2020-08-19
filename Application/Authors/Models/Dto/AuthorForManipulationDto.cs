@@ -10,11 +10,11 @@ namespace Application.Authors
     {
     
         [Required]
-        [MaxLength(40)]
+        [StringLength(40)]
         public string FirstName { get; set; }
 
         [Required]
-        [MaxLength(40)]
+        [StringLength(40)]
         public string LastName { get; set; }
 
         public virtual string City { get; set; }

@@ -134,6 +134,19 @@ namespace OdysseyPublishers.API.Controllers
 
         }
 
+        [HttpDelete("{bookId}")]
+        public ActionResult DeleteBookForAuthor([FromRoute] string authorId, [FromRoute] string bookId)
+        {
+            if (!_authorService.AuthorExists(authorId))
+                return NotFound();
+            if (!_bookService.BookExists(bookId))
+                return NotFound();
+            _bookService.DeleteBook(bookId);
+            return NoContent();
+        }
+
+
+
         public override ActionResult ValidationProblem(ModelStateDictionary modelState)
         {
             return base.ValidationProblem(modelState);

@@ -116,5 +116,19 @@ namespace Application.Authors
             }
             _authorRepository.UpdateAuthor(author);
         }
+
+        public void DeleteAuthor(string authorId) 
+        {
+            var author = GetAuthor(authorId);
+            if(author.Books.Count>0)
+            {
+                foreach(var book in author.Books)
+                {
+                    _bookRepository.DeleteBook(book.Id);
+                }
+            }
+            _authorRepository.DeleteAuthor(authorId); 
+        }
+      
     }
 }

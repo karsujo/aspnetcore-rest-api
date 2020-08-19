@@ -119,6 +119,17 @@ namespace OdysseyPublishers.API.Controllers
 
         }
 
+        [HttpDelete("{authorId}")]
+        public ActionResult DeleteAuthor([FromRoute] string authorId)
+        {
+            if (!_authorService.AuthorExists(authorId))
+                return NotFound();
+
+            _authorService.DeleteAuthor(authorId);
+
+            return NoContent();
+        }
+
     }
 
 

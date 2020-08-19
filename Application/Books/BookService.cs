@@ -72,7 +72,7 @@ namespace Application.Books
             return _mapper.Map<BookDto>(book);
         }
 
- 
-
+        public void DeleteBook(string bookId) => _bookRepository.DeleteBook(bookId);
+      
     }
 }

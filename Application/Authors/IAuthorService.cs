@@ -13,6 +13,7 @@ namespace Application.Authors
         AuthorDto CreateAuthorWithBooks(AuthorForCreationDto authorForCreationDto);
         void UpdateAuthor(AuthorForUpdateDto author);
 
+        void DeleteAuthor(string authorId);
 
     }
 }

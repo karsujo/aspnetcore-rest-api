@@ -133,5 +133,14 @@ namespace Infrastructure.Books
             parameters.Add("@pubdate", book.PublishedDate, DbType.DateTime, ParameterDirection.Input);
             _repository.ModifyDatabase(sql, parameters);
         }
+
+        public void DeleteBook(string bookId)
+        {
+            string sql = @"Delete from books  where  book_id = @book_id";
+
+            var parameters = new DynamicParameters();
+            parameters.Add("@book_id", bookId, DbType.String, ParameterDirection.Input);
+            _repository.ModifyDatabase(sql, parameters);
+        }
     }
 }

@@ -12,6 +12,6 @@ namespace OdysseyPublishers.Application.Authors
         IEnumerable<Author> GetAuthors();
         void CreateAuthor(AuthorForCreationDto authorForCreationDto, string auhtorId);
         void UpdateAuthor(AuthorForUpdateDto author);
-        void DeleteAuthor();
+        void DeleteAuthor(string authorId);
     }
 }

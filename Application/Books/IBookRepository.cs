@@ -12,6 +12,7 @@ namespace Application.Books
         IEnumerable<Book> GetBooks();
         void CreateBook(BookForCreationDto book);
         void UpdateBook(BookForUpdateDto book);
+        void DeleteBook(string bookId);
 
 
 

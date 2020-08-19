@@ -130,8 +130,8 @@ namespace OdysseyPublishers.Infrastructure.Authors
             string sql = @"Update authors set au_fname = @au_fname, au_lname= @au_lname, phone = @phone, address= @address, city = @city, state = @state, zip = @zip where au_id= @au_id";
             var parameters = new DynamicParameters();
             parameters.Add("@au_id", author.AuthorId, DbType.String, ParameterDirection.Input);
-            parameters.Add("@au_fname", author.LastName, DbType.String, ParameterDirection.Input);
-            parameters.Add("@au_lname", author.FirstName, DbType.String, ParameterDirection.Input);
+            parameters.Add("@au_fname", author.FirstName, DbType.String, ParameterDirection.Input);
+            parameters.Add("@au_lname", author.LastName, DbType.String, ParameterDirection.Input);
             parameters.Add("@phone", author.Phone, DbType.String, ParameterDirection.Input);
             parameters.Add("@address", author.Address, DbType.String, ParameterDirection.Input);
             parameters.Add("@city", author.City, DbType.String, ParameterDirection.Input);
@@ -141,9 +141,14 @@ namespace OdysseyPublishers.Infrastructure.Authors
 
         }
 
-        public void DeleteAuthor()
+     
+        public void DeleteAuthor(string authorId)
         {
-            throw new System.NotImplementedException();
+            string sql = @"Delete from authors where au_id = @au_id";
+            var parameters = new DynamicParameters();
+            parameters.Add("@au_id",authorId, DbType.String, ParameterDirection.Input);
+
+            _repository.ModifyDatabase(sql, parameters);
         }
     }
 

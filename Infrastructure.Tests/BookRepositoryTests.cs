@@ -57,7 +57,7 @@ namespace Infrastructure.Tests
         }
 
         [Fact]
-
+        //TODO: Code like that for AuthorRepoTest
         public void CreateBook()
         {
             string authorId = _auRepo.GetAuthors().First().AuthorId;
@@ -72,5 +72,15 @@ namespace Infrastructure.Tests
             var book = new BookForUpdateDto { AuthorId = authorId, BookId = Guid.NewGuid().ToString(), Price = 20, PublishedDate = DateTime.UtcNow, Title = "The Mon'ks Ferrari", Genre = "nf_self" };
             _bkRepo.UpdateBook(book);
         }
+
+        [Fact]
+        public void DeleteBook()
+        {
+            string bookId = _bkRepo.GetBooks().First().BookId;
+            _bkRepo.DeleteBook(bookId);
+            Assert.Null(_bkRepo.GetBook(bookId));
+        }
+
+
     }
 }

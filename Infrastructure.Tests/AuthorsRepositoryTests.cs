@@ -1,8 +1,12 @@
 using Application.Authors;
+using AutoMapper;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using OdysseyPublishers.Domain;
 using OdysseyPublishers.Infrastructure.Authors;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using TestUtils;
 using Xunit;
 
 namespace Infrastructure.Tests
@@ -11,6 +15,7 @@ namespace Infrastructure.Tests
     {
 
         private readonly AuthorRepository _auRepo;
+        private readonly IMapper mapper;
 
         public AuthorsRepositoryTests()
         {
@@ -58,8 +63,52 @@ namespace Infrastructure.Tests
 
         public void CreateAuthor()
         {
-            var model = new AuthorForCreationDto { Address = "Taxi Drive", City = "Bangalore", FirstName = "Randi", LastName = "Ortan", Phone = "1542589", State = "KA", Zip = "50681" };
-            _auRepo.CreateAuthor(model, System.Guid.NewGuid().ToString());
+            string authorId;
+            CreateAuthorHelper(out _, out authorId);           
+            var getAuthor = _auRepo.GetAuthor(authorId);
+            Assert.IsType<Author>(getAuthor);
+            Assert.NotNull(getAuthor);
+            DeleteAuthorHelper(authorId);
+        }
+
+        [Fact]
+
+        public void DeleteAuthor()
+        {
+            string authorId;
+            CreateAuthorHelper(out _, out authorId);
+            _auRepo.DeleteAuthor(authorId);
+            var getAuthor = _auRepo.GetAuthor(authorId);
+            Assert.Null(getAuthor);
+        }
+
+        [Fact]
+
+        public void UpdateAuthor()
+        {
+            string authorId;
+            AuthorForCreationDto author;
+            CreateAuthorHelper(out author, out authorId);
+            var updateAuthor = ObjectMocks.GetAuthorForUpdate();
+           _auRepo.UpdateAuthor(updateAuthor);
+            var updatedAuthor = _auRepo.GetAuthor(authorId);
+            Assert.Equal(updatedAuthor.LastName, updateAuthor.LastName);
+            DeleteAuthorHelper(authorId);
+
+        }
+
+        private void CreateAuthorHelper(out AuthorForCreationDto model, out string authorId)
+        {
+              authorId = System.Guid.NewGuid().ToString();
+            string bookId = Guid.NewGuid().ToString();
+            model = ObjectMocks.GetAuthorForCreation(authorId,bookId);
+            _auRepo.CreateAuthor(model, authorId);
+       
+        }
+
+        private void DeleteAuthorHelper(string authorId)
+        {
+            _auRepo.DeleteAuthor(authorId);
         }
 
 

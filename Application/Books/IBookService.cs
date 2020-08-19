@@ -14,6 +14,7 @@ namespace Application.Books
         IEnumerable<BookDto> CreateBooks(IEnumerable<BookForCreationDto> bookForCreationDtos, string authorId);
 
         BookDto UpdateBook(BookForUpdateDto book);
+        void DeleteBook(string bookId);
 
 
 
