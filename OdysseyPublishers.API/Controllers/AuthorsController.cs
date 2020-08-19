@@ -1,5 +1,8 @@
 ﻿using Application.Authors;
+using Application.Books;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using OdysseyPublishers.Domain;
 using System;
 using System.Collections.Generic;
 
@@ -65,6 +68,54 @@ namespace OdysseyPublishers.API.Controllers
 
             return NoContent();
 
+
+        }
+
+        //TODO: Test complex patches (books)
+
+        [HttpPatch("{authorId}")]
+        public ActionResult PatchAuthor([FromRoute] string authorId, JsonPatchDocument<AuthorForUpdateDto> patchDocument)
+        {
+            if (!_authorService.AuthorExists(authorId))
+                return NotFound();
+
+            AuthorDto author = _authorService.GetAuthor(authorId);
+            var booksForUpdate = new List<BookForUpdateDto>();
+            foreach(var book in author.Books)
+            {
+                booksForUpdate.Add(new BookForUpdateDto
+                {
+                    AuthorId = authorId,
+                    BookId = book.Id,
+                    Genre = book.Genre,
+                    Price = book.Price,
+                    PublishedDate = book.PublishedDate,
+                    Title = book.Title
+                });
+            }
+
+            AuthorForUpdateDto updateAuthor = new AuthorForUpdateDto {
+                Address = author.Address,
+                FirstName = author.Name,
+                LastName = author.Name,
+                AuthorId = authorId,
+                Books = booksForUpdate,
+                State = author.State,
+                City = author.City,
+                Phone = author.Phone,
+                Zip = author.ZipCode
+            };
+          
+            if (!TryValidateModel(updateAuthor))
+            {
+                return ValidationProblem(ModelState);
+            }
+
+            patchDocument.ApplyTo(updateAuthor, ModelState);
+
+            _authorService.UpdateAuthor(updateAuthor);
+
+            return NoContent();
 
         }
 

@@ -23,6 +23,7 @@ namespace Application.Authors
         public override string City { get => base.City; set => base.City = value; }
 
         [Required(ErrorMessage = "State is required for updation.")]
+        [MaxLength(2)]
         public override string State { get => base.State; set => base.State = value; }
 
         [Required(ErrorMessage = "ZipCode is required for updation.")]
