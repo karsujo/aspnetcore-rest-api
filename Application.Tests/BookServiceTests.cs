@@ -22,6 +22,7 @@ namespace Application.Tests
         }
         [Fact]
         public void GetBooksForAuthor()
+
         {
             var res = _bookService.GetBooksForAuthor(authorId);
             Assert.IsType<List<BookDto>>(res);
