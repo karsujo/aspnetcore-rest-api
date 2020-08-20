@@ -48,7 +48,7 @@ namespace TestUtils
             {
                 bookId = BookCreationId;
             }
-            return new BookForUpdateDto { AuthorId = authorId, BookId = bookId, Price = 10, PublishedDate = DateTime.UtcNow, Title = "The Jabberwocky", Genre = "fic_fant" };
+            return new BookForUpdateDto { AuthorId = authorId, BookId = bookId, Price = 10, PublishedDate = DateTime.UtcNow, Title = "Updated The Jabberwocky", Genre = "fic_fant" };
 
         }
         public static AuthorForUpdateDto GetAuthorForUpdate(string authorId = null, string bookId = null)

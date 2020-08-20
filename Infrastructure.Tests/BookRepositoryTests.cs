@@ -5,6 +5,7 @@ using OdysseyPublishers.Infrastructure.Authors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TestUtils;
 using Xunit;
 
 namespace Infrastructure.Tests
@@ -40,7 +41,7 @@ namespace Infrastructure.Tests
 
         public void GetAuthorBook()
         {
-            string authorId = "7CE7D8A4-8620-4222-B3C8-CE84DA685C13";
+            string authorId = _auRepo.GetAuthors().First().AuthorId;
             var res = _bkRepo.GetBooksForAuthor(authorId);
             Assert.IsType<List<Book>>(res);
         }
@@ -50,27 +51,41 @@ namespace Infrastructure.Tests
 
         public void BookExists()
         {
-            string bookId = "BU1032";
+            string bookId = _bkRepo.GetBooks().First().BookId;
             var res = _bkRepo.BookExists(bookId);
             Assert.IsType<bool>(res);
 
         }
 
         [Fact]
-        //TODO: Code like that for AuthorRepoTest
+
         public void CreateBook()
         {
             string authorId = _auRepo.GetAuthors().First().AuthorId;
-            var book = new BookForCreationDto { AuthorId = authorId, BookId = Guid.NewGuid().ToString(), Price = 20, PublishedDate = DateTime.UtcNow, Title = "The Mon'ks Ferrari", Genre = "nf_self" };
+            string bookId = Guid.NewGuid().ToString();
+            var book = new BookForCreationDto { AuthorId = authorId, BookId = bookId, Price = 20, PublishedDate = DateTime.UtcNow, Title = "The Mon'ks Ferrari", Genre = "nf_self" };
             _bkRepo.CreateBook(book);
+            var createdBook = _bkRepo.GetBook(bookId);
+            Assert.NotNull(createdBook);
+            DeleteBookHelper(bookId);
         }
 
         [Fact]
         public void UpdateBook()
         {
             string authorId = _auRepo.GetAuthors().First().AuthorId;
-            var book = new BookForUpdateDto { AuthorId = authorId, BookId = Guid.NewGuid().ToString(), Price = 20, PublishedDate = DateTime.UtcNow, Title = "The Mon'ks Ferrari", Genre = "nf_self" };
-            _bkRepo.UpdateBook(book);
+            dynamic book = null;
+            string bookId = null;
+
+            CreateBookHelper(out book, out bookId, authorId);
+            var updateBook = ObjectMocks.GetBookForUpdate(authorId, bookId);
+
+            _bkRepo.UpdateBook(updateBook);
+
+            var updatedBook = _bkRepo.GetBook(bookId);
+            Assert.Equal(updatedBook.Title, updateBook.Title);
+
+            DeleteBookHelper(bookId);
         }
 
         [Fact]
@@ -79,6 +94,18 @@ namespace Infrastructure.Tests
             string bookId = _bkRepo.GetBooks().First().BookId;
             _bkRepo.DeleteBook(bookId);
             Assert.Null(_bkRepo.GetBook(bookId));
+        }
+
+        private void CreateBookHelper(out dynamic book, out string bookId, string authorId)
+        {
+            bookId = Guid.NewGuid().ToString();
+            book = ObjectMocks.GetBookForCreation(authorId, bookId);
+            _bkRepo.CreateBook(book);
+        }
+
+        private void DeleteBookHelper(string bookId)
+        {
+            _bkRepo.DeleteBook(bookId);
         }
 
 
