@@ -1,8 +1,10 @@
 ﻿using Application.Authors;
 using Application.Books;
+using OdysseyPublishers.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TestUtils;
 using Xunit;
 
 namespace Application.Tests
@@ -65,8 +67,42 @@ namespace Application.Tests
 
         public void UpdateBook()
         {
-            var book = new BookForUpdateDto { AuthorId = authorId, BookId = Guid.NewGuid().ToString(), Price = 20, PublishedDate = DateTime.UtcNow, Title = "The Mon'ks Ferrari", Genre = "nf_self" };
-            var res = _bookService.UpdateBook(book);
+            dynamic books;
+            string bookId;
+            CreateBookHelper(out books, out bookId, authorId);
+            var updateBook = ObjectMocks.GetBookForUpdate(authorId, bookId);
+            _bookService.UpdateBook(updateBook);
+            var updatedBook = _bookService.GetBook(bookId);
+            Assert.Equal(updateBook.Title, updateBook.Title);
+            DeleteBookHelper(bookId);
+
+
+        }
+
+        [Fact]
+
+        public void DeleteBook()
+        {
+            dynamic books;
+            string bookId;
+            CreateBookHelper(out books, out bookId, authorId);
+            _bookService.DeleteBook(bookId);
+            Assert.Null(_bookService.GetBook(bookId));
+        }
+
+        private void CreateBookHelper(out dynamic books, out string bookId, string authorId)
+        {
+
+            books = new List<BookForCreationDto>();
+            bookId = Guid.NewGuid().ToString();
+            var book = TestUtils.ObjectMocks.GetBookForCreation(authorId, bookId);
+            books.Add(book);
+            _bookService.CreateBooks(books, authorId);
+        }
+
+        private void DeleteBookHelper(string bookId)
+        {
+            _bookService.DeleteBook(bookId);
         }
 
 
