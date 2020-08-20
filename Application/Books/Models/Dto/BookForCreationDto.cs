@@ -1,10 +1,7 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-
-namespace Application.Books
+﻿namespace Application.Books
 {
-    public class BookForCreationDto: BookForManipulationDto
+    public class BookForCreationDto : BookForManipulationDto
     {
-  
+
     }
 }

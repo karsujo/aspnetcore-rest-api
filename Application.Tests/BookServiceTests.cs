@@ -12,7 +12,7 @@ namespace Application.Tests
     {
         private readonly IBookService _bookService;
         private readonly IAuthorService _authorService;
-        private string authorId;
+        private readonly string authorId;
         public BookServiceTests()
         {
             _bookService = TestUtils.ConstructorUtils.bookService;
@@ -55,7 +55,7 @@ namespace Application.Tests
         {
 
             var bookList = new List<BookForCreationDto>();
-            var book = TestUtils.ObjectMocks.GetBookForCreation(authorId);
+            var book = TestUtils.ObjectMocks.GetBookForCreation(authorId, Guid.NewGuid().ToString());
             bookList.Add(book);
             var res = _bookService.CreateBooks(bookList, book.AuthorId);
             Assert.IsType<List<BookDto>>(res);

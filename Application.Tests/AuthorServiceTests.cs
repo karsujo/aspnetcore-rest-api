@@ -39,7 +39,7 @@ namespace Application.Tests
         [Fact]
 
         public void GetAuthors()
-         {
+        {
             var para = new AuthorResourceParameters { City = "Massachussets", State = "MA" };
             var res = _authorService.GetAuthors(para);
             Assert.IsType<List<AuthorDto>>(res);
@@ -50,7 +50,7 @@ namespace Application.Tests
 
         public void CreateAuthor()
         {
-            var author = TestUtils.ObjectMocks.GetAuthorForCreation();
+            var author = TestUtils.ObjectMocks.GetAuthorForCreation(Guid.NewGuid().ToString(), Guid.NewGuid().ToString());
             string json = JsonConvert.SerializeObject(author);
             var res = _authorService.CreateAuthor(author, Guid.NewGuid().ToString());
             Assert.IsType<AuthorDto>(res);

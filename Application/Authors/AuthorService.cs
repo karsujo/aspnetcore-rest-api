@@ -25,7 +25,7 @@ namespace Application.Authors
         {
             var authorResult = _authorRepository.GetAuthor(authorId);
             var bookResult = _bookRepository.GetBooksForAuthor(authorId);
-            foreach(var book in bookResult)
+            foreach (var book in bookResult)
             {
                 authorResult.Books.Add(book);
             }
@@ -51,7 +51,7 @@ namespace Application.Authors
 
         public IEnumerable<AuthorDto> GetAuthors()
         {
-           var authorResult = _authorRepository.GetAuthors();
+            var authorResult = _authorRepository.GetAuthors();
             var bookResult = _bookRepository.GetBooks();
             foreach (var author in authorResult)
             {
@@ -102,33 +102,33 @@ namespace Application.Authors
 
         public void UpdateAuthor(AuthorForUpdateDto author)
         {
-            if(author.Books.Count>0)
+            if (author.Books.Count > 0)
             {
                 var books = author.Books;
-                foreach(var book in books)
+                foreach (var book in books)
                 {
                     if (!_bookService.BookExists(book.BookId))
                         throw new ArgumentException($"Book with id {book.BookId} not found");
 
                     _bookService.UpdateBook(book);
                 }
-       
+
             }
             _authorRepository.UpdateAuthor(author);
         }
 
-        public void DeleteAuthor(string authorId) 
+        public void DeleteAuthor(string authorId)
         {
             var author = GetAuthor(authorId);
-            if(author.Books.Count>0)
+            if (author.Books.Count > 0)
             {
-                foreach(var book in author.Books)
+                foreach (var book in author.Books)
                 {
                     _bookRepository.DeleteBook(book.Id);
                 }
             }
-            _authorRepository.DeleteAuthor(authorId); 
+            _authorRepository.DeleteAuthor(authorId);
         }
-      
+
     }
 }

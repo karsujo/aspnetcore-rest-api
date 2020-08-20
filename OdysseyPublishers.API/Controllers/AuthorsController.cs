@@ -2,7 +2,6 @@
 using Application.Books;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
-using OdysseyPublishers.Domain;
 using System;
 using System.Collections.Generic;
 
@@ -63,7 +62,7 @@ namespace OdysseyPublishers.API.Controllers
             if (!_authorService.AuthorExists(authorId))
                 return NotFound();
 
-             author.AuthorId = authorId;
+            author.AuthorId = authorId;
             _authorService.UpdateAuthor(author);
 
             return NoContent();
@@ -81,7 +80,7 @@ namespace OdysseyPublishers.API.Controllers
 
             AuthorDto author = _authorService.GetAuthor(authorId);
             var booksForUpdate = new List<BookForUpdateDto>();
-            foreach(var book in author.Books)
+            foreach (var book in author.Books)
             {
                 booksForUpdate.Add(new BookForUpdateDto
                 {
@@ -94,7 +93,8 @@ namespace OdysseyPublishers.API.Controllers
                 });
             }
 
-            AuthorForUpdateDto updateAuthor = new AuthorForUpdateDto {
+            AuthorForUpdateDto updateAuthor = new AuthorForUpdateDto
+            {
                 Address = author.Address,
                 FirstName = author.Name,
                 LastName = author.Name,
@@ -105,7 +105,7 @@ namespace OdysseyPublishers.API.Controllers
                 Phone = author.Phone,
                 Zip = author.ZipCode
             };
-          
+
             if (!TryValidateModel(updateAuthor))
             {
                 return ValidationProblem(ModelState);

@@ -1,6 +1,4 @@
-﻿using Application.Books;
-using AutoMapper;
-using Microsoft.AspNetCore.JsonPatch;
+﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
 
@@ -73,6 +71,6 @@ namespace Application.Books
         }
 
         public void DeleteBook(string bookId) => _bookRepository.DeleteBook(bookId);
-      
+
     }
 }

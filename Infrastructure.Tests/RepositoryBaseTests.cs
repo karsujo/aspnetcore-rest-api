@@ -17,7 +17,7 @@ namespace Infrastructure.Tests
     public class RepositoryBaseTests
     {
 
-        private SqlRepositoryBase _repo;
+        private readonly SqlRepositoryBase _repo;
 
         public RepositoryBaseTests()
         {

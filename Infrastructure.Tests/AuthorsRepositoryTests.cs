@@ -1,6 +1,5 @@
 using Application.Authors;
 using AutoMapper;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using OdysseyPublishers.Domain;
 using OdysseyPublishers.Infrastructure.Authors;
 using System;
@@ -64,7 +63,7 @@ namespace Infrastructure.Tests
         public void CreateAuthor()
         {
             string authorId;
-            CreateAuthorHelper(out _, out authorId);           
+            CreateAuthorHelper(out _, out authorId);
             var getAuthor = _auRepo.GetAuthor(authorId);
             Assert.IsType<Author>(getAuthor);
             Assert.NotNull(getAuthor);
@@ -90,7 +89,7 @@ namespace Infrastructure.Tests
             AuthorForCreationDto author;
             CreateAuthorHelper(out author, out authorId);
             var updateAuthor = ObjectMocks.GetAuthorForUpdate();
-           _auRepo.UpdateAuthor(updateAuthor);
+            _auRepo.UpdateAuthor(updateAuthor);
             var updatedAuthor = _auRepo.GetAuthor(authorId);
             Assert.Equal(updatedAuthor.LastName, updateAuthor.LastName);
             DeleteAuthorHelper(authorId);
@@ -99,11 +98,11 @@ namespace Infrastructure.Tests
 
         private void CreateAuthorHelper(out AuthorForCreationDto model, out string authorId)
         {
-              authorId = System.Guid.NewGuid().ToString();
+            authorId = System.Guid.NewGuid().ToString();
             string bookId = Guid.NewGuid().ToString();
-            model = ObjectMocks.GetAuthorForCreation(authorId,bookId);
+            model = ObjectMocks.GetAuthorForCreation(authorId, bookId);
             _auRepo.CreateAuthor(model, authorId);
-       
+
         }
 
         private void DeleteAuthorHelper(string authorId)

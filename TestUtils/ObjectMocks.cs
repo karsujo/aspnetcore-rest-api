@@ -1,7 +1,5 @@
 ﻿using Application.Authors;
 using Application.Books;
-using Microsoft.AspNetCore.Http;
-using OdysseyPublishers.Domain;
 using System;
 using System.Collections.Generic;
 
@@ -26,7 +24,7 @@ namespace TestUtils
             bookList.Add(GetBookForCreation(authorId, bookId));
             return new AuthorForCreationDto
             {
-                
+
                 Address = "Crawley Lane, Manchester Ave",
                 Books = bookList,
                 City = "Massachussets",
@@ -38,13 +36,13 @@ namespace TestUtils
             };
         }
 
-        public static BookForUpdateDto GetBookForUpdate(string authorId = null, string bookId=null)
+        public static BookForUpdateDto GetBookForUpdate(string authorId = null, string bookId = null)
         {
             if (authorId == null)
             {
                 authorId = AuthorCreationId;
             }
-            if(bookId == null)
+            if (bookId == null)
             {
                 bookId = BookCreationId;
             }
@@ -53,7 +51,7 @@ namespace TestUtils
         }
         public static AuthorForUpdateDto GetAuthorForUpdate(string authorId = null, string bookId = null)
         {
-            if(authorId==null)
+            if (authorId == null)
             {
                 authorId = AuthorCreationId;
             }

@@ -112,16 +112,16 @@ namespace OdysseyPublishers.API.Controllers
 
             BookForUpdateDto bookForUpdate = new BookForUpdateDto
             {
-              AuthorId = authorId,
-             BookId = bookId,
-             Genre = book.Genre,
-             Price = book.Price,
-             PublishedDate = book.PublishedDate,
-             Title = book.Title
+                AuthorId = authorId,
+                BookId = bookId,
+                Genre = book.Genre,
+                Price = book.Price,
+                PublishedDate = book.PublishedDate,
+                Title = book.Title
 
             };
 
-            if(!TryValidateModel(bookForUpdate))
+            if (!TryValidateModel(bookForUpdate))
             {
                 return ValidationProblem(ModelState);
             }

@@ -1,14 +1,10 @@
-﻿using Application.Books;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Application.Authors
 {
     public abstract class AuthorForManipulationDto
     {
-    
+
         [Required]
         [StringLength(40)]
         public string FirstName { get; set; }
@@ -27,7 +23,7 @@ namespace Application.Authors
         [RegularExpression("^[0-9]{5}$")]
         public virtual string Zip { get; set; }
 
-      
+
 
     }
 }

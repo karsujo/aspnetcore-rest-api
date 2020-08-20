@@ -141,12 +141,12 @@ namespace OdysseyPublishers.Infrastructure.Authors
 
         }
 
-     
+
         public void DeleteAuthor(string authorId)
         {
             string sql = @"Delete from authors where au_id = @au_id";
             var parameters = new DynamicParameters();
-            parameters.Add("@au_id",authorId, DbType.String, ParameterDirection.Input);
+            parameters.Add("@au_id", authorId, DbType.String, ParameterDirection.Input);
 
             _repository.ModifyDatabase(sql, parameters);
         }
