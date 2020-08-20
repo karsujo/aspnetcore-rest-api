@@ -1,6 +1,4 @@
 ﻿using Application.Authors;
-using Newtonsoft.Json;
-using OdysseyPublishers.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -92,11 +90,11 @@ namespace Application.Tests
             Assert.Null(_authorService.GetAuthor(authorId));
         }
 
-        private void CreateAuthorHelper(out string authorId,  out dynamic author)
+        private void CreateAuthorHelper(out string authorId, out dynamic author)
         {
-              authorId = Guid.NewGuid().ToString();
-              author = ObjectMocks.GetAuthorForCreation(authorId);
-             _authorService.CreateAuthor(author, authorId);
+            authorId = Guid.NewGuid().ToString();
+            author = ObjectMocks.GetAuthorForCreation(authorId);
+            _authorService.CreateAuthor(author, authorId);
         }
 
         private void DeleteAuthorHelper(string authorId)

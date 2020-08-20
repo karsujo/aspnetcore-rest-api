@@ -17,9 +17,9 @@ namespace TestUtils
             return new BookForCreationDto { AuthorId = authorId, BookId = BookCreationId, Price = 10, PublishedDate = DateTime.UtcNow, Title = "The Jabberwocky", Genre = "fic_fant" };
         }
 
-        public static AuthorForCreationDto GetAuthorForCreation(string authorId, string bookId=null)
+        public static AuthorForCreationDto GetAuthorForCreation(string authorId, string bookId = null)
         {
-            if(bookId == null)
+            if (bookId == null)
             {
                 bookId = Guid.NewGuid().ToString();
             }
