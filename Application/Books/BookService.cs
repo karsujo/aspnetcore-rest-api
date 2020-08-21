@@ -24,10 +24,10 @@ namespace Application.Books
         public BookDto GetBook(string bookId)
         {
             var res = _bookRepository.GetBook(bookId);
-            //res.Validate();
             return _mapper.Map<BookDto>(res);
         }
-        [DomainMap]
+
+
         public bool BookExists(string bookId)
         {
             return _bookRepository.BookExists(bookId);
@@ -38,20 +38,18 @@ namespace Application.Books
         public IEnumerable<BookDto> GetBooks(BookResourceParameters bookResourceParameters)
         {
             var res = _bookRepository.GetBooks(bookResourceParameters);
-            //validate
-            return _mapper.Map<List<BookDto>>(res);
+              return _mapper.Map<List<BookDto>>(res);
         }
+
         //TODO: Make custom Action filters for validation and mapping Ex: DomainMap
         // [DomainMap]
         public IEnumerable<BookDto> GetBooks()
         {
             var res = _bookRepository.GetBooks();
-            //validate
             return _mapper.Map<List<BookDto>>(res);
         }
 
 
-        // TODO: Should there be a Create book and Create Books API separately?
         public IEnumerable<BookDto> CreateBooks(IEnumerable<BookForCreationDto> bookForCreationDtos, string authorId)
         {
             foreach (var book in bookForCreationDtos)

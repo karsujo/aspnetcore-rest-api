@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Infrastructure.Authors
 {
+    //Maps directly to database column definitions.
     public class AuthorDbEntity
     {
 

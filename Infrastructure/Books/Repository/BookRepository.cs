@@ -105,7 +105,6 @@ namespace Infrastructure.Books
             return _mapper.Map<List<Book>>(res);
         }
 
-        //TODO: Should we convert to domain entity or directly use the DTO?
         public void CreateBook(BookForCreationDto bookForCreationDto)
         {
             string sql = @"Insert into books(au_id, book_id, title, type, price, pubdate)

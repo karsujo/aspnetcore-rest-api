@@ -19,7 +19,12 @@ namespace OdysseyPublishers.Infrastructure.Common
         {
             _persistenceConfigurations = persistenceconfigurations.Value;
         }
+        private DbConnection connection { get
+            {
+                return new SqlConnection(_persistenceConfigurations.ConnectionString);
 
+            }
+        }
         public DbConnection GetDbConnection()
         {
 

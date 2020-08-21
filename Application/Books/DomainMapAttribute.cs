@@ -3,9 +3,10 @@ using System.Web.Http.Filters;
 
 namespace Application.Books
 {
+    //Currently unused
     public class DomainMapAttribute : ActionFilterAttribute
     {
-
+        
         public override void OnActionExecuting(HttpActionContext actionContext)
         {
             var args = actionContext.ActionArguments;

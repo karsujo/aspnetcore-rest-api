@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace Infrastructure.Books
 {
 
-    //TODO: Convert App Domian models to DbEntity for Repo Methods. 
+    //Maps directly to database column definitions.
     public class BookDbEntity
     {
         [Required]
