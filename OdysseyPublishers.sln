@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source", "Source", "{E2781B1F-F0BD-4BF6-A33B-847E6561B1C8}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{E2781B1F-F0BD-4BF6-A33B-847E6561B1C8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API", "OdysseyPublishers.API\API.csproj", "{450467D5-9FF5-4902-B642-908B36B56470}"
 EndProject
@@ -20,14 +20,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.Tests", "Application.Tests\Application.Tests.csproj", "{BF896EC4-6A0F-4356-9724-9A36DE59B9A5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.Tests", "Infrastructure.Tests\Infrastructure.Tests.csproj", "{35C68E25-3AF3-4728-8E73-257BEDF0A38B}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{A1286671-1D2E-476A-ACBF-4EBA5A0178E7}"
-	ProjectSection(SolutionItems) = preProject
-		CreateAuthor.json = CreateAuthor.json
-		CreateBook.json = CreateBook.json
-		GenerateDbTables.sql = GenerateDbTables.sql
-		SeedData.sql = SeedData.sql
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestUtils", "TestUtils\TestUtils.csproj", "{63EACEAB-54E5-468E-83A5-71D63BDF5EDD}"
 EndProject
