@@ -21,6 +21,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.Tests", "Applic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.Tests", "Infrastructure.Tests\Infrastructure.Tests.csproj", "{35C68E25-3AF3-4728-8E73-257BEDF0A38B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{A1286671-1D2E-476A-ACBF-4EBA5A0178E7}"
+	ProjectSection(SolutionItems) = preProject
+		CreateAuthor.json = CreateAuthor.json
+		CreateBook.json = CreateBook.json
+		GenerateDbTables.sql = GenerateDbTables.sql
+		SeedData.sql = SeedData.sql
+	EndProjectSection
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestUtils", "TestUtils\TestUtils.csproj", "{63EACEAB-54E5-468E-83A5-71D63BDF5EDD}"
 EndProject
 Global
