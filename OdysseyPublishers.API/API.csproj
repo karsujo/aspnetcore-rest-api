@@ -5,12 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Application\Application.csproj" />
-    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
+    <Compile Remove="Common\**" />
+    <Content Remove="Common\**" />
+    <EmbeddedResource Remove="Common\**" />
+    <None Remove="Common\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Common\" />
+    <ProjectReference Include="..\Application\Application.csproj" />
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
