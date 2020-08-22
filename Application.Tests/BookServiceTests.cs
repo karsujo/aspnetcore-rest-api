@@ -18,7 +18,7 @@ namespace Application.Tests
         {
             _bookService = TestUtils.ConstructorUtils.bookService;
             _authorService = TestUtils.ConstructorUtils.authorService;
-            authorId = _authorService.GetAuthors(new AuthorResourceParameters { City = "Massachussets", State = "MA" }).First().Id;
+            authorId = _authorService.GetAuthors(new AuthorResourceParameters { City = "Salt Lake City", State = "UT" }).First().Id;
         }
         [Fact]
         public void GetBooksForAuthor()
@@ -46,7 +46,7 @@ namespace Application.Tests
         [Fact]
         public void GetBooksFiltered()
         {
-            var resourceParams = new BookResourceParameters { Genre = "fic_fant" };
+            var resourceParams = new BookResourceParameters { Genre = "fic_fantasy" };
             var res = _bookService.GetBooks(resourceParams);
             Assert.IsType<List<BookDto>>(res);
         }

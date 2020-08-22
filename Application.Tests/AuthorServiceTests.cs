@@ -28,7 +28,7 @@ namespace Application.Tests
         [Fact]
         public void GetAuthorFiltered()
         {
-            var para = new AuthorResourceParameters { City = "Massachussets", State = "MA" };
+            var para = new AuthorResourceParameters { City = "Salt Lake City", State = "UT" };
             var res = _authorService.GetAuthors(para);
             var resp = _authorService.GetAuthor(res.First().Id);
             Assert.IsType<AuthorDto>(resp);
@@ -38,7 +38,7 @@ namespace Application.Tests
 
         public void AuthorExists()
         {
-            var para = new AuthorResourceParameters { City = "Massachussets", State = "MA" };
+            var para = new AuthorResourceParameters { City = "Salt Lake City", State = "UT" };
             var res = _authorService.GetAuthors(para);
             var resp = _authorService.AuthorExists(res.First().Id);
             Assert.True(resp);
@@ -48,7 +48,7 @@ namespace Application.Tests
 
         public void GetAuthors()
         {
-            var para = new AuthorResourceParameters { City = "Massachussets", State = "MA" };
+            var para = new AuthorResourceParameters { City = "Salt Lake City", State = "UT" };
             var res = _authorService.GetAuthors(para);
             Assert.IsType<List<AuthorDto>>(res);
         }
