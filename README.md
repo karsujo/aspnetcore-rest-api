@@ -13,3 +13,12 @@ Add your database connection string to the following files:
 
 * `OdysseyPublishers.API/appsettings.json` 
 * `TestUtils/appsettings.json`
+
+## Solution Design ##
+The core domain class contains the POCO classes for the core entities : book and author. The Application layer exposes interfaces into which the the Presentation and Infrastrucure layer plug into (the pink boxes in the diagram). All dependencies point inward towards the domain. This design makes each module of the solution modular and easily replaceable. 
+
+![Domain-Driven Desing Onion-Image](Resources/DDD.png)
+
+The Application layer contains the main business logic and services for the domain entities, and also prescribes interfaces for the outer layers. The infrastructure layer implements the repository interfaces. The presentation layer makes use of the application services, defined Data Transfer Objects and Validation logic. 
+
+<!--## API Documentation ##-->
