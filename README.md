@@ -25,7 +25,7 @@ The Application layer contains the main business logic and services for the doma
 **Authors**
 
 
-Type| Url | Response Codes |  Params
+Type| Url | Response Codes |  Opt Params
 --- | --- | --- | ---
  `GET` | */api/authors* |`200 404` | *City={city}, State={state}*
  `GET` | */api/authors/{authorId}* |`200 404` |
@@ -38,7 +38,7 @@ Type| Url | Response Codes |  Params
  
  
  **Books**
- Type| Url | Response Codes |  Params
+ Type| Url | Response Codes |  Opt Params
 --- | --- | --- | ---
  `GET` | */api/authors/{authorId}/books* |`200 404` | *Genre={genre}*
  `GET` | */api/authors/{authorId}/books/{bookId}*|`200 404` |
