@@ -21,4 +21,32 @@ The core domain class contains the POCO classes for the core entities : book and
 
 The Application layer contains the main business logic and services for the domain entities, and also prescribes interfaces for the outer layers. The infrastructure layer implements the repository interfaces. The presentation layer makes use of the application services, defined Data Transfer Objects and Validation logic. 
 
-<!--## API Documentation ##-->
+## API Documentation ##
+**Authors**
+
+
+Type| Url | Response Codes |  Params
+--- | --- | --- | ---
+ `GET` | */api/authors* |`200 404` | *City={city}, State={state}*
+ `GET` | */api/authors/{authorId}* |`200 404` |
+ `POST`|*/api/authors*| `201`|
+ `PUT` | */api/authors/{authorId}* | `204 404`|
+ `PATCH` | */api/authors/{authorId}* | `204 404`|
+ `DELETE` | */api/authors/{authorId}* | `204 404`|
+ `HEAD`| */api/authors* | `200` |
+ `OPTIONS`|*/api/authors*| `200` |
+ 
+ 
+ **Books**
+ Type| Url | Response Codes |  Params
+--- | --- | --- | ---
+ `GET` | */api/authors/{authorId}/books* |`200 404` | *Genre={genre}*
+ `GET` | */api/authors/{authorId}/books/{bookId}*|`200 404` |
+ `POST`|/api/authors/{authorId}/books| `201`|
+ `PUT` |  */api/authors/{authorId}/books/{bookId}*| `204 404`|
+ `PATCH` |  */api/authors/{authorId}/books/{bookId}* | `204 404`|
+ `DELETE` |  */api/authors/{authorId}/books/{bookId}*| `204 404`|
+ `HEAD`| /api/authors/{authorId}/books | `200` |
+ `OPTIONS`|/api/authors/{authorId}/books| `200` |
+ 
+ 
