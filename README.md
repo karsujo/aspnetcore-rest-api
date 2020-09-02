@@ -9,10 +9,9 @@ This is a sample .NET Core 3.1 implementation of a RESTful Web API interface for
 ## Installation & Configuration ##
 Once you clone the repo, create a new database (locally or as required) and use the CreateTables.sql and SeedData.sql scripts to generate the required database objects and load them with some seed data. 
 
-Add your database connection string to the following files:
+Add your database and test database connection string to the following file:
 
 * `OdysseyPublishers.API/appsettings.json` 
-* `TestUtils/appsettings.json`
 
 ## Solution Design ##
 The core domain class contains the POCO classes for the core entities : book and author. The Application layer exposes interfaces into which the the Presentation and Infrastrucure layer plug into (the pink boxes in the diagram). All dependencies point inward towards the domain. This design makes each module of the solution modular and easily replaceable. 
