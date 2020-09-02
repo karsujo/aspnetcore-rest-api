@@ -31,6 +31,7 @@ namespace OdysseyPublishers.API.Controllers
         }
 
         [HttpGet]
+        [HttpHead]
         public ActionResult<IEnumerable<BookDto>> GetBooksForAuthor([FromRoute] string authorId)
         {
             if (string.IsNullOrEmpty(authorId))

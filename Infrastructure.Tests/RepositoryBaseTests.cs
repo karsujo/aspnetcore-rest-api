@@ -6,6 +6,7 @@ using Infrastructure.Books;
 using Microsoft.Extensions.Options;
 using OdysseyPublishers.Domain;
 using OdysseyPublishers.Infrastructure.Common;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -29,7 +30,7 @@ namespace Infrastructure.Tests
 
             var mapper = config.CreateMapper();
             var opt = Options.Create(new PersistenceConfigurations());
-            opt.Value.ConnectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=pubs;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+            opt.Value.ConnectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=Odyssey;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
             _repo = new SqlRepositoryBase(opt);
         }
         [Fact]
@@ -49,8 +50,7 @@ namespace Infrastructure.Tests
               address,
               city,
               state,
-              zip,
-              contract
+              zip
             FROM
               AUTHORS ";
             var result = _repo.QueryDatabase<Author>(sql, null);
@@ -70,8 +70,7 @@ namespace Infrastructure.Tests
               address,
               city,
               state,
-              zip,
-              contract
+              zip
             FROM
               AUTHORS ";
 
@@ -85,9 +84,26 @@ namespace Infrastructure.Tests
         {
             string sql = "select* from authors where au_id = @AuthorId";
             var parameters = new DynamicParameters();
-            parameters.Add("@AuthorId", "267-41-2394", DbType.String, ParameterDirection.Input);
+            parameters.Add("@AuthorId",getSampleAuthor().AuthorId,DbType.String, ParameterDirection.Input);
             var result = _repo.QueryDatabaseSingle<Author>(sql, parameters);
             Assert.IsType<Author>(result);
+        }
+
+        private Author getSampleAuthor()
+        {
+            string sql = @"SELECT 
+              au_id AuthorId,
+              au_fname FirstName, 
+              au_lname LastName,
+              phone,
+              address,
+              city,
+              state,
+              zip
+            FROM
+              AUTHORS ";
+
+            return  _repo.QueryDatabase<Author>(sql,null).ToList().First();
         }
     }
 }

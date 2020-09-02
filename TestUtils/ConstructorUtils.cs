@@ -4,10 +4,14 @@ using Application.Common;
 using AutoMapper;
 using Infrastructure.Authors;
 using Infrastructure.Books;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
+using Newtonsoft.Json;
 using OdysseyPublishers.API.Controllers;
 using OdysseyPublishers.Infrastructure.Authors;
 using OdysseyPublishers.Infrastructure.Common;
+using System;
+using System.IO;
 
 namespace TestUtils
 {
@@ -45,6 +49,7 @@ namespace TestUtils
         {
             var config = new MapperConfiguration(opt =>
             {
+
                 opt.AddProfile(new BookDbProfile());
                 opt.AddProfile(new AuthorDbProfile());
                 opt.AddProfile(new BookDtoMapperProfile());
@@ -59,7 +64,11 @@ namespace TestUtils
         {
             if (string.IsNullOrEmpty(connectionString))
             {
-                connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Odyssey;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";
+                var builder = new ConfigurationBuilder()
+              .AddJsonFile("appsettings.json");
+               var bd =  builder.Build();
+
+                connectionString = bd.GetSection("PersistenceSettings").GetSection("TestConnectionString").Value.ToString();
             }
 
             var opt = Options.Create(new PersistenceConfigurations());
