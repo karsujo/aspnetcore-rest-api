@@ -48,6 +48,3 @@ Type| Url | Response Codes |  Opt Params
  `HEAD`| /api/authors/{authorId}/books | `200` |
  `OPTIONS`|/api/authors/{authorId}/books| `200` |
  
- For detailed request/response samples and API behavior:
- 
- [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/676b8f903202c4194813)
